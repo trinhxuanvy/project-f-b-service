@@ -1,0 +1,91 @@
+// Import SCSS
+@import "./variable/index.scss";
+
+.header {
+  height: 76px;
+  position: fixed;
+  z-index: 100000;
+  width: 100%;
+
+  &__menu-list {
+    margin-top: 0 !important;
+    &__menu-item {
+      &__menu-link {
+        color: $c-white;
+        padding: 10px;
+        font-weight: bolder;
+        text-transform: uppercase;
+        transition: 0.2s;
+        &:hover {
+          color: $c-di-serria;
+        }
+      }
+    }
+  }
+
+  &__search {
+    .fa {
+      margin-left: auto;
+      width: 32px;
+      height: 32px;
+      border-radius: 50px;
+      background-color: $c-gallery;
+      line-height: 32px;
+      text-align: center;
+    }
+  }
+}
+
+.banner {
+  font-family: "Lobster", sans-serif;
+  position: relative;
+  text-align: center;
+
+  &__image {
+    background: linear-gradient(rgba($c-black, 0.5), rgba($c-black, 0.5)),
+      url("../images/ms_banner_img1.jpg") no-repeat center;
+    height: 100vh;
+    width: 100%;
+  }
+
+  &__content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    &__title {
+      color: $c-di-serria;
+      font-size: 48px;
+    }
+
+    &__theme {
+        color: $c-white;
+        text-transform: uppercase;
+        font-size: 32px;
+    }
+
+    &__button {
+    }
+
+    &__scroll-mouse {
+      width: 50px;
+      height: 50px;
+      background: url("../images/ic_scoll.webp") no-repeat center;
+      animation: scrollY 0.5s infinite alternate;
+
+      @keyframes scrollY {
+        0% {
+          transform: translateY(-20px);
+        }
+        100% {
+          transform: translateY(20px);
+        }
+      }
+    }
+
+    &__notice {
+      font-size: 12px;
+    }
+  }
+}
