@@ -1,12 +1,12 @@
 	<%- include ("partials/head.ejs") %> 
 </head>
 <body>
-  <div class="header d-flex align-items-center">
+  <div class="header d-flex align-items-center" id="header">
     <div class="container">
       <div class="row">
         <div class="col-xl-2">
           <div class="header__brand">
-            <img src="images/Logo-ngang-01.png" alt="" />
+            <img src="images/logo.png" alt="" />
           </div>
         </div>
         <div class="col-xl-9 d-flex align-items-center justify-content-center">
@@ -56,28 +56,237 @@
           </div>
         </div>
         <div class="col-xl-1 d-flex justify-content-end align-items-center">
-          <div class="header__search">
-            <i class="fa fa-search" aria-hidden="true"></i>
+          <div class="header__user">
+            <i class="fa fa-user" aria-hidden="true"></i>
           </div>
         </div>
       </div>
     </div>
   </div>
 
-  <div class="banner">
+  <div class="banner" id="banner">
     <div class="banner__image"></div>
     <div class="banner__content">
-			<h1 class="banner__content__title">ToCoToCo Tea</h1>
-			<h3 class="banner__content__theme">Đậm vị thiên nhiên trọn vị hạnh phúc</h3>
+			<h1 class="banner__content__title">DoCoDoCo Tea</h1>
+			<h3 class="banner__content__theme">Đậm vị thiên nhiên <br> trọn vị hạnh phúc</h3>
 			<p class="banner__content__para">
-				Với sứ mệnh mang tới niềm vui và hạnh phúc, TocoToco hy vọng sẽ tạo nên
+				Với sứ mệnh mang tới niềm vui và hạnh phúc, DocoDoco hy vọng sẽ tạo nên
 				<br />
 				một nét văn hóa giải trí bên cạnh ly trà sữa Ngon – sạch – tươi.
 			</p>
-			<a href="" class="banner__content__button">Đặt lịch ngay</a>
+			<a href="" class="banner__content__button">Đặt hàng ngay</a>
 			<div class="banner__content__scroll-mouse"></div>
 			<p class="banner__content__notice">Cuộn xuống</p>
 		</div>
+  </div>
+
+  <div class="products">
+    <div class="container">
+      <div class="products__header">
+        <p class="products__header__theme">DoCoDoCo Menu</p>
+        <h3 class="products__header__title">Sản phẩm nổi bật</h3>
+        <div class="products__header__image">
+          <img src="images/home_line.webp" alt="">
+        </div>
+      </div>
+
+      <div class="row flex-wrap products__menu-list">
+        <div class="col-xl-3 products__menu-list__item">
+          <a href="" class="products__menu-list__item__link">
+            <div class="products__menu-list__item__link__image">
+              <img src="images/sua-chua-dau-tam-hat-de-.png" alt="">
+            </div>
+            <div class="products__menu-list__item__link__detail">
+              <p class="products__menu-list__item__link__detail__name">Sữa Chua Dâu Tằm Hoàng Kim</p>
+              <p class="products__menu-list__item__link__detail__price"><span>29,000đ</span><span><del>39,000đ</del></span></p>
+              <div class="products__menu-list__item__link__detail__button">Đặt hàng</div>
+            </div>
+          </a>
+        </div>
+        <div class="col-xl-3 products__menu-list__item">
+          <a href="" class="products__menu-list__item__link">
+            <div class="products__menu-list__item__link__image">
+              <img src="images/sua-chua-dau-tam-hat-de-.png" alt="">
+            </div>
+            <div class="products__menu-list__item__link__detail">
+              <p class="products__menu-list__item__link__detail__name">Sữa Chua Dâu Tằm Hoàng Kim</p>
+              <p class="products__menu-list__item__link__detail__price"><span>29,000đ</span><span><del>39,000đ</del></span></p>
+              <div class="products__menu-list__item__link__detail__button">Đặt hàng</div>
+            </div>
+          </a>
+        </div>
+        <div class="col-xl-3 products__menu-list__item">
+          <a href="" class="products__menu-list__item__link">
+            <div class="products__menu-list__item__link__image">
+              <img src="images/sua-chua-dau-tam-hat-de-.png" alt="">
+            </div>
+            <div class="products__menu-list__item__link__detail">
+              <p class="products__menu-list__item__link__detail__name">Sữa Chua Dâu Tằm Hoàng Kim</p>
+              <p class="products__menu-list__item__link__detail__price"><span>29,000đ</span><span><del>39,000đ</del></span></p>
+              <div class="products__menu-list__item__link__detail__button">Đặt hàng</div>
+            </div>
+          </a>
+        </div>
+        <div class="col-xl-3 products__menu-list__item">
+          <a href="" class="products__menu-list__item__link">
+            <div class="products__menu-list__item__link__image">
+              <img src="images/sua-chua-dau-tam-hat-de-.png" alt="">
+            </div>
+            <div class="products__menu-list__item__link__detail">
+              <p class="products__menu-list__item__link__detail__name">Sữa Chua Dâu Tằm Hoàng Kim</p>
+              <p class="products__menu-list__item__link__detail__price"><span>29,000đ</span><span><del>39,000đ</del></span></p>
+              <div class="products__menu-list__item__link__detail__button">Đặt hàng</div>
+            </div>
+          </a>
+        </div>
+        <div class="col-xl-3 products__menu-list__item">
+          <a href="" class="products__menu-list__item__link">
+            <div class="products__menu-list__item__link__image">
+              <img src="images/sua-chua-dau-tam-hat-de-.png" alt="">
+            </div>
+            <div class="products__menu-list__item__link__detail">
+              <p class="products__menu-list__item__link__detail__name">Sữa Chua Dâu Tằm Hoàng Kim</p>
+              <p class="products__menu-list__item__link__detail__price"><span>29,000đ</span><span><del>39,000đ</del></span></p>
+              <div class="products__menu-list__item__link__detail__button">Đặt hàng</div>
+            </div>
+          </a>
+        </div>
+        <div class="col-xl-3 products__menu-list__item">
+          <a href="" class="products__menu-list__item__link">
+            <div class="products__menu-list__item__link__image">
+              <img src="images/sua-chua-dau-tam-hat-de-.png" alt="">
+            </div>
+            <div class="products__menu-list__item__link__detail">
+              <p class="products__menu-list__item__link__detail__name">Sữa Chua Dâu Tằm Hoàng Kim</p>
+              <p class="products__menu-list__item__link__detail__price"><span>29,000đ</span><span><del>39,000đ</del></span></p>
+              <div class="products__menu-list__item__link__detail__button">Đặt hàng</div>
+            </div>
+          </a>
+        </div>
+        <div class="col-xl-3 products__menu-list__item">
+          <a href="" class="products__menu-list__item__link">
+            <div class="products__menu-list__item__link__image">
+              <img src="images/sua-chua-dau-tam-hat-de-.png" alt="">
+            </div>
+            <div class="products__menu-list__item__link__detail">
+              <p class="products__menu-list__item__link__detail__name">Sữa Chua Dâu Tằm Hoàng Kim</p>
+              <p class="products__menu-list__item__link__detail__price"><span>29,000đ</span><span><del>39,000đ</del></span></p>
+              <div class="products__menu-list__item__link__detail__button">Đặt hàng</div>
+            </div>
+          </a>
+        </div>
+        <div class="col-xl-3 products__menu-list__item">
+          <a href="" class="products__menu-list__item__link">
+            <div class="products__menu-list__item__link__image">
+              <img src="images/sua-chua-dau-tam-hat-de-.png" alt="">
+            </div>
+            <div class="products__menu-list__item__link__detail">
+              <p class="products__menu-list__item__link__detail__name">Sữa Chua Dâu Tằm Hoàng Kim</p>
+              <p class="products__menu-list__item__link__detail__price"><span>29,000đ</span><span><del>39,000đ</del></span></p>
+              <div class="products__menu-list__item__link__detail__button">Đặt hàng</div>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <a href="" class="products__button-see-more">Xem tất cả</a>
+    </div>
+  </div>
+
+  <div class="vouchers">
+    <div class="container">
+      <div class="vouchers__header">
+        <h3 class="vouchers__header__title">Hot Vouchers</h3>
+        <div class="vouchers__header__image">
+          <img src="images/home_line.webp" alt="">
+        </div>
+      </div>
+      <div class="vouchers__menu-list owl-carousel owl-theme">
+        <div class="item vouchers__menu-list__item d-flex align-items-center">
+          <div class="vouchers__menu-list__item__left">
+            <p class="vouchers__menu-list__item__left__title">Freeship</p>
+            <p class="vouchers__menu-list__item__left__info">Áp dụng cho<br>tất cả</p>
+          </div>
+          <div class="vouchers__menu-list__item__right">
+            <div class="vouchers__menu-list__item__right__price">10.000đ</div>
+            <div class="vouchers__menu-list__item__right__timeline">8/10/2021 - 20/10/2021</div>
+            <a href="" class="vouchers__menu-list__item__right__button">Thu thập</a>
+          </div>
+        </div>
+        <div class="item vouchers__menu-list__item d-flex align-items-center">
+          <div class="vouchers__menu-list__item__left">
+            <p class="vouchers__menu-list__item__left__title">Freeship</p>
+            <p class="vouchers__menu-list__item__left__info">Áp dụng cho<br>tất cả</p>
+          </div>
+          <div class="vouchers__menu-list__item__right">
+            <div class="vouchers__menu-list__item__right__price">10.000đ</div>
+            <div class="vouchers__menu-list__item__right__timeline">8/10/2021 - 20/10/2021</div>
+            <a href="" class="vouchers__menu-list__item__right__button">Thu thập</a>
+          </div>
+        </div>
+        <div class="item vouchers__menu-list__item d-flex align-items-center">
+          <div class="vouchers__menu-list__item__left">
+            <p class="vouchers__menu-list__item__left__title">Freeship</p>
+            <p class="vouchers__menu-list__item__left__info">Áp dụng cho<br>tất cả</p>
+          </div>
+          <div class="vouchers__menu-list__item__right">
+            <div class="vouchers__menu-list__item__right__price">10.000đ</div>
+            <div class="vouchers__menu-list__item__right__timeline">8/10/2021 - 20/10/2021</div>
+            <a href="" class="vouchers__menu-list__item__right__button">Thu thập</a>
+          </div>
+        </div>
+        <div class="item vouchers__menu-list__item d-flex align-items-center">
+          <div class="vouchers__menu-list__item__left">
+            <p class="vouchers__menu-list__item__left__title">Freeship</p>
+            <p class="vouchers__menu-list__item__left__info">Áp dụng cho<br>tất cả</p>
+          </div>
+          <div class="vouchers__menu-list__item__right">
+            <div class="vouchers__menu-list__item__right__price">10.000đ</div>
+            <div class="vouchers__menu-list__item__right__timeline">8/10/2021 - 20/10/2021</div>
+            <a href="" class="vouchers__menu-list__item__right__button">Thu thập</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="intro">
+    <div class="container">
+      <div class="intro__item">
+        <div class="row justify-content-end align-items-center" style="height: 100%;">
+          <div class="col-xl-5">
+            <div class="intro__item__header">
+              <p class="intro__item__header__theme">DoCoDoCo Story</p>
+                <h3 class="intro__item__header__title">Về chúng tôi</h3>
+                <div class="intro__item__header__image">
+                  <img src="images/home_line.webp" alt="">
+                </div>
+            </div>
+            <p class="intro__item__para">
+              Bên cạnh niềm tự hào về những ly trà sữa ngon – sạch – tươi,<br>chúng tôi luôn tự tin mang đến khách hàng những trải nghiệm<br> tốt nhất về dịch vụ và không gian.
+            </p>
+            <a href="" class="intro__item__btn-see-more">Xêm thêm</a>
+          </div>
+        </div>
+      </div>
+      <div class="intro__item ">
+        <div class="row justify-content-start align-items-center" style="height: 100%;">
+          <div class="col-xl-6">
+            <div class="intro__item__header">
+              <p class="intro__item__header__theme">DoCoDoCo Franchise</p>
+                <h3 class="intro__item__header__title">Nhường quyền</h3>
+                <div class="intro__item__header__image">
+                  <img src="images/home_line.webp" alt="">
+                </div>
+            </div>
+            <p class="intro__item__para">  
+              Gia nhập đế chế 300 TRIỆU USD. Nếu bạn bắt đầu kinh doanh khởi<br> nghiệp ẩm thực, hoặc muốn đầu tư vào lĩnh vực này, thương hiệu<br> TocoToco chắc chắn sẽ là một lựa chọn đáng cân nhắc cho bạn.
+            </p>
+            <a href="" class="intro__item__btn-see-more">Xêm thêm</a>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 
   <%- include ("partials/script.ejs") %>

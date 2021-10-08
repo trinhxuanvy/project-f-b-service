@@ -1,42 +1,39 @@
-import express from "express";
-import bodyParser from "body-parser";
-import cookieParser from "cookie-parser";
-import path from "path";
-import mongooes from "mongoose";
-import dotenv from "dotenv";
+const express = require("express");
+const bodyParser = require("body-parser");
+const cookieParser = require("cookie-parser");
+const path = require("path");
+const mongooes = require("mongoose");
+const dotenv = require("dotenv");
+const shopRoute = require("./routes/shop.route.js");
 
 dotenv.config();
 
 const app = express();
-const __dirname = path.resolve();
 
 app.set("view engine", "ejs");
 app.set("views", "./views");
 
 app.use(express.static(path.join(__dirname, "public")));
-app.use(express.json())
+app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(cookieParser());
+app.use(shopRoute);
 
 const port = process.env.PORT || 3000;
 
-mongooes.connect(
-    process.env.CONNECT_DATABASE,
-    {
-        useNewUrlParser: true,
-        useUnifiedTopology: true,
-    }
-).then(() => {
-    console.log("Connected to database");
+// mongooes.connect(
+//     process.env.CONNECT_DATABASE,
+//     {
+//         useNewUrlParser: true,
+//         useUnifiedTopology: true,
+//     }
+// ).then(() => {
+//     console.log("Connected to database");
 
-    app.listen(port, () => {
-        console.log("Listening at port " + port);
-    });
-}).catch((err) => {
-    console.log("Can't connect to database");
-});
-
-app.get("/", (req, res) => {
-    res.render("index");
+// }).catch(() => {
+//     console.log("Can't connect to database");
+// });
+app.listen(port, () => {
+  console.log("Listening at port " + port);
 });

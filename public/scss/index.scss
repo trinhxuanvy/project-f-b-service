@@ -1,11 +1,15 @@
 // Import SCSS
 @import "./variable/index.scss";
+@import "./mixin/index.scss";
+@import "./function/index.scss";
 
+// Xử lý header
 .header {
   height: 76px;
   position: fixed;
   z-index: 100000;
   width: 100%;
+  transition: 0.2s;
 
   &__menu-list {
     margin-top: 0 !important;
@@ -23,7 +27,7 @@
     }
   }
 
-  &__search {
+  &__user {
     .fa {
       margin-left: auto;
       width: 32px;
@@ -36,14 +40,18 @@
   }
 }
 
+.header--fixed {
+  background-color: $c-mine-shaft;
+}
+
+// Xử lý banner
 .banner {
-  font-family: "Lobster", sans-serif;
   position: relative;
   text-align: center;
 
   &__image {
     background: linear-gradient(rgba($c-black, 0.5), rgba($c-black, 0.5)),
-      url("../images/ms_banner_img1.jpg") no-repeat center;
+      url("../images/banner.jpg") no-repeat center top;
     height: 100vh;
     width: 100%;
   }
@@ -57,20 +65,41 @@
     &__title {
       color: $c-di-serria;
       font-size: 48px;
+      font-family: "Mansalva", sans-serif;
     }
 
     &__theme {
-        color: $c-white;
-        text-transform: uppercase;
-        font-size: 32px;
+      color: $c-white;
+      text-transform: uppercase;
+      font-size: 40px;
+      font-family: "Mansalva", sans-serif;
+    }
+
+    &__para {
+      color: $c-white;
+      font-size: 18px;
     }
 
     &__button {
+      display: block;
+      width: 180px;
+      padding: 8px 0;
+      color: $c-di-serria;
+      border: 1px solid $c-di-serria;
+      border-radius: 5px;
+      margin: 32px auto;
+      text-transform: uppercase;
+      transition: 0.2s;
+      &:hover {
+        color: $c-white;
+        background-color: $c-di-serria;
+      }
     }
 
     &__scroll-mouse {
       width: 50px;
       height: 50px;
+      margin: 16px auto;
       background: url("../images/ic_scoll.webp") no-repeat center;
       animation: scrollY 0.5s infinite alternate;
 
@@ -85,7 +114,232 @@
     }
 
     &__notice {
-      font-size: 12px;
+      color: $c-white;
+    }
+  }
+}
+
+// Xử lý products
+.products {
+  text-align: center;
+  @include paddingContainer();
+
+  @include hoverBoxShadow();
+
+  @include headerItem(true, true, true);
+
+  &__menu-list {
+    &__item {
+      margin-top: 24px;
+      &__link {  
+        display: block;
+        overflow: hidden;
+        transition: 0.2s;
+        border-radius: 5px;
+        border: 1px solid $c-gallery;
+        &:hover {
+          box-shadow: 0px 10px 20px rgba($c-black, 0.1);
+
+          .products__menu-list__item__link__detail {
+            transform: translateY(0);
+          }
+
+          .products__menu-list__item__link__image img {
+            transform: scale(1.1);
+          }
+        }
+
+        &__image {
+          overflow: hidden;
+          img {
+            transition: 0.2s;
+          }
+        }
+
+        &__detail {
+          transition: 0.2s;
+          transform: translateY(56px);
+          padding: 16px;
+          background-color: $c-gallery;
+          &__name {
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            font-weight: bolder;
+            color: $c-mine-shaft;
+          }
+
+          &__price {
+            span {
+              font-weight: bolder;
+              &:nth-child(1) {
+                color: $c-pesto;
+              }
+
+              &:nth-child(2) {
+                margin-left: 8px;
+                color: $c-silver;
+              }
+            }
+          }
+
+          &__button {
+            border-radius: 5px;
+            border: 1px solid $c-di-serria;
+            transition: 0.2s;
+            padding: 4px 0;
+            width: 100px;
+            color: $c-di-serria;
+            display: inline-block;
+            &:hover {
+              background-color: $c-di-serria;
+              color: $c-white;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  &__button-see-more {
+    display: inline-block;
+    width: 150px;
+    padding: 8px 0;
+    border: 1px solid $c-di-serria;
+    color: $c-di-serria;
+    border-radius: 5px;
+    transition: 0.2s;
+    margin-top: 32px;
+    &:hover {
+      color: $c-white;
+      background-color: $c-di-serria;
+    }
+  }
+}
+
+// Xử lý voucher
+.vouchers {
+  text-align: center;
+  @include paddingContainer();
+
+  @include hoverBoxShadow();
+
+  @include headerItem(true, false, true);
+
+  &__menu-list {
+    &__item {
+      margin-top: 16px;
+      padding: 8px;
+      border: 1px solid $c-di-serria;
+      border-radius: 5px;
+      overflow: hidden;
+      &__left {
+        padding-right: 8px;
+        border-right: 1px dashed $c-di-serria;
+        position: relative;
+        &__title {
+          font-weight: bolder;
+          color: $c-di-serria;
+          margin-bottom: 4px;
+        }
+        &__info {
+          color: $c-soft-amber;
+          font-size: 14px;
+        }
+        &::after {
+          content: "";
+          position: absolute;
+          width: 15px;
+          height: 15px;
+          border-radius: 50px;
+          border: 1px solid $c-di-serria;
+          background-color: $c-di-serria;
+          top: -20px;
+          right: -8px;
+        }
+
+        &::before {
+          content: "";
+          position: absolute;
+          width: 15px;
+          height: 15px;
+          border-radius: 50px;
+          border: 1px solid $c-di-serria;
+          background-color: $c-di-serria;
+          bottom: -20px;
+          right: -8px;
+        }
+      }
+      &__right {
+        padding-left: 8px;
+        &__price {
+          font-size: 24px;
+          color: $c-di-serria;
+        }
+        &__timeline {
+          font-size: 14px;
+          color: $c-silver;
+        }
+        &__button {
+          width: 100px;
+          background: linear-gradient(to right, $c-di-serria, $c-gold);
+          color: $c-white;
+          border-radius: 50px;
+          padding: 4px 0;
+          display: inline-block;
+          margin-top: 8px;
+          transition: 0.2s;
+          &:hover {
+            color: $c-white;
+            box-shadow: 1px 1px 5px rgba($c-black , 0.2);
+          }
+        }
+      }
+    }
+  }
+}
+
+// Xử lý intro
+.intro {
+  @include paddingContainer();
+
+  @include hoverBoxShadow();
+  text-align: center;
+
+  &__item {
+    @include headerItem(true, true, true);
+    height: 90vh;
+    margin-top: 16px;
+    &:nth-child(1) {
+      background: url("../images/banner_about_us.png") no-repeat center;
+      background-size: cover;
+    }
+
+    &:nth-child(2) {
+      background: url("../images/img_home_franchise.png") no-repeat right;
+      background-size: contain;
+      padding-left: 80px;
+      border: 5px solid $c-di-serria;
+    }
+    
+
+    &__para {
+      color: $c-mine-shaft;
+    }
+    
+    &__btn-see-more {
+      border-radius: 5px;
+      width: 150px;
+      display: inline-block;
+      border: 1px solid $c-di-serria;
+      color: $c-di-serria;
+      transition: 0.2s;
+      padding: 8px 0;
+      font-weight: bolder;
+      &:hover {
+        background-color: $c-di-serria;
+        color: $c-white;
+      }
     }
   }
 }
