@@ -11,7 +11,7 @@
   width: 100%;
   transition: 0.2s;
 
-  @media screen and (max-width: $lg) {
+  @media screen and (max-width: $xl) {
     background-color: $c-mine-shaft;
   }
 
@@ -25,7 +25,7 @@
   &__bar {
     display: none;
     cursor: pointer;
-    @media screen and (max-width: $lg) {
+    @media screen and (max-width: $xl) {
       display: block;
     }
 
@@ -37,7 +37,7 @@
 
   &__brand {
     width: 200px;
-    @media screen and (max-width: $lg) {
+    @media screen and (max-width: $xl) {
       position: absolute;
       top: 50%;
       left: 50%;
@@ -47,7 +47,7 @@
 
   &__menu-list {
     margin-top: 0 !important;
-    @media screen and (max-width: $lg) {
+    @media screen and (max-width: $xl) {
       display: block !important;
       position: absolute;
       top: 54px;
@@ -76,7 +76,7 @@
     }
   }
 
-  @media screen and (max-width: $lg) {
+  @media screen and (max-width: $xl) {
     &__menu-list-responsive {
       height: 1000%;
     }
