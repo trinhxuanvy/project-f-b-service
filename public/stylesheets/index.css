@@ -271,3 +271,47 @@
       .intro__item__btn-see-more:hover {
         background-color: #D2A451;
         color: #ffffff; }
+
+.footer {
+  padding: 32px 0;
+  background: url("../images/ft_bg_img.png") no-repeat center;
+  position: relative; }
+  .footer__cover {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(40, 40, 40, 0.86);
+    z-index: 900; }
+  .footer p {
+    margin-bottom: 8px;
+    font-size: 15px;
+    color: #ffffff; }
+  .footer__item {
+    position: relative;
+    z-index: 1000; }
+    .footer__item__title {
+      color: #D2A451 !important;
+      text-transform: uppercase;
+      font-weight: bolder;
+      padding-bottom: 16px;
+      font-size: 16px !important; }
+    .footer__item .fa {
+      color: #D2A451;
+      margin-right: 8px; }
+    .footer__item__social {
+      margin-bottom: 8px; }
+    .footer__item__download-app__link {
+      margin-right: 8px;
+      margin-top: 8px;
+      display: inline-block;
+      width: 150px; }
+  .footer__expand {
+    border-top: 1px solid #ffffff;
+    position: relative;
+    padding-top: 32px;
+    z-index: 1000;
+    color: #ffffff; }
+    .footer__expand__right {
+      text-align: right; }

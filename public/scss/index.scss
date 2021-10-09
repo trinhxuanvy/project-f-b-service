@@ -131,7 +131,7 @@
   &__menu-list {
     &__item {
       margin-top: 24px;
-      &__link {  
+      &__link {
         display: block;
         overflow: hidden;
         transition: 0.2s;
@@ -291,7 +291,7 @@
           transition: 0.2s;
           &:hover {
             color: $c-white;
-            box-shadow: 1px 1px 5px rgba($c-black , 0.2);
+            box-shadow: 1px 1px 5px rgba($c-black, 0.2);
           }
         }
       }
@@ -321,12 +321,11 @@
       padding-left: 80px;
       border: 5px solid $c-di-serria;
     }
-    
 
     &__para {
       color: $c-mine-shaft;
     }
-    
+
     &__btn-see-more {
       border-radius: 5px;
       width: 150px;
@@ -340,6 +339,69 @@
         background-color: $c-di-serria;
         color: $c-white;
       }
+    }
+  }
+}
+
+// Xử lý footer
+.footer {
+  @include paddingContainer();
+  background: url("../images/ft_bg_img.png") no-repeat center;
+  position: relative;
+
+  &__cover {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba($c-mine-shaft, 0.86);
+    z-index: 900;
+  }
+
+  p {
+    margin-bottom: 8px;
+    font-size: 15px;
+    color: $c-white;
+  }
+  &__item {
+    position: relative;
+    z-index: 1000;
+    &__title {
+      color: $c-di-serria !important;
+      text-transform: uppercase;
+      font-weight: bolder;
+      padding-bottom: 16px;
+      font-size: 16px !important;
+    }
+
+    .fa {
+      color: $c-di-serria;
+      margin-right: 8px;
+    }
+
+    &__social {
+      margin-bottom: 8px;
+    }
+
+    &__download-app {
+      &__link {
+        margin-right: 8px;
+        margin-top: 8px;
+        display: inline-block;
+        width: 150px;
+      }
+    }
+  }
+
+  &__expand {
+    border-top: 1px solid $c-white;
+    position: relative;
+    padding-top: 32px;
+    z-index: 1000;
+    color: $c-white;
+    &__right {
+      text-align: right;
     }
   }
 }
