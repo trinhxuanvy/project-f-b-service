@@ -11,10 +11,59 @@
   width: 100%;
   transition: 0.2s;
 
+  @media screen and (max-width: $lg) {
+    background-color: $c-mine-shaft;
+  }
+
+  &--modified {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+  }
+
+  &__bar {
+    display: none;
+    cursor: pointer;
+    @media screen and (max-width: $lg) {
+      display: block;
+    }
+
+    .fa {
+      color: $c-di-serria;
+      font-size: 32px;
+    }
+  }
+
+  &__brand {
+    width: 200px;
+    @media screen and (max-width: $lg) {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+  }
+
   &__menu-list {
     margin-top: 0 !important;
+    @media screen and (max-width: $lg) {
+      display: block !important;
+      position: absolute;
+      top: 54px;
+      left: 0;
+      width: 100%;
+      background-color: $c-mine-shaft;
+      text-align: center;
+      overflow: hidden;
+      border-radius: 0 0 5px 5px;
+      height: 0;
+      transition: 0.2s;
+      //display: none !important;
+    }
     &__menu-item {
       &__menu-link {
+        display: block;
         color: $c-white;
         padding: 10px;
         font-weight: bolder;
@@ -24,6 +73,12 @@
           color: $c-di-serria;
         }
       }
+    }
+  }
+
+  @media screen and (max-width: $lg) {
+    &__menu-list-responsive {
+      height: 1000%;
     }
   }
 
@@ -49,6 +104,10 @@
   position: relative;
   text-align: center;
 
+  @media screen and (max-width: $lg) {
+    padding-top: 76px;
+  }
+
   &__image {
     background: linear-gradient(rgba($c-black, 0.5), rgba($c-black, 0.5)),
       url("../images/banner.jpg") no-repeat center top;
@@ -57,6 +116,7 @@
   }
 
   &__content {
+    padding-top: 76px;
     position: absolute;
     top: 50%;
     left: 50%;
@@ -66,6 +126,10 @@
       color: $c-di-serria;
       font-size: 48px;
       font-family: "Mansalva", sans-serif;
+
+      @media screen and (max-width: $lg) {
+        font-size: 32px;
+      }
     }
 
     &__theme {
@@ -73,11 +137,18 @@
       text-transform: uppercase;
       font-size: 40px;
       font-family: "Mansalva", sans-serif;
+      @media screen and (max-width: $lg) {
+        font-size: 26px;
+      }
     }
 
     &__para {
       color: $c-white;
       font-size: 18px;
+
+      @media screen and (max-width: $lg) {
+        font-size: 16px;
+      }
     }
 
     &__button {
@@ -124,7 +195,9 @@
   text-align: center;
   @include paddingContainer();
 
-  @include hoverBoxShadow();
+  @media screen and (min-width: $lg) {
+    @include hoverBoxShadow();
+  }
 
   @include headerItem(true, true, true);
 
@@ -137,15 +210,18 @@
         transition: 0.2s;
         border-radius: 5px;
         border: 1px solid $c-gallery;
-        &:hover {
-          box-shadow: 0px 10px 20px rgba($c-black, 0.1);
 
-          .products__menu-list__item__link__detail {
-            transform: translateY(0);
-          }
+        @media screen and (min-width: $lg) {
+          &:hover {
+            box-shadow: 0px 10px 20px rgba($c-black, 0.1);
 
-          .products__menu-list__item__link__image img {
-            transform: scale(1.1);
+            .products__menu-list__item__link__detail {
+              transform: translateY(0);
+            }
+
+            .products__menu-list__item__link__image img {
+              transform: scale(1.1);
+            }
           }
         }
 
@@ -158,9 +234,13 @@
 
         &__detail {
           transition: 0.2s;
-          transform: translateY(56px);
           padding: 16px;
           background-color: $c-gallery;
+
+          @media screen and (min-width: $lg) {
+            transform: translateY(56px);
+          }
+
           &__name {
             overflow: hidden;
             white-space: nowrap;
@@ -222,7 +302,9 @@
   text-align: center;
   @include paddingContainer();
 
-  @include hoverBoxShadow();
+  @media screen and (min-width: $lg) {
+    @include hoverBoxShadow();
+  }
 
   @include headerItem(true, false, true);
 
@@ -246,18 +328,7 @@
           color: $c-soft-amber;
           font-size: 14px;
         }
-        &::after {
-          content: "";
-          position: absolute;
-          width: 15px;
-          height: 15px;
-          border-radius: 50px;
-          border: 1px solid $c-di-serria;
-          background-color: $c-di-serria;
-          top: -20px;
-          right: -8px;
-        }
-
+        &::after,
         &::before {
           content: "";
           position: absolute;
@@ -266,8 +337,15 @@
           border-radius: 50px;
           border: 1px solid $c-di-serria;
           background-color: $c-di-serria;
-          bottom: -20px;
           right: -8px;
+        }
+
+        &::before {
+          top: -20px;
+        }
+
+        &::after {
+          bottom: -20px;
         }
       }
       &__right {
@@ -303,7 +381,9 @@
 .intro {
   @include paddingContainer();
 
-  @include hoverBoxShadow();
+  @media screen and (min-width: $lg) {
+    @include hoverBoxShadow();
+  }
   text-align: center;
 
   &__item {
@@ -313,13 +393,24 @@
     &:nth-child(1) {
       background: url("../images/banner_about_us.png") no-repeat center;
       background-size: cover;
+      font-size: 14px;
+
+      @media screen and (min-width: $md) {
+        font-size: 16px;
+      }
     }
 
     &:nth-child(2) {
       background: url("../images/img_home_franchise.png") no-repeat right;
       background-size: contain;
-      padding-left: 80px;
+      padding: 0 16px;
+      font-size: 14px;
       border: 5px solid $c-di-serria;
+
+      @media screen and (min-width: $md) {
+        padding-left: 80px;
+        font-size: 16px;
+      }
     }
 
     &__para {
@@ -347,6 +438,7 @@
 .footer {
   @include paddingContainer();
   background: url("../images/ft_bg_img.png") no-repeat center;
+  background-size: cover;
   position: relative;
 
   &__cover {
@@ -375,6 +467,17 @@
       font-size: 16px !important;
     }
 
+    @media screen and (max-width: $lg) {
+      &__brand {
+        margin-bottom: 32px;
+        img {
+          width: 150px;
+          margin: 0 auto;
+          display: block;
+        }
+      }
+    }
+
     .fa {
       color: $c-di-serria;
       margin-right: 8px;
@@ -400,8 +503,14 @@
     padding-top: 32px;
     z-index: 1000;
     color: $c-white;
+    @media screen and (max-width: $lg) {
+      text-align: center;
+    }
+
     &__right {
-      text-align: right;
+      @media screen and (min-width: $lg) {
+        text-align: right;
+      }
     }
   }
 }
