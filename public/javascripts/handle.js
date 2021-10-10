@@ -49,4 +49,24 @@ $(document).ready(function () {
       },
     });
   });
+
+  // Xử lý toggle products
+  $(function () {
+    const buttonTitle = $(".body__item__menu-list__item__title");
+    const products = $(".body__item__menu-list__item--set-height");
+    
+    for (let i = 0; i < buttonTitle.length; i++) {
+      $(buttonTitle[i]).click(function (e) { 
+        e.preventDefault();
+        
+        const hasClass = $(products[i]).hasClass("set-height");
+
+        if (hasClass) {
+          $(products[i]).removeClass("set-height");
+        } else {
+          $(products[i]).addClass("set-height");
+        }
+      });
+    }
+  });
 });

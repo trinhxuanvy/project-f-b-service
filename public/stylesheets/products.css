@@ -1,0 +1,136 @@
+.header {
+  background-color: #282828; }
+
+.body {
+  padding-top: 92px;
+  padding-bottom: 32px; }
+  .body__item {
+    border-radius: 5px;
+    margin-bottom: 16px; }
+    @media screen and (min-width: 1200px) {
+      .body__item {
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); } }
+    @media screen and (max-width: 1200px) {
+      .body__item--border {
+        border: 1px solid #f0f0f0; } }
+    .body__item__title {
+      text-transform: uppercase;
+      font-weight: bolder;
+      color: #282828;
+      padding: 8px 16px;
+      border-bottom: 1px solid #f0f0f0; }
+      .body__item__title__link {
+        text-transform: none;
+        font-size: 12px;
+        color: #bebebe !important; }
+    .body__item__menu-list {
+      padding: 8px 16px; }
+      .body__item__menu-list__link {
+        font-size: 14px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 8px 0;
+        color: #282828;
+        border-bottom: 1px solid #f0f0f0; }
+        .body__item__menu-list__link:last-child {
+          border: none; }
+      .body__item__menu-list p {
+        margin-bottom: 4px; }
+      .body__item__menu-list__item {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        font-size: 14px;
+        padding: 8px 0;
+        border-bottom: 1px solid #f0f0f0; }
+        .body__item__menu-list__item:last-child {
+          border: none; }
+        .body__item__menu-list__item__info {
+          padding-right: 24px; }
+          .body__item__menu-list__item__info__name {
+            font-weight: bolder; }
+          .body__item__menu-list__item__info__topping {
+            color: #bebebe; }
+          .body__item__menu-list__item__info__cost {
+            color: #D2A451; }
+        .body__item__menu-list__item__button {
+          display: flex;
+          align-items: center;
+          justify-content: space-between; }
+          .body__item__menu-list__item__button .fa {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background-color: #D2A451;
+            color: #ffffff;
+            line-height: 20px;
+            text-align: center;
+            cursor: pointer; }
+          .body__item__menu-list__item__button__count {
+            padding: 0 4px; }
+        .body__item__menu-list__item--clear-flex {
+          display: block; }
+        .body__item__menu-list__item__title {
+          padding: 8px;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          font-weight: bolder;
+          cursor: pointer;
+          color: #D2A451; }
+        .body__item__menu-list__item--set-height {
+          height: 0;
+          transition: 0.2s;
+          overflow: hidden;
+          padding: 0; }
+        .body__item__menu-list__item .set-height {
+          height: 100%;
+          padding: 16px 0 0 0; }
+        .body__item__menu-list__item__card {
+          box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+          padding: 12px;
+          border-radius: 5px;
+          position: relative;
+          margin: 0 0 24px 0; }
+          .body__item__menu-list__item__card__name {
+            font-weight: bolder;
+            margin-top: 8px; }
+          .body__item__menu-list__item__card__price {
+            color: #D2A451; }
+            .body__item__menu-list__item__card__price del {
+              margin-left: 4px;
+              color: #bebebe; }
+          .body__item__menu-list__item__card .fa {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            line-height: 20px;
+            text-align: center;
+            background-color: #D2A451;
+            color: #ffffff;
+            position: absolute;
+            bottom: 16px;
+            right: 16px;
+            cursor: pointer; }
+      .body__item__menu-list__payment {
+        background-color: #D2A451;
+        color: #ffffff;
+        width: 150px;
+        margin: 16px auto;
+        border-radius: 5px;
+        display: block; }
+    .body__item--border-radius {
+      border-radius: 5px; }
+    .body__item__search {
+      padding: 16px;
+      color: #282828; }
+      .body__item__search__form {
+        display: flex;
+        align-items: center;
+        justify-content: space-between; }
+        .body__item__search__form .fa {
+          width: 5%; }
+        .body__item__search__form input {
+          padding: 0 8px;
+          width: 95%; }

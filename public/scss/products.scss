@@ -1,0 +1,208 @@
+// Import SCSS
+@import "./variable/index.scss";
+@import "./mixin/index.scss";
+@import "./function/index.scss";
+
+.header {
+  background-color: $c-mine-shaft;
+}
+
+// Xử lý body
+.body {
+  padding-top: 92px;
+	padding-bottom: 32px;
+  &__item {
+    border-radius: 5px;
+		margin-bottom: 16px;
+    @media screen and (min-width: $xl) {
+      box-shadow: 0px 4px 10px rgba($c-black, 0.1);
+    }
+
+    @media screen and (max-width: $xl) {
+      &--border {
+        border: 1px solid $c-gallery;
+      }
+    }
+
+    &__title {
+      text-transform: uppercase;
+      font-weight: bolder;
+      color: $c-mine-shaft;
+      padding: 8px 16px;
+      border-bottom: 1px solid $c-gallery;
+
+      &__link {
+        text-transform: none;
+        font-size: 12px;
+        color: $c-silver !important;
+      }
+    }
+
+    &__menu-list {
+      padding: 8px 16px;
+
+      &__link {
+        font-size: 14px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 8px 0;
+        color: $c-mine-shaft;
+        border-bottom: 1px solid $c-gallery;
+
+				&:last-child {
+					border: none;
+				}
+
+        &__count {
+        }
+      }
+
+      p {
+        margin-bottom: 4px;
+      }
+
+      &__item {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        font-size: 14px;
+        padding: 8px 0;
+        border-bottom: 1px solid $c-gallery;
+
+				&:last-child {
+					border: none;
+				}
+
+        &__info {
+          padding-right: 24px;
+          &__name {
+            font-weight: bolder;
+          }
+
+          &__topping {
+            color: $c-silver;
+          }
+
+          &__cost {
+            color: $c-di-serria;
+          }
+        }
+
+        &__button {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          .fa {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background-color: $c-di-serria;
+            color: $c-white;
+            line-height: 20px;
+            text-align: center;
+            cursor: pointer;
+          }
+
+          &__count {
+            padding: 0 4px;
+          }
+        }
+
+				&--clear-flex {
+					display: block;
+				}
+
+				&__title {
+					padding: 8px;
+					display: flex;
+					align-items: center;
+					justify-content: space-between;
+					font-weight: bolder;
+					cursor: pointer;
+					color: $c-di-serria;
+				}
+
+				&--set-height {
+					height: 0;
+					transition: 0.2s;
+					overflow: hidden;
+					padding: 0;
+				}
+
+				.set-height {
+					height: 100%;
+					padding: 16px 0 0 0;
+				}
+
+				&__card {
+					box-shadow: 0px 4px 10px rgba($c-black, 0.1);
+					padding: 12px;
+					border-radius: 5px;
+					position: relative;
+					margin: 0 0 24px 0;
+
+					&__name {
+						font-weight: bolder;
+						margin-top: 8px;
+					}
+
+					&__price {
+						color: $c-di-serria;
+						del {
+							margin-left: 4px;
+							color: $c-silver;
+						}
+					}
+
+					.fa {
+						width: 20px;
+						height: 20px;
+						border-radius: 50%;
+						line-height: 20px;
+						text-align: center;
+						background-color: $c-di-serria;
+						color: $c-white;
+						position: absolute;
+						bottom: 16px;
+						right: 16px;
+						cursor: pointer;
+					}
+				}
+      }
+
+			&__payment {
+				background-color: $c-di-serria;
+				color: $c-white;
+				width: 150px;
+				margin: 16px auto;
+				border-radius: 5px;
+				display: block;
+			}
+    }
+
+    &--border-radius {
+      border-radius: 5px;
+    }
+
+    &__search {
+      padding: 16px;
+      color: $c-mine-shaft;
+
+      &__form {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        .fa {
+          width: 5%;
+        }
+
+        input {
+          padding: 0 8px;
+          width: 95%;
+        }
+      }
+    }
+  }
+}
