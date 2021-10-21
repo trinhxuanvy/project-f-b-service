@@ -10,10 +10,10 @@
 // Xử lý body
 .body {
   padding-top: 92px;
-	padding-bottom: 32px;
+  padding-bottom: 32px;
   &__item {
     border-radius: 5px;
-		margin-bottom: 16px;
+    margin-bottom: 16px;
     @media screen and (min-width: $xl) {
       box-shadow: 0px 4px 10px rgba($c-black, 0.1);
     }
@@ -50,9 +50,9 @@
         color: $c-mine-shaft;
         border-bottom: 1px solid $c-gallery;
 
-				&:last-child {
-					border: none;
-				}
+        &:last-child {
+          border: none;
+        }
 
         &__count {
         }
@@ -70,9 +70,9 @@
         padding: 8px 0;
         border-bottom: 1px solid $c-gallery;
 
-				&:last-child {
-					border: none;
-				}
+        &:last-child {
+          border: none;
+        }
 
         &__info {
           padding-right: 24px;
@@ -109,76 +109,76 @@
           }
         }
 
-				&--clear-flex {
-					display: block;
-				}
+        &--clear-flex {
+          display: block;
+        }
 
-				&__title {
-					padding: 8px;
-					display: flex;
-					align-items: center;
-					justify-content: space-between;
-					font-weight: bolder;
-					cursor: pointer;
-					color: $c-di-serria;
-				}
+        &__title {
+          padding: 8px;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          font-weight: bolder;
+          cursor: pointer;
+          color: $c-di-serria;
+        }
 
-				&--set-height {
-					height: 0;
-					transition: 0.2s;
-					overflow: hidden;
-					padding: 0;
-				}
+        &--set-height {
+          height: 0;
+          transition: 0.2s;
+          overflow: hidden;
+          padding: 0;
+        }
 
-				.set-height {
-					height: 100%;
-					padding: 16px 0 0 0;
-				}
+        .set-height {
+          height: 100%;
+          padding: 16px 0 0 0;
+        }
 
-				&__card {
-					box-shadow: 0px 4px 10px rgba($c-black, 0.1);
-					padding: 12px;
-					border-radius: 5px;
-					position: relative;
-					margin: 0 0 24px 0;
+        &__card {
+          box-shadow: 0px 4px 10px rgba($c-black, 0.1);
+          padding: 12px;
+          border-radius: 5px;
+          position: relative;
+          margin: 0 0 24px 0;
 
-					&__name {
-						font-weight: bolder;
-						margin-top: 8px;
-					}
+          &__name {
+            font-weight: bolder;
+            margin-top: 8px;
+          }
 
-					&__price {
-						color: $c-di-serria;
-						del {
-							margin-left: 4px;
-							color: $c-silver;
-						}
-					}
+          &__price {
+            color: $c-di-serria;
+            del {
+              margin-left: 4px;
+              color: $c-silver;
+            }
+          }
 
-					.fa {
-						width: 20px;
-						height: 20px;
-						border-radius: 50%;
-						line-height: 20px;
-						text-align: center;
-						background-color: $c-di-serria;
-						color: $c-white;
-						position: absolute;
-						bottom: 16px;
-						right: 16px;
-						cursor: pointer;
-					}
-				}
+          .fa {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            line-height: 20px;
+            text-align: center;
+            background-color: $c-di-serria;
+            color: $c-white;
+            position: absolute;
+            bottom: 16px;
+            right: 16px;
+            cursor: pointer;
+          }
+        }
       }
 
-			&__payment {
-				background-color: $c-di-serria;
-				color: $c-white;
-				width: 150px;
-				margin: 16px auto;
-				border-radius: 5px;
-				display: block;
-			}
+      &__payment {
+        background-color: $c-di-serria;
+        color: $c-white;
+        width: 150px;
+        margin: 16px auto;
+        border-radius: 5px;
+        display: block;
+      }
     }
 
     &--border-radius {
@@ -201,6 +201,105 @@
         input {
           padding: 0 8px;
           width: 95%;
+        }
+      }
+    }
+  }
+}
+
+.container-popup {
+  &::before {
+    content: "";
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #ff000038;
+    z-index: 110000;
+  }
+
+  .popup {
+    position: fixed;
+    z-index: 120000;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 50%;
+    min-width: 450px;
+    border: 3px solid $c-di-serria;
+    background-color: $c-white;
+    border-radius: 5px;
+    padding: 16px;
+    height: 70vh;
+
+    &__close {
+      position: absolute;
+      top: 4px;
+      right: 8px;
+
+      .fa {
+        font-size: 24px;
+        cursor: pointer;
+        transition: 0.2s;
+
+        &:hover {
+          transform: scale(1.1);
+        }
+      }
+    }
+
+    &__header {
+      display: flex;
+      justify-content: flex-start;
+
+      &__left {
+        width: 180px;
+        margin-right: 16px;
+        border-radius: 10px;
+        overflow: hidden;
+      }
+
+      &__right {
+        &__title {
+          font-weight: bolder;
+        }
+
+        &__button {
+          display: flex;
+          align-items: center;
+          justify-content: flex-start;
+
+          &__number {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            margin-right: 16px;
+
+            &__display {
+              margin: 0 16px;
+            }
+
+            .fa {
+              width: 24px;
+              height: 24px;
+              border-radius: 50%;
+              background-color: $c-di-serria;
+              color: $c-white;
+              cursor: pointer;
+              line-height: 24px;
+              text-align: center;
+            }
+          }
+
+          &__link {
+            padding: 4px 0;
+            width: 100px;
+            border-radius: 50px;
+            background-color: $c-di-serria;
+            color: $c-white;
+            text-align: center;
+          }
         }
       }
     }
