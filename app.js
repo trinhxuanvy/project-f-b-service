@@ -1,19 +1,19 @@
-const express = require("express");
-const bodyParser = require("body-parser");
-const cookieParser = require("cookie-parser");
-const path = require("path");
-const mongooes = require("mongoose");
-const dotenv = require("dotenv");
-const shopRoute = require("./routes/shop.route.js");
+const express = require('express');
+const bodyParser = require('body-parser');
+const cookieParser = require('cookie-parser');
+const path = require('path');
+const mongooes = require('mongoose');
+const dotenv = require('dotenv');
+const shopRoute = require('./routes/shop.route.js');
 
 dotenv.config();
 
 const app = express();
 
-app.set("view engine", "ejs");
-app.set("views", "./views");
+app.set('view engine', 'ejs');
+app.set('views', './views');
 
-app.use(express.static(path.join(__dirname, "public")));
+app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -35,5 +35,5 @@ const port = process.env.PORT || 3000;
 //     console.log("Can't connect to database");
 // });
 app.listen(port, () => {
-  console.log("Listening at port " + port);
+    console.log('Listening at port ' + port);
 });
