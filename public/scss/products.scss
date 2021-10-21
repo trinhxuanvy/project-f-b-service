@@ -155,18 +155,24 @@
             }
           }
 
-          .fa {
-            width: 20px;
-            height: 20px;
-            border-radius: 50%;
-            line-height: 20px;
-            text-align: center;
-            background-color: $c-di-serria;
-            color: $c-white;
-            position: absolute;
-            bottom: 16px;
-            right: 16px;
-            cursor: pointer;
+          &__button {
+            .fa {
+              width: 20px;
+              height: 20px;
+              border-radius: 50%;
+              line-height: 20px;
+              text-align: center;
+              background-color: $c-di-serria;
+              color: $c-white;
+              position: absolute;
+              bottom: 16px;
+              right: 16px;
+              cursor: pointer;
+            }
+
+            input {
+              display: none;
+            }
           }
         }
       }
@@ -208,18 +214,8 @@
 }
 
 .container-popup {
-  &::before {
-    content: "";
-    position: fixed;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background-color: #ff000038;
-    z-index: 110000;
-  }
-
   .popup {
+    margin-top: 16px;
     position: fixed;
     z-index: 120000;
     top: 50%;
@@ -227,16 +223,18 @@
     transform: translate(-50%, -50%);
     width: 50%;
     min-width: 450px;
-    border: 3px solid $c-di-serria;
+    box-shadow: 0px 0px 10px rgba($c-black, 0.5);
     background-color: $c-white;
     border-radius: 5px;
-    padding: 16px;
-    height: 70vh;
+    height: 455px;
+    transition: 0.2s;
+    opacity: 0;
+    visibility: hidden;
 
     &__close {
       position: absolute;
-      top: 4px;
-      right: 8px;
+      top: 2px;
+      right: 4px;
 
       .fa {
         font-size: 24px;
@@ -252,6 +250,8 @@
     &__header {
       display: flex;
       justify-content: flex-start;
+      margin-bottom: 16px;
+      padding: 16px 16px 0;
 
       &__left {
         width: 180px;
@@ -263,6 +263,11 @@
       &__right {
         &__title {
           font-weight: bolder;
+          padding-right: 16px;
+        }
+
+        &__price {
+          color: $c-di-serria;
         }
 
         &__button {
@@ -303,5 +308,97 @@
         }
       }
     }
+
+    &__body {
+      height: 222px;
+      overflow-y: scroll;
+      padding: 0 16px;
+
+      &::-webkit-scrollbar {
+        width: 6px;
+        border: 1px solid $c-silver;
+        border-radius: 50px;
+      }
+
+      &::-webkit-scrollbar-thumb {
+        border-radius: 50px;
+        background-color: $c-di-serria;
+      }
+
+      &__item {
+        margin-bottom: 8px;
+
+        &__title {
+          display: block;
+          margin-bottom: 8px;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          font-weight: bolder;
+          padding: 0 16px;
+        }
+
+        &__form-group {
+          padding: 8px 16px;
+          box-shadow: 0px 0px 10px rgba($c-black, 0.1);
+          border-radius: 5px;
+
+          &__item {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+
+            label {
+              display: flex;
+              align-items: center;
+              padding: 4px 0;
+              width: 50%;
+              font-size: 14px;
+              cursor: pointer;
+              position: relative;
+
+              input {
+                margin-right: 8px;
+                cursor: pointer;
+              }
+            }
+
+            &__price {
+              position: absolute;
+              right: 0;
+              top: 50%;
+              transform: translateY(-50%);
+            }
+          }
+
+          .form-group-item--display {
+            label {
+              width: 100%;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.container-popup--toggle {
+  &::before {
+    content: "";
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba($c-silver, 0.5);
+    z-index: 110000;
+    transition: 0.2s;
+  }
+
+  .popup--toggle {
+    opacity: 1;
+    visibility: visible;
+    top: 50%;
+    left: 50%;
   }
 }
