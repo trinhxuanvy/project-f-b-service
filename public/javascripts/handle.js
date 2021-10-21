@@ -69,4 +69,51 @@ $(document).ready(function () {
       });
     }
   });
+
+  // Xử lý toggle modal order
+  $(function () {
+    const buttonOrder = $(".body__item__menu-list__item__card__button");
+
+    for (let i = 0; i < buttonOrder.length; i++) {
+      $(buttonOrder[i]).click(function (e) { 
+        e.preventDefault();
+
+        const popupParent = $(".container-popup");
+        const popupChild = $(".container-popup .popup");
+        console.log(popupChild)
+        const val = $(this.children[0]).val();
+        const hasClass = $(popupParent[0]).hasClass("container-popup-toggle");
+
+        if (hasClass) {
+          $(popupParent[0]).removeClass("container-popup--toggle");
+          $(popupChild[0]).removeClass("popup--toggle");
+        } else {
+          $(popupParent[0]).addClass("container-popup--toggle");
+          $(popupChild[0]).addClass("popup--toggle");
+        }
+      });
+    }
+    
+    const buttonClose = $(".container-popup .popup__close");
+
+    for (let i = 0; i < buttonClose.length; i++) {
+      $(buttonClose[i]).click(function (e) { 
+        e.preventDefault();
+
+        console.log("ok");
+        
+        const popupParent = $(".container-popup");
+        const popupChild = $(".container-popup .popup");
+        const hasClass = $(popupParent[0]).hasClass("container-popup-toggle");
+
+        if (!hasClass) {
+          $(popupParent[0]).removeClass("container-popup--toggle");
+          $(popupChild[0]).removeClass("popup--toggle");
+        } else {
+          $(popupParent[0]).addClass("container-popup--toggle");
+          $(popupChild[0]).addClass("popup--toggle");
+        }
+      });
+    }
+  });
 });
