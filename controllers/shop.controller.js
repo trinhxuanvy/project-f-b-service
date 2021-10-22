@@ -1,11 +1,16 @@
-const SanPham = require('../models/SanPham');
+const Product = require('../models/Product');
 const Voucher = require('../models/Voucher');
-const NguoiDung = require('../models/NguoiDung');
+const User = require('../models/User');
+const Event = require('../models/Event');
 
-exports.getIndex = async (req, res, next) => {
-    res.render('index');
-};
+class ShopController {
+    getIndex(req, res, next) {
+        res.render('index');
+    }
 
-exports.getProducts = async (req, res, next) => {
-    res.render('products');
-};
+    getProducts(req, res, next) {
+        res.render('products');
+    }
+}
+
+module.exports = new ShopController();

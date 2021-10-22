@@ -1,37 +1,37 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const NguoiDung = new Schema(
+const User = new Schema(
     {
-        hoTen: { type: String, required: true },
-        diaChi: { type: Array, required: true },
-        sdt: { type: Array, required: true },
-        cccd: { type: String, required: true },
+        name: { type: String, required: true },
+        address: { type: Array, required: true },
+        phone: { type: Array, required: true },
+        identityCard: { type: String, required: true },
         role: {
             type: String,
             required: true,
             enum: {
-                values: ['NhanVien', 'KhachHang', 'QuanLi'],
+                values: ['Employee', 'Customer', 'Management'],
                 message: '{VALUE} is not supports.',
             },
         },
         username: { type: String, required: true },
         password: { type: String, required: true },
-        gioHang: [
+        cart: [
             {
-                sanPham: [],
+                product: [],
                 topping: [],
                 mota: String,
                 soLuong: Number,
             },
         ],
-        viVoucher: [],
+        voucherWallet: [],
     },
     {
         timestamps: true,
         versionKey: false,
-        collection: 'NguoiDung',
+        collection: 'User',
     }
 );
 
-module.exports = mongoose.model('NguoiDung', NguoiDung);
+module.exports = mongoose.model('User', User);
