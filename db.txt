@@ -1,0 +1,12 @@
+for (let i = 0; i < 10; i++) {
+            var product = new Product();
+            product.name = 'Sữa Chua Dâu Tằm Hoàng Kim ' + (i + 1);
+            product.description = 'là sữa chua.';
+            product.category = 'Sữa chua';
+            product.sale = 10;
+            product.subProduct = { M: '10000', L: '20000' };
+            product.picture = 'Đây là link ảnh mô tả.';
+
+            product.save().catch((error) => {
+                console.log(error);
+            });

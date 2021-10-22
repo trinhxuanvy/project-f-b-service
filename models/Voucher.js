@@ -7,9 +7,10 @@ const Tmp = new Schema({
 
 const Voucher = new Schema(
     {
-        sanPhamApDung: [],
-        phanTram: { type: Number, required: true },
-        soLuongConLai: { type: Number, required: true },
+        product: [],
+        percent: { type: Number, required: true },
+        remain: { type: Number, required: true },
+        endTime: { type: Date, required: true },
     },
     {
         timestamps: true,
