@@ -4,9 +4,10 @@ const Schema = mongoose.Schema;
 const Event = new Schema(
     {
         description: String,
-        name: String,
+        name: { type: String, required: true },
         picture: [],
         video: [],
+        endTime: { type: Date, required: true },
     },
     {
         timestamps: true,
