@@ -1,0 +1,33 @@
+product
+for (let i = 0; i < 10; i++) {
+            var product = new Product();
+            product.name = 'Sữa Chua Dâu Tằm Hoàng Kim ' + (i + 1);
+            product.description = 'là sữa chua.';
+            product.category = 'Sữa chua';
+            product.sale = 10;
+            product.subProduct = { M: '10000', L: '20000' };
+            product.picture = 'Đây là link ảnh mô tả.';
+
+            product.save().catch((error) => {
+                console.log(error);
+            });
+        }
+voucher
+for (let i = 0; i < 20; i++) {
+            
+            Product.find({}).then((result) => {
+                var voucher = new Voucher();
+
+                for (let i = 0; i < result.length; i++) {
+                    voucher.product.push(result[i]._id);
+                }
+
+                voucher.percent = i + 1;
+                voucher.remain = i;
+                voucher.endTime = 10;
+
+                voucher.save().catch((error) => {
+                    console.log(error);
+                });
+            });
+        }
