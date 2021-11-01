@@ -1,0 +1,83 @@
+.header {
+  background-color: #282828; }
+
+.body {
+  perspective: 5000px;
+  position: relative;
+  width: 30%;
+  min-width: 400px;
+  height: 550px;
+  margin: 0 auto;
+  padding-top: 92px;
+  padding-bottom: 32px;
+  text-align: center; }
+  .body .login {
+    width: 100%;
+    backface-visibility: hidden;
+    position: absolute;
+    transition: 0.2s;
+    transform: perspective(600px) rotateY(0deg); }
+    .body .login-container {
+      box-shadow: 0px 0px 16px rgba(0, 0, 0, 0.162);
+      border-radius: 5px;
+      padding: 32px; }
+    .body .login__title {
+      font-weight: bolder;
+      text-transform: uppercase;
+      margin-bottom: 32px; }
+    .body .login__item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 300px;
+      margin: 0 auto 24px;
+      position: relative; }
+      .body .login__item__title {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        left: 8px;
+        background-color: #ffffff;
+        padding: 0 8px;
+        color: #D2A451;
+        transition: 0.2s;
+        font-size: 16px;
+        z-index: 900; }
+      .body .login__item__title--active {
+        top: -8px;
+        transform: translateY(0);
+        font-size: 12px;
+        font-weight: bolder;
+        z-index: 1100; }
+      .body .login__item__input {
+        border: 1px solid #D2A451;
+        padding: 12px 16px;
+        border-radius: 5px;
+        width: 100%;
+        position: relative;
+        z-index: 1000;
+        background: transparent;
+        color: #D2A451; }
+      .body .login__item__button {
+        padding: 8px 0;
+        width: 150px;
+        border-radius: 5px;
+        background-color: #D2A451;
+        color: #ffffff; }
+    .body .login__register {
+      display: block;
+      padding-top: 16px; }
+      .body .login__register__item {
+        color: #D2A451;
+        cursor: pointer; }
+  .body .register {
+    width: 100%;
+    backface-visibility: hidden;
+    position: absolute;
+    transition: 0.2s;
+    background-color: #ffffff;
+    transform: perspective(600px) rotateY(180deg); }
+  .body .login--active {
+    transform: perspective(600px) rotateY(-180deg); }
+  .body .register--active {
+    transform: perspective(600px) rotateY(0deg); }

@@ -116,4 +116,48 @@ $(document).ready(function () {
       });
     }
   });
+
+  // Xử lý focus input
+  $(function () {
+    const input = $(".login__item__input");
+    const label = $(".login__item__title");
+
+    for (let i = 0; i < input.length; i++) {
+      $(input[i]).focus(function (e) { 
+        e.preventDefault();
+
+        $(label[i]).addClass("login__item__title--active");
+      });
+
+      $(input[i]).focusout(function (e) { 
+        e.preventDefault();
+
+        if (input[i].value) {
+          $(label[i]).addClass("login__item__title--active");
+        } else {
+          $(label[i]).removeClass("login__item__title--active");
+        }
+      });
+    }
+  });
+
+  // Xử lý change login - register
+  $(function () {
+    const login = $("#login");
+    const register = $("#register");
+
+    $(register).click(function (e) { 
+      e.preventDefault();
+
+      $(".login").addClass("login--active");
+      $(".register").addClass("register--active");
+    });
+
+    $(login).click(function (e) { 
+      e.preventDefault();
+      
+      $(".login").removeClass("login--active");
+      $(".register").removeClass("register--active");
+    });
+  });
 });

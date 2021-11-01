@@ -1,0 +1,116 @@
+// Import SCSS
+@import "./variable/index.scss";
+@import "./mixin/index.scss";
+@import "./function/index.scss";
+
+.header {
+  background-color: $c-mine-shaft;
+}
+
+.body {
+  perspective: 5000px;
+  position: relative;
+  width: 30%;
+  min-width: 400px;
+  height: 550px;
+  margin: 0 auto;
+  padding-top: 92px;
+  padding-bottom: 32px;
+  text-align: center;
+
+  // Xử lý body
+  .login {
+    width: 100%;
+    backface-visibility: hidden;
+    position: absolute;
+    transition: 0.2s;
+    transform: perspective(600px) rotateY(0deg);
+
+    &-container {
+      box-shadow: 0px 0px 16px rgba($c-black, 0.162);
+      border-radius: 5px;
+      padding: 32px;
+    }
+
+    &__title {
+      font-weight: bolder;
+      text-transform: uppercase;
+      margin-bottom: 32px;
+    }
+
+    &__item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 300px;
+      margin: 0 auto 24px;
+      position: relative;
+      &__title {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        left: 8px;
+        background-color: $c-white;
+        padding: 0 8px;
+        color: $c-di-serria;
+        transition: 0.2s;
+        font-size: 16px;
+        z-index: 900;
+      }
+
+      &__title--active {
+        top: -8px;
+        transform: translateY(0);
+        font-size: 12px;
+        font-weight: bolder;
+        z-index: 1100;
+      }
+
+      &__input {
+        border: 1px solid $c-di-serria;
+        padding: 12px 16px;
+        border-radius: 5px;
+        width: 100%;
+        position: relative;
+        z-index: 1000;
+        background: transparent;
+        color: $c-di-serria;
+      }
+
+      &__button {
+        padding: 8px 0;
+        width: 150px;
+        border-radius: 5px;
+        background-color: $c-di-serria;
+        color: $c-white;
+      }
+    }
+
+    &__register {
+      display: block;
+      padding-top: 16px;
+
+      &__item {
+        color: $c-di-serria;
+        cursor: pointer;
+      }
+    }
+  }
+
+  .register {
+    width: 100%;
+    backface-visibility: hidden;
+    position: absolute;
+    transition: 0.2s;
+    background-color: $c-white;
+    transform: perspective(600px) rotateY(180deg);
+  }
+
+  .login--active {
+    transform: perspective(600px) rotateY(-180deg);
+  }
+
+  .register--active {
+    transform: perspective(600px) rotateY(0deg);
+  }
+}
