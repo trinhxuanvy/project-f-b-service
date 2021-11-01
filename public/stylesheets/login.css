@@ -24,7 +24,8 @@
     .body .login__title {
       font-weight: bolder;
       text-transform: uppercase;
-      margin-bottom: 32px; }
+      margin-bottom: 32px;
+      color: #D2A451; }
     .body .login__item {
       display: flex;
       align-items: center;
