@@ -1,0 +1,64 @@
+<%- include ("partials/head.ejs") %>
+	<link rel="stylesheet" href="stylesheets/login.css">
+	</head>
+
+	<body>
+	<%- include ("partials/menu-top.ejs") %>
+
+    <div class="body">
+        <div class="login">
+            <div class="login-container">
+                <h2 class="login__title">Đăng nhập</h2>
+                <form action="">
+                    <div class="login__item">
+                        <span class="login__item__title">Email</span>
+                        <input type="email" class="login__item__input">
+                    </div>
+                    <div class="login__item">
+                        <span class="login__item__title">Mật khẩu</span>
+                        <input type="password" class="login__item__input">
+                    </div>
+                    <div class="login__item">
+                        <div class="login__item__forgot">
+                            <input type="checkbox">
+                            <span>Lưu thông tin</span>
+                        </div>
+                        <a href="" class="login__item__link">Quên mật khẩu</a>
+                    </div>
+                    <button class="login__item__button">Đăng nhập</button>
+                </form>
+                <span class="login__register">Bạn chưa có tài khoản? <span id="register" class="login__register__item">Đăng ký ngay</span></span>
+            </div>
+        </div>
+
+        <div class="register">
+            <div class="login-container">
+                <h2 class="login__title">Đăng ký</h2>
+                <form action="">
+                    <div class="login__item">
+                        <span class="login__item__title">Email</span>
+                        <input type="email" class="login__item__input">
+                    </div>
+                    <div class="login__item">
+                        <span class="login__item__title">Mật khẩu</span>
+                        <input type="password" class="login__item__input">
+                    </div>
+                    <div class="login__item">
+                        <span class="login__item__title">Nhập lại mật khẩu</span>
+                        <input type="password" class="login__item__input">
+                    </div>
+                    <button class="login__item__button">Đăng ký</button>
+                </form>
+                <span class="login__register">Bạn đã có tài khoản? <span id="login" class="login__register__item">Đăng nhập ngay</span></span>
+            </div>
+        </div>
+    </div>
+
+    
+
+	<%- include ("partials/footer.ejs") %>
+
+	<%- include ("partials/script.ejs") %>
+</body>
+
+</html>
