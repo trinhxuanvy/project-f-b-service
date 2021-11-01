@@ -460,6 +460,96 @@
   }
 }
 
+// Xử lý events
+.events {
+  @include paddingContainer();
+
+  @media screen and (min-width: $lg) {
+    @include hoverBoxShadow();
+  }
+
+  @include headerItem(true, true, true);
+
+  &__body {
+    padding-top: 32px;
+    &__land {
+      &__item {
+        background-color: $c-gallery;
+        padding-bottom: 4px;
+        margin-bottom: 16px;
+        box-shadow: 0 0 16px rgba($c-black, 0.1);
+        &__image {
+          margin-bottom: 16px;
+        }
+
+        &__title {
+          font-weight: bolder;
+          color: $c-di-serria;
+          padding: 0 16px;
+          text-transform: uppercase;
+          overflow: hidden;
+          white-space: nowrap;
+          text-overflow: ellipsis;
+        }
+
+        &__para {
+          padding: 0 16px;
+          font-size: 14px;
+          overflow: hidden;
+          display: -webkit-box;
+          -webkit-line-clamp: 2;
+          -webkit-box-orient: vertical;
+          img {
+            width: 16px;
+            height: 16px;
+          }
+        }
+
+        &__link {
+          margin: 8px 16px;
+          padding: 8px 0;
+          text-align: center;
+          display: block;
+          width: 150px;
+          color: $c-di-serria;
+          border-radius: 5px;
+          border: 1px solid $c-di-serria;
+          transition: 0.2s;
+          &:hover {
+            background-color: $c-di-serria;
+            color: $c-white;
+          }
+        }
+
+        &__list {
+          display: block;
+          padding-bottom: 8px;
+          margin-bottom: 16px;
+          background-color: $c-gallery;
+          box-shadow: 0 0 16px rgba($c-black, 0.1);
+        }
+      }
+
+    }
+  }
+
+  &__button-see-more {
+    display: block;
+    width: 150px;
+    padding: 8px 0;
+    border: 1px solid $c-di-serria;
+    color: $c-di-serria;
+    border-radius: 5px;
+    text-align: center;
+    transition: 0.2s;
+    margin: 16px auto;
+    &:hover {
+      color: $c-white;
+      background-color: $c-di-serria;
+    }
+  }
+}
+
 // Xử lý footer
 .footer {
   @include paddingContainer();
