@@ -38,7 +38,7 @@
               </div>
               <div class="products__menu-list__item__link__detail">
                 <p class="products__menu-list__item__link__detail__name"><%= item.name %></p>
-                <p class="products__menu-list__item__link__detail__price"><span><%= new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(item.subProduct.get("L") * (100 - item.sale) / 100) %></span><span><del><%= new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(item.subProduct.get("L")) %></del></span></p>
+                <p class="products__menu-list__item__link__detail__price"><span class="money"><%= item.subProduct.get("L") * (100 - item.sale) / 100 %></span><del><span class="money" style="margin-left: 8px; color: #bebebe;"><%= item.subProduct.get("L") %></span></del></p>
                 <div class="products__menu-list__item__link__detail__button">Đặt hàng</div>
               </div>
             </a>
@@ -158,7 +158,7 @@
 
       <div class="events__body">
         <div class="row">
-          <div class="col-xl-6">
+          <div class="col-xl-6 col-lg-6">
             <div class="events__body__land">
               <div class="events__body__land__item">
                 <div class="events__body__land__item__image">
@@ -173,7 +173,7 @@
               </div>
               <div class="">
                 <div class="row">
-                  <div class="col-xl-6">
+                  <div class="col-6">
                     <a class="events__body__land__item__list">
                       <div class="events__body__land__item__image">
                         <img src="images/halloween.png" alt="">
@@ -181,7 +181,7 @@
                       <p class="events__body__land__item__title">Mua 2 được 3 - Vui Halloween thả ga cùng tocotoco</p>
                     </a>
                   </div>
-                  <div class="col-xl-6">
+                  <div class="col-6">
                     <a href="" class="events__body__land__item__list">
                       <div class="events__body__land__item__image">
                         <img src="images/halloween.png" alt="">
@@ -189,7 +189,7 @@
                       <p class="events__body__land__item__title">Mua 2 được 3 - Vui Halloween thả ga cùng tocotoco</p>
                     </a>
                   </div>
-                  <div class="col-xl-6">
+                  <div class="col-6">
                     <a href="" class="events__body__land__item__list">
                       <div class="events__body__land__item__image">
                         <img src="images/halloween.png" alt="">
@@ -197,7 +197,7 @@
                       <p class="events__body__land__item__title">Mua 2 được 3 - Vui Halloween thả ga cùng tocotoco</p>
                     </a>
                   </div>
-                  <div class="col-xl-6">
+                  <div class="col-6">
                     <a href="" class="events__body__land__item__list">
                       <div class="events__body__land__item__image">
                         <img src="images/halloween.png" alt="">
@@ -209,7 +209,7 @@
               </div>
             </div>
           </div>
-          <div class="col-xl-6">
+          <div class="col-xl-6 col-lg-6">
             <div class="events__body__land">
               <div class="events__body__land__item">
                 <div class="events__body__land__item__image">
@@ -224,7 +224,7 @@
               </div>
               <div class="">
                 <div class="row">
-                  <div class="col-xl-6">
+                  <div class="col-6">
                     <a class="events__body__land__item__list">
                       <div class="events__body__land__item__image">
                         <img src="images/halloween.png" alt="">
@@ -232,7 +232,7 @@
                       <p class="events__body__land__item__title">Mua 2 được 3 - Vui Halloween thả ga cùng tocotoco</p>
                     </a>
                   </div>
-                  <div class="col-xl-6">
+                  <div class="col-6">
                     <a href="" class="events__body__land__item__list">
                       <div class="events__body__land__item__image">
                         <img src="images/halloween.png" alt="">
@@ -240,7 +240,7 @@
                       <p class="events__body__land__item__title">Mua 2 được 3 - Vui Halloween thả ga cùng tocotoco</p>
                     </a>
                   </div>
-                  <div class="col-xl-6">
+                  <div class="col-6">
                     <a href="" class="events__body__land__item__list">
                       <div class="events__body__land__item__image">
                         <img src="images/halloween.png" alt="">
@@ -248,7 +248,7 @@
                       <p class="events__body__land__item__title">Mua 2 được 3 - Vui Halloween thả ga cùng tocotoco</p>
                     </a>
                   </div>
-                  <div class="col-xl-6">
+                  <div class="col-6">
                     <a href="" class="events__body__land__item__list">
                       <div class="events__body__land__item__image">
                         <img src="images/halloween.png" alt="">

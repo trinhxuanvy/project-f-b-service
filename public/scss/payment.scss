@@ -1,0 +1,78 @@
+// Import SCSS
+@import "./variable/index.scss";
+@import "./mixin/index.scss";
+@import "./function/index.scss";
+
+.header {
+    background-color: $c-mine-shaft;
+}
+
+.payment {
+    padding-top: 92px;
+    padding-bottom: 32px;
+    &__item {
+        &__header {
+            text-transform: uppercase;
+            color: $c-di-serria;
+            font-weight: bolder;
+            font-size: 24px;
+            display: block;
+            text-align: center;
+        }
+
+        &__body {
+            &__item {
+                &__title {
+                    font-weight: bolder;
+                    text-transform: uppercase;
+                }
+                
+                &__total {
+                    font-weight: bolder;
+                    font-size: 24px;
+                    color: $c-di-serria;
+                    display: block;
+                    text-align: right;
+                }
+
+                &__checkout {
+                    background-color: $c-di-serria;
+                    color: $c-white;
+                    border-radius: 5px;
+                    padding: 8px;
+                    display: block;
+                    width: 150px;
+                    margin-left: auto;
+                }
+            }
+
+            &__form {
+                padding: 0 16px;
+                &__item {
+                    margin-bottom: 16px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+
+                    span {
+                        color: $c-di-serria;
+                        font-weight: bolder;
+                    }
+
+                    input {
+                        border: 1px solid $c-di-serria;
+                        padding: 8px 16px;
+                        border-radius: 5px;
+                        width: 70%;
+                        color: $c-di-serria;
+                    }
+                }
+            }
+        }
+
+        &__message {
+            text-align: center;
+            display: block;
+        }
+    }
+}
