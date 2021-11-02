@@ -14,23 +14,25 @@
 							<div class="body__item__menu-list">
 								<a href="" class="body__item__menu-list__link">Món nổi bật <div
 										class="body__item__menu-list__link__count">16</div></a>
-								<a href="" class="body__item__menu-list__link">Trà sữa <div
-										class="body__item__menu-list__link__count">23</div></a>
-								<a href="" class="body__item__menu-list__link">Fresh Fruit Tea <div
+								<% prod.forEach(item => { %>
+									<a href="#<%= item[0].type %>" class="body__item__menu-list__link"><%= item[0].type %>  <div
+										class="body__item__menu-list__link__count"><%= item[1].length %> </div></a>
+								<% }) %>
+								<!-- <a href="" class="body__item__menu-list__link">Fresh Fruit Tea <div
 										class="body__item__menu-list__link__count">7</div></a>
 								<a href="" class="body__item__menu-list__link">Macchiato <div
 										class="body__item__menu-list__link__count">6</div></a>
 								<a href="" class="body__item__menu-list__link">Special Drink <div
 										class="body__item__menu-list__link__count">7</div></a>
 								<a href="" class="body__item__menu-list__link">Beauty Drinks <div
-										class="body__item__menu-list__link__count">3</div></a>
+										class="body__item__menu-list__link__count">3</div></a> -->
 							</div>
 						</div>
 					</div>
 					<div class="col-xl-6 col-lg-6">
 						<div class="body__item body__item--border body__item--border-radius">
 							<div class="body__item__search">
-								<form class="body__item__search__form">
+								<form action="/products" class="body__item__search__form" method="get">
 									<i class="fa fa-search" aria-hidden="true"></i>
 									<input type="text" name="search_name" placeholder="Tìm kiếm sản phẩm ...">
 								</form>
@@ -38,7 +40,34 @@
 						</div>
 						<div class="body__item body__item--border body__item--border-radius">
 							<div class="body__item__menu-list">
-								<div class="body__item__menu-list__item body__item__menu-list__item--clear-flex">
+								<% prod.forEach(item => { %>
+									<div id="<%= item[0].type %>" class="body__item__menu-list__item body__item__menu-list__item--clear-flex">
+										<div class="body__item__menu-list__item__title">
+											<%= item[0].type %> 
+											<i class="fa fa-angle-down" aria-hidden="true"></i>
+										</div>
+										<% if (item[1].length) { %>
+											<div class="row flex-wrap body__item__menu-list__item--set-height set-height">
+												<% item[1].forEach(product => { %>
+													<div class="col-xl-4 col-lg-4 col-md-3 col-sm-4 col-6">
+														<div class="body__item__menu-list__item__card">
+															<div class="body__item__menu-list__item__card__image">
+																<img src="images/sua-chua-thanh-long-hat-de.png" alt="">
+															</div>
+															<p class="body__item__menu-list__item__card__name"><%= product.name %> </p>
+															<p class="body__item__menu-list__item__card__price"><span class="money"><%= product.subProduct.get("L") * (100 - product.sale) / 100 %></span><del><span class="money" style="margin-left: 8px; color: #bebebe;"><%= product.subProduct.get("L") %></span></del></p>
+															<div class="body__item__menu-list__item__card__button">
+																<input type="text" value="1">
+																<i class="fa fa-plus" aria-hidden="true"></i>
+															</div>
+														</div>
+													</div>
+												<% }) %>
+											</div>
+										<% } %>
+									</div>
+								<% }) %>
+								<!-- <div class="body__item__menu-list__item body__item__menu-list__item--clear-flex">
 									<div class="body__item__menu-list__item__title">
 										Món nổi bật
 										<i class="fa fa-angle-down" aria-hidden="true"></i>
@@ -184,6 +213,30 @@
 										</div>
 									</div>
 								</div>
+								<div class="body__item__menu-list__item body__item__menu-list__item--clear-flex">
+									<div class="body__item__menu-list__item__title">
+										Fresh Fruit Tea
+										<i class="fa fa-angle-down" aria-hidden="true"></i>
+									</div>
+								</div>
+								<div class="body__item__menu-list__item body__item__menu-list__item--clear-flex">
+									<div class="body__item__menu-list__item__title">
+										Macchiato
+										<i class="fa fa-angle-down" aria-hidden="true"></i>
+									</div>
+								</div>
+								<div class="body__item__menu-list__item body__item__menu-list__item--clear-flex">
+									<div class="body__item__menu-list__item__title">
+										Special Drink
+										<i class="fa fa-angle-down" aria-hidden="true"></i>
+									</div>
+								</div>
+								<div class="body__item__menu-list__item body__item__menu-list__item--clear-flex">
+									<div class="body__item__menu-list__item__title">
+										Sữa chua
+										<i class="fa fa-angle-down" aria-hidden="true"></i>
+									</div>
+								</div> -->
 							</div>
 						</div>
 					</div>

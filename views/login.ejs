@@ -1,5 +1,6 @@
 <%- include ("partials/head.ejs") %>
 	<link rel="stylesheet" href="stylesheets/login.css">
+    <link rel="stylesheet" href="stylesheets/custom.css">
 	</head>
 
 	<body>
@@ -9,14 +10,16 @@
         <div class="login">
             <div class="login-container">
                 <h2 class="login__title">Đăng nhập</h2>
-                <form action="">
+                <form action="/login" method="post">
                     <div class="login__item">
                         <span class="login__item__title">Email</span>
-                        <input type="email" class="login__item__input">
+                        <input type="email" name="email" class="login__item__input" autocomplete="off" required>
+                        <span class="message error"></span>
                     </div>
                     <div class="login__item">
                         <span class="login__item__title">Mật khẩu</span>
-                        <input type="password" class="login__item__input">
+                        <input type="password" name="password" class="login__item__input" required>
+                        <span class="message error"></span>
                     </div>
                     <div class="login__item">
                         <div class="login__item__forgot">
@@ -57,6 +60,8 @@
     
 
 	<%- include ("partials/footer.ejs") %>
+
+    <script src="service.js"></script>
 
 	<%- include ("partials/script.ejs") %>
 </body>

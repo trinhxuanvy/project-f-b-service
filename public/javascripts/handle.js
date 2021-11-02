@@ -16,8 +16,8 @@ $(document).ready(function () {
   });
 
   // Xử lý menu reponsive
-  $(function() {
-    $("#menu-toggle").click(function (e) { 
+  $(function () {
+    $("#menu-toggle").click(function (e) {
       e.preventDefault();
       const menuList = $(".header__menu-list");
       const hasClass = $(menuList).hasClass("header__menu-list-responsive");
@@ -26,7 +26,7 @@ $(document).ready(function () {
         $(menuList).removeClass("header__menu-list-responsive");
       } else {
         $(menuList).addClass("header__menu-list-responsive");
-      }    
+      }
     });
   });
 
@@ -54,11 +54,11 @@ $(document).ready(function () {
   $(function () {
     const buttonTitle = $(".body__item__menu-list__item__title");
     const products = $(".body__item__menu-list__item--set-height");
-    
+
     for (let i = 0; i < buttonTitle.length; i++) {
-      $(buttonTitle[i]).click(function (e) { 
+      $(buttonTitle[i]).click(function (e) {
         e.preventDefault();
-        
+
         const hasClass = $(products[i]).hasClass("set-height");
 
         if (hasClass) {
@@ -75,12 +75,12 @@ $(document).ready(function () {
     const buttonOrder = $(".body__item__menu-list__item__card__button");
 
     for (let i = 0; i < buttonOrder.length; i++) {
-      $(buttonOrder[i]).click(function (e) { 
+      $(buttonOrder[i]).click(function (e) {
         e.preventDefault();
 
         const popupParent = $(".container-popup");
         const popupChild = $(".container-popup .popup");
-        console.log(popupChild)
+        console.log(popupChild);
         const val = $(this.children[0]).val();
         const hasClass = $(popupParent[0]).hasClass("container-popup-toggle");
 
@@ -93,15 +93,15 @@ $(document).ready(function () {
         }
       });
     }
-    
+
     const buttonClose = $(".container-popup .popup__close");
 
     for (let i = 0; i < buttonClose.length; i++) {
-      $(buttonClose[i]).click(function (e) { 
+      $(buttonClose[i]).click(function (e) {
         e.preventDefault();
 
         console.log("ok");
-        
+
         const popupParent = $(".container-popup");
         const popupChild = $(".container-popup .popup");
         const hasClass = $(popupParent[0]).hasClass("container-popup-toggle");
@@ -123,13 +123,13 @@ $(document).ready(function () {
     const label = $(".login__item__title");
 
     for (let i = 0; i < input.length; i++) {
-      $(input[i]).focus(function (e) { 
+      $(input[i]).focus(function (e) {
         e.preventDefault();
 
         $(label[i]).addClass("login__item__title--active");
       });
 
-      $(input[i]).focusout(function (e) { 
+      $(input[i]).focusout(function (e) {
         e.preventDefault();
 
         if (input[i].value) {
@@ -146,16 +146,16 @@ $(document).ready(function () {
     const login = $("#login");
     const register = $("#register");
 
-    $(register).click(function (e) { 
+    $(register).click(function (e) {
       e.preventDefault();
 
       $(".login").addClass("login--active");
       $(".register").addClass("register--active");
     });
 
-    $(login).click(function (e) { 
+    $(login).click(function (e) {
       e.preventDefault();
-      
+
       $(".login").removeClass("login--active");
       $(".register").removeClass("register--active");
     });
@@ -170,7 +170,10 @@ $(document).ready(function () {
       dots: false,
       mouseWheel: false,
       nav: true,
-      navText: ["<span style='display: block; padding: 8px 16px; background-color: #D2A451; color: #ffffff;'>Thanh toán trực tiếp</span>", "<span style='display: block; padding: 8px 16px; background-color: #D2A451; color: #ffffff;'>Thanh toán online</span>"],
+      navText: [
+        "<span style='display: block; padding: 8px 16px; background-color: #D2A451; color: #ffffff;'>Thanh toán trực tiếp</span>",
+        "<span style='display: block; padding: 8px 16px; background-color: #D2A451; color: #ffffff;'>Thanh toán online</span>",
+      ],
       responsive: {
         0: {
           items: 1,
@@ -190,7 +193,10 @@ $(document).ready(function () {
     const money = $(".money");
 
     for (let i = 0; i < money.length; i++) {
-      money[i].innerHTML = new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(money[i].innerHTML);
+      money[i].innerHTML = new Intl.NumberFormat("vi-VN", {
+        style: "currency",
+        currency: "VND",
+      }).format(money[i].innerHTML);
     }
   });
 });

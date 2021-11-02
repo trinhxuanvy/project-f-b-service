@@ -1,0 +1,10 @@
+.message {
+    font-size: 12px;
+    position: absolute;
+    bottom: -18px;
+    right: 0;
+}
+
+.error {
+    color: #ff0000;
+}
