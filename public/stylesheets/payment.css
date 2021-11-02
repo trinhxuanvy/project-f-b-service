@@ -1,0 +1,49 @@
+.header {
+  background-color: #282828; }
+
+.payment {
+  padding-top: 92px;
+  padding-bottom: 32px; }
+  .payment__item__header {
+    text-transform: uppercase;
+    color: #D2A451;
+    font-weight: bolder;
+    font-size: 24px;
+    display: block;
+    text-align: center; }
+  .payment__item__body__item__title {
+    font-weight: bolder;
+    text-transform: uppercase; }
+  .payment__item__body__item__total {
+    font-weight: bolder;
+    font-size: 24px;
+    color: #D2A451;
+    display: block;
+    text-align: right; }
+  .payment__item__body__item__checkout {
+    background-color: #D2A451;
+    color: #ffffff;
+    border-radius: 5px;
+    padding: 8px;
+    display: block;
+    width: 150px;
+    margin-left: auto; }
+  .payment__item__body__form {
+    padding: 0 16px; }
+    .payment__item__body__form__item {
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between; }
+      .payment__item__body__form__item span {
+        color: #D2A451;
+        font-weight: bolder; }
+      .payment__item__body__form__item input {
+        border: 1px solid #D2A451;
+        padding: 8px 16px;
+        border-radius: 5px;
+        width: 70%;
+        color: #D2A451; }
+  .payment__item__message {
+    text-align: center;
+    display: block; }

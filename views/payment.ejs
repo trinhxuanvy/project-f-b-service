@@ -1,0 +1,119 @@
+<%- include ("partials/head.ejs") %>
+    <link rel="stylesheet" href="stylesheets/products.css">
+    <link rel="stylesheet" href="stylesheets/payment.css">
+	</head>
+
+	<body>
+	<%- include ("partials/menu-top.ejs") %>
+
+    <div class="payment">
+        <div class="container">
+            <div class="owl-carousel owl-theme payment-slide">
+                <div class="item">
+                    <div class="payment__item">
+                        <p class="payment__item__header">Thanh toán trực tiếp</p>
+                        <div class="payment__item__body">
+                            <div class="row">
+                                <div class="col-xl-6">
+                                    <div class="payment__item__body__item">
+                                        <p class="payment__item__body__item__title">Thông tin người nhận</p>
+                                        <div class="payment__item__body__item__form">
+                                            <form action="">
+                                                <div class="payment__item__body__form__item">
+                                                    <span class="payment__item__body__form__item__label">Họ và tên:</span>
+                                                    <input type="text">
+                                                </div>
+                                                <div class="payment__item__body__form__item">
+                                                    <span class="payment__item__body__form__item__label">Số điện thoại:</span>
+                                                    <input type="text">
+                                                </div>
+                                                <div class="payment__item__body__form__item">
+                                                    <span class="payment__item__body__form__item__label">Địa chỉ:</span>
+                                                    <input type="text">
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xl-6">
+                                    <div class="payment__item__body__item">
+                                        <div class="body__item__title d-flex align-items-center justify-content-between">GIỎ HÀNG
+                                            CỦA TÔI
+                                            <a href="" class="body__item__title__link">Xóa tất cả</a>
+                                        </div>
+                                        <div class="body__item__menu-list">
+                                            <div class="body__item__menu-list__item">
+                                                <div class="body__item__menu-list__item__info">
+                                                    <p class="body__item__menu-list__item__info__name">Sữa Chua Dâu Tằm Hoàng Kim
+                                                        (M)</p>
+                                                    <p class="body__item__menu-list__item__info__topping">Không đường, Không đá,
+                                                        thêm trân châu đen</p>
+                                                    <div class="body__item__menu-list__item__info__cost"><span class="money">160000</span> x 4 = <span class="money">540000</span></i>
+                                                    </div>
+                                                </div>
+                                                <div class="body__item__menu-list__item__button">
+                                                    <i class="fa fa-minus" aria-hidden="true"></i>
+                                                    <div class="body__item__menu-list__item__button__count">4</div>
+                                                    <i class="fa fa-plus" aria-hidden="true"></i>
+                                                </div>
+                                            </div>
+                                            <div class="body__item__menu-list__item">
+                                                <div class="body__item__menu-list__item__info">
+                                                    <p class="body__item__menu-list__item__info__name">Sữa Chua Dâu Tằm Hoàng Kim
+                                                        (M)</p>
+                                                    <p class="body__item__menu-list__item__info__topping">Không đường, Không đá,
+                                                        thêm trân châu đen</p>
+                                                    <div class="body__item__menu-list__item__info__cost"><span class="money">160000</span> x 4 = <span class="money">540000</span></i>
+                                                    </div>
+                                                </div>
+                                                <div class="body__item__menu-list__item__button">
+                                                    <i class="fa fa-minus" aria-hidden="true"></i>
+                                                    <div class="body__item__menu-list__item__button__count">4</div>
+                                                    <i class="fa fa-plus" aria-hidden="true"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xl-6">
+                                    <div class="payment__item__body__item">
+                                        <p class="payment__item__body__item__title">Chọn voucher của bạn</p>
+                                        <div class="payment__item__body__item__form">
+                                            <form action="">
+                                                <div class="payment__item__body__form__item">
+                                                    <span class="payment__item__body__form__item__label">Mã vourcher:</span>
+                                                    <input type="text">
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xl-6">
+                                    <div class="payment__item__body__item">
+                                        <p class="payment__item__body__item__title">Tổng tiền</p>
+                                        <p class="payment__item__body__item__total money">1500000</p>
+                                        <form action="">
+                                            <button class="payment__item__body__item__checkout" type="submit">Thanh toán</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="qayment__item">
+                        <p class="payment__item__header">Thanh toán online</p>
+                        <span class="payment__item__message">Vui lòng quay lại sau</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+	<%- include ("partials/footer.ejs") %>
+
+	<%- include ("partials/script.ejs") %>
+</body>
+
+</html>

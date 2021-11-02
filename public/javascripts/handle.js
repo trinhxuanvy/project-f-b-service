@@ -160,4 +160,37 @@ $(document).ready(function () {
       $(".register").removeClass("register--active");
     });
   });
+
+  // Xử lý slide payment
+  $(function () {
+    $(".payment-slide").owlCarousel({
+      loop: false,
+      margin: 16,
+      autoplay: false,
+      dots: false,
+      mouseWheel: false,
+      nav: true,
+      navText: ["<span style='display: block; padding: 8px 16px; background-color: #D2A451; color: #ffffff;'>Thanh toán trực tiếp</span>", "<span style='display: block; padding: 8px 16px; background-color: #D2A451; color: #ffffff;'>Thanh toán online</span>"],
+      responsive: {
+        0: {
+          items: 1,
+        },
+        768: {
+          items: 1,
+        },
+        992: {
+          items: 1,
+        },
+      },
+    });
+  });
+
+  // Xử lý hiển thị giá tiền
+  $(function () {
+    const money = $(".money");
+
+    for (let i = 0; i < money.length; i++) {
+      money[i].innerHTML = new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(money[i].innerHTML);
+    }
+  });
 });
