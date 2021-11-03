@@ -19,8 +19,10 @@ const User = new Schema(
         password: { type: String, required: true },
         cart: [
             {
+                id: { type: Number, unique: true },
                 product: [],
                 topping: [],
+                size: String,
                 mota: String,
                 soLuong: Number,
             },

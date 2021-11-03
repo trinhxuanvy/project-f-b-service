@@ -8,6 +8,7 @@ const Invoice = new Schema(
             {
                 product: [],
                 topping: [],
+                size: String,
                 description: String,
                 amount: Number,
             },
