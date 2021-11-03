@@ -9,7 +9,7 @@ const Product = new Schema(
         sale: { type: Number, default: 0, min: 0 },
         subProduct: {
             type: Map,
-            of: Number,
+            of: Number,// M:10000 L:20000
         },
         picture: { type: [], required: true },
         reviews: [{ username: String, message: String }],
