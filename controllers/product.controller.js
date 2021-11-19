@@ -66,8 +66,8 @@ class ProductController {
                         }
                     );
                 }
-                //res.render('products', prod); //[catgorey, [product]]
-                res.send(prod);
+                res.render('products', prod); //[catgorey, [product]]
+                //res.send(prod);
             })
             .catch((error) => res.send('123')); // ERROR page
     };
