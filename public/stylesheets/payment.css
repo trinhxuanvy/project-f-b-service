@@ -6,7 +6,7 @@
   padding-bottom: 32px; }
   .payment__item__header {
     text-transform: uppercase;
-    color: #D2A451;
+    color: #d2a451;
     font-weight: bolder;
     font-size: 24px;
     display: block;
@@ -17,11 +17,11 @@
   .payment__item__body__item__total {
     font-weight: bolder;
     font-size: 24px;
-    color: #D2A451;
+    color: #d2a451;
     display: block;
     text-align: right; }
   .payment__item__body__item__checkout {
-    background-color: #D2A451;
+    background-color: #d2a451;
     color: #ffffff;
     border-radius: 5px;
     padding: 8px;
@@ -36,14 +36,20 @@
       align-items: center;
       justify-content: space-between; }
       .payment__item__body__form__item span {
-        color: #D2A451;
+        color: #d2a451;
         font-weight: bolder; }
       .payment__item__body__form__item input {
-        border: 1px solid #D2A451;
+        border: 1px solid #d2a451;
         padding: 8px 16px;
         border-radius: 5px;
         width: 70%;
-        color: #D2A451; }
+        color: #d2a451; }
+      .payment__item__body__form__item__select {
+        border: 1px solid #d2a451;
+        padding: 8px 16px;
+        border-radius: 5px;
+        width: 70%;
+        color: #d2a451; }
   .payment__item__message {
     text-align: center;
     display: block; }

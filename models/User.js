@@ -1,39 +1,29 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const User = new Schema(
-    {
-        name: { type: String, required: true },
-        address: { type: Array, required: true },
-        phone: { type: Array, required: true },
-        identityCard: { type: String, required: true },
-        role: {
-            type: String,
-            required: true,
-            enum: {
-                values: ['Employee', 'Customer', 'Management'],
-                message: '{VALUE} is not supports.',
-            },
-        },
-        username: { type: String, required: true },
-        password: { type: String, required: true },
-        cart: [
-            {
-                id: { type: Number, unique: true },
-                product: [],
-                topping: [],
-                size: String,
-                mota: String,
-                soLuong: Number,
-            },
-        ],
-        voucherWallet: [],
+  {
+    name: { type: String, required: true },
+    address: { type: Array, required: true },
+    phone: { type: Array, required: true },
+    identityCard: { type: String, required: true },
+    role: {
+      type: String,
+      required: true,
+      enum: {
+        values: ["Employee", "Customer", "Management"],
+        message: "{VALUE} is not supports.",
+      },
     },
-    {
-        timestamps: true,
-        versionKey: false,
-        collection: 'User',
-    }
+    username: { type: String, required: true },
+    password: { type: String, required: true },
+    voucherWallet: { type: Array, required: false },
+  },
+  {
+    timestamps: true,
+    versionKey: false,
+    collection: "User",
+  }
 );
 
-module.exports = mongoose.model('User', User);
+module.exports = mongoose.model("User", User);

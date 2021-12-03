@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" type="x-icon" href="images/favicon-32x32-1.png" />
+    <title><%= namePage %></title>
+
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css"
+      integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.css"
+      integrity="sha512-UTNP5BXLIptsaj5WdKFrkFov94lDx+eBvbKyoe1YAfjeRPC+gT5kyZ10kOHCfNZqEui1sxmqvodNUx3KbuYI/A=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.css"
+      integrity="sha512-OTcub78R3msOCtY3Tc6FzeDJ8N9qvQn1Ph49ou13xgA9VsH9+LRxoFU6EqLhW4+PKRfU+/HReXmSZXHEkpYoOA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="/stylesheets/default.css" />
+    <link rel="stylesheet" href="/stylesheets/index.css" />
+
+    <link rel="stylesheet" href="/stylesheets/products.css" />
+  </head>
+
+  <body>
+    <%- include ("partials/menu-top.ejs") %>
+
+    <div class="body">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-xl-3 col-lg-3">
+            <div class="body__item body__item--border">
+              <div class="body__item__title">DANH MỤC</div>
+              <div class="body__item__menu-list">
+                <a href="" class="body__item__menu-list__link"
+                  >Món nổi bật
+                  <div class="body__item__menu-list__link__count">16</div></a
+                >
+                <% product.forEach(item => { %>
+                <a href="#" class="body__item__menu-list__link"
+                  ><%= item.categoryName %>
+                  <div class="body__item__menu-list__link__count">
+                    <%= item.amount %>
+                  </div></a
+                >
+                <% }) %>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-6 col-lg-6">
+            <div
+              class="body__item body__item--border body__item--border-radius"
+            >
+              <div class="body__item__search">
+                <form class="body__item__search__form" method="get">
+                  <i class="fa fa-search" aria-hidden="true"></i>
+                  <input
+                    type="text"
+                    name="search_name"
+                    placeholder="Tìm kiếm sản phẩm ..."
+                  />
+                </form>
+              </div>
+            </div>
+            <div
+              class="body__item body__item--border body__item--border-radius"
+            >
+              <div class="body__item__menu-list">
+                <% product.forEach(item => { %>
+                <div
+                  id=""
+                  class="
+                    body__item__menu-list__item
+                    body__item__menu-list__item--clear-flex
+                  "
+                >
+                  <div class="body__item__menu-list__item__title">
+                    <%= item.categoryName %>
+                    <i class="fa fa-angle-down" aria-hidden="true"></i>
+                  </div>
+                  <div
+                    class="
+                      row
+                      flex-wrap
+                      body__item__menu-list__item--set-height
+                      set-height
+                    "
+                  >
+                    <% item.product.forEach(prod => { %>
+                    <div class="col-xl-4 col-lg-4 col-md-3 col-sm-4 col-6">
+                      <div class="body__item__menu-list__item__card">
+                        <div class="body__item__menu-list__item__card__image">
+                          <img
+                            src="images/sua-chua-thanh-long-hat-de.png"
+                            alt=""
+                          />
+                        </div>
+                        <p class="body__item__menu-list__item__card__name">
+                          <%= prod.name %>
+                        </p>
+                        <p class="body__item__menu-list__item__card__price">
+                          <span class="money"
+                            ><%= Math.floor(prod.subProduct[0].price * prod.sale
+                            / 100) %></span
+                          ><del
+                            ><span
+                              class="money"
+                              style="margin-left: 8px; color: #bebebe"
+                              ><%=prod.subProduct[0].price %></span
+                            ></del
+                          >
+                        </p>
+                        <div class="body__item__menu-list__item__card__button">
+                          <input type="text" value="<%= prod._id %>" />
+                          <i class="fa fa-plus" aria-hidden="true"></i>
+                        </div>
+                      </div>
+                    </div>
+                    <% }) %>
+                  </div>
+                </div>
+                <% }) %>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-3 col-lg-3">
+            <div class="body__item body__item--border">
+              <div
+                class="
+                  body__item__title
+                  d-flex
+                  align-items-center
+                  justify-content-between
+                "
+              >
+                GIỎ HÀNG CỦA TÔI
+                <a href="/order/delete-all/all" class="body__item__title__link"
+                  >Xóa tất cả</a
+                >
+              </div>
+              <div class="body__item__menu-list">
+                <% if (order.length) { order.forEach(item => { %>
+                <div class="body__item__menu-list__item">
+                  <div class="body__item__menu-list__item__info">
+                    <p class="body__item__menu-list__item__info__name">
+                      <%= item.productName %> (<%= item.size %>)
+                    </p>
+                    <p class="body__item__menu-list__item__info__topping">
+                      Thêm <% item.topping.forEach(topping => { %> <%=
+                      topping.name + "," %> <% }) %>
+                    </p>
+                    <div class="body__item__menu-list__item__info__cost">
+                      <span class="money"
+                        ><%= Math.floor(item.totalPrice / item.amount) %></span
+                      >
+                      x <%= item.amount %> =
+                      <span class="money"
+                        ><%= Math.floor(item.totalPrice) %></span
+                      >
+                    </div>
+                  </div>
+                  <div class="body__item__menu-list__item__button">
+                    <i class="fa fa-minus" aria-hidden="true"></i>
+                    <div class="body__item__menu-list__item__button__count">
+                      <input
+                        style="width: 50px"
+                        type="number"
+                        min="1"
+                        name="amount"
+                        value="<%= item.amount %>"
+                      />
+                    </div>
+                    <i class="fa fa-plus" aria-hidden="true"></i>
+                  </div>
+                </div>
+                <% })} else { %>
+                <p>Vui lòng chọn sản phẩm</p>
+                <% } %>
+              </div>
+            </div>
+            <a
+              href="/payment"
+              class="body__item__menu-list__payment"
+              style="text-align: center"
+              >Thanh toán</a
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="popupOrder">
+      <form class="container-popup" method="post" action="">
+        <div class="popup">
+          <div class="popup__close">
+            <i class="fa fa-times" aria-hidden="true"></i>
+          </div>
+          <div class="popup__header">
+            <div class="popup__header__left">
+              <img src="images/sua-chua-thanh-long-hat-de.png" alt="" />
+            </div>
+            <div class="popup__header__right">
+              <h5 class="popup__header__right__title">
+                Probi Xoài Trân Châu Sương Mai
+              </h5>
+              <p class="popup__header__right__price">
+                <span class="money">29000</span>
+                <del class="money" style="font-size: 12px; color: #333"
+                  >42000</del
+                >
+              </p>
+              <p class="popup__header__right__info">
+                <i>Chưa có thông tin.</i>
+              </p>
+              <div class="popup__header__right__button">
+                <div class="popup__header__right__button__number">
+                  <i
+                    class="fa fa-minus"
+                    id="minus-amount"
+                    aria-hidden="true"
+                  ></i>
+                  <div class="popup__header__right__button__number__display">
+                    <input
+                      style="width: 50px"
+                      type="number"
+                      min="1"
+                      name="amount"
+                      value="1"
+                    />
+                  </div>
+                  <i class="fa fa-plus" id="plus-amount" aria-hidden="true"></i>
+                </div>
+                <button
+                  type="submit"
+                  class="popup__header__right__button__link"
+                >
+                  Thêm vào giỏ hàng
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="popup__body">
+            <div class="popup__body__item">
+              <span class="popup__body__item__title"
+                >Chọn size <i class="fa fa-angle-down" aria-hidden="true"></i
+              ></span>
+              <div class="popup__body__item__form-group">
+                <div
+                  class="popup__body__item__form-group__item"
+                  id="sizeX"
+                ></div>
+              </div>
+            </div>
+            <div class="popup__body__item">
+              <span class="popup__body__item__title"
+                >Chọn <%= sugar?.name %>
+                <i class="fa fa-angle-down" aria-hidden="true"></i
+              ></span>
+              <div class="popup__body__item__form-group">
+                <div class="popup__body__item__form-group__item">
+                  <% sugar?.subProduct.forEach(item => { %>
+                  <label for="<%= item._id %>">
+                    <input
+                      type="radio"
+                      name="sugar"
+                      id="<%= item._id %>"
+                      value="<%= item.type %>"
+                    />
+                    <span class="popup__body__item__form-group__item__name"
+                      ><%= item.type %></span
+                    >
+                  </label>
+                  <% }) %>
+                </div>
+              </div>
+            </div>
+            <div class="popup__body__item">
+              <span class="popup__body__item__title"
+                >Chọn <%= ice?.name %><i
+                  class="fa fa-angle-down"
+                  aria-hidden="true"
+                ></i
+              ></span>
+              <div class="popup__body__item__form-group">
+                <div class="popup__body__item__form-group__item">
+                  <% ice?.subProduct.forEach(item => { %>
+                  <label for="<%= item._id %>">
+                    <input
+                      type="radio"
+                      name="ice"
+                      id="<%= item._id %>"
+                      value="<%= item.type %>"
+                    />
+                    <span class="popup__body__item__form-group__item__name"
+                      ><%= item.type %></span
+                    >
+                  </label>
+                  <% }) %>
+                </div>
+              </div>
+            </div>
+            <div class="popup__body__item">
+              <span class="popup__body__item__title"
+                >Chọn topping<i class="fa fa-angle-down" aria-hidden="true"></i
+              ></span>
+              <div class="popup__body__item__form-group">
+                <div
+                  class="
+                    popup__body__item__form-group__item
+                    form-group-item--display
+                  "
+                >
+                  <% topping.forEach(item => { %>
+                  <label for="topping_<%= item._id %>">
+                    <input
+                      type="checkbox"
+                      name="<%= item._id %>_topping"
+                      id="topping_<%= item._id %>"
+                      value="<%= item._id %>"
+                    />
+                    <span class="popup__body__item__form-group__item__name"
+                      >Thêm <%= item.name %></span
+                    >
+                    <span class="popup__body__item__form-group__item__price"
+                      >+
+                      <span class="money"
+                        ><%= item.subProduct[0].price %></span
+                      ></span
+                    >
+                  </label>
+                  <% }) %>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="popup__loading" id="loading">
+            <span class="loader"></span>
+          </div>
+        </div>
+      </form>
+    </div>
+    <%- include ("partials/footer.ejs") %> <%- include ("partials/script.ejs")
+    %>
+  </body>
+</html>

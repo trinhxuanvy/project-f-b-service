@@ -1,22 +1,26 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const Tmp = new Schema({
-    string: String,
+  string: String,
 });
 
 const Voucher = new Schema(
-    {
-        product: [],
-        percent: { type: Number, required: true },
-        remain: { type: Number, required: true },
-        endTime: { type: Date, required: true },
-    },
-    {
-        timestamps: true,
-        versionKey: false,
-        collection: 'Voucher',
-    }
+  {
+    product: { type: Array, required: false },
+    category: { type: Array, required: false },
+    code: { type: String, required: false },
+    name: { type: String, required: false },
+    percent: { type: Number, required: false },
+    remain: { type: Number, required: false },
+    startTime: { type: Date, required: false },
+    endTime: { type: Date, required: false },
+  },
+  {
+    timestamps: true,
+    versionKey: false,
+    collection: "Voucher",
+  }
 );
 
-module.exports = mongoose.model('Voucher', Voucher);
+module.exports = mongoose.model("Voucher", Voucher);

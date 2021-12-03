@@ -32,13 +32,13 @@
       <div class="row flex-wrap products__menu-list">
         <% if (product) { product.forEach(item => { %>
           <div class="col-xl-3 col-lg-3 col-md-4 col-6 products__menu-list__item">
-            <a href="" class="products__menu-list__item__link">
+            <a href="/order" class="products__menu-list__item__link">
               <div class="products__menu-list__item__link__image">
                 <img src="images/sua-chua-dau-tam-hat-de-.png" alt="">
               </div>
               <div class="products__menu-list__item__link__detail">
                 <p class="products__menu-list__item__link__detail__name"><%= item.name %></p>
-                <p class="products__menu-list__item__link__detail__price"><span class="money"><%= item.subProduct.get("L") * (100 - item.sale) / 100 %></span><del><span class="money" style="margin-left: 8px; color: #bebebe;"><%= item.subProduct.get("L") %></span></del></p>
+                <p class="products__menu-list__item__link__detail__price"><span class="money"><%= item.subProduct[0].price * (100 - item.sale) / 100 %></span><del><span class="money" style="margin-left: 8px; color: #bebebe;"><%= item.subProduct[0].price %></span></del></p>
                 <div class="products__menu-list__item__link__detail__button">Đặt hàng</div>
               </div>
             </a>

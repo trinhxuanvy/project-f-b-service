@@ -42,36 +42,41 @@
                                             <a href="" class="body__item__title__link">Xóa tất cả</a>
                                         </div>
                                         <div class="body__item__menu-list">
-                                            <div class="body__item__menu-list__item">
-                                                <div class="body__item__menu-list__item__info">
-                                                    <p class="body__item__menu-list__item__info__name">Sữa Chua Dâu Tằm Hoàng Kim
-                                                        (M)</p>
-                                                    <p class="body__item__menu-list__item__info__topping">Không đường, Không đá,
-                                                        thêm trân châu đen</p>
-                                                    <div class="body__item__menu-list__item__info__cost"><span class="money">160000</span> x 4 = <span class="money">540000</span></i>
+                                            <% if (order.length) { order.forEach(item => { %>
+                                                <div class="body__item__menu-list__item">
+                                                  <div class="body__item__menu-list__item__info">
+                                                    <p class="body__item__menu-list__item__info__name">
+                                                      <%= item.productName %> (<%= item.size %>)
+                                                    </p>
+                                                    <p class="body__item__menu-list__item__info__topping">
+                                                      Thêm <% item.topping.forEach(topping => { %> <%=
+                                                      topping.name + "," %> <% }) %>
+                                                    </p>
+                                                    <div class="body__item__menu-list__item__info__cost">
+                                                      <span class="money"
+                                                        ><%= Math.floor(item.totalPrice / item.amount) %></span
+                                                      >
+                                                      x <%= item.amount %> =
+                                                      <span class="money"
+                                                        ><%= Math.floor(item.totalPrice) %></span
+                                                      >
                                                     </div>
-                                                </div>
-                                                <div class="body__item__menu-list__item__button">
+                                                  </div>
+                                                  <div class="body__item__menu-list__item__button">
                                                     <i class="fa fa-minus" aria-hidden="true"></i>
-                                                    <div class="body__item__menu-list__item__button__count">4</div>
-                                                    <i class="fa fa-plus" aria-hidden="true"></i>
-                                                </div>
-                                            </div>
-                                            <div class="body__item__menu-list__item">
-                                                <div class="body__item__menu-list__item__info">
-                                                    <p class="body__item__menu-list__item__info__name">Sữa Chua Dâu Tằm Hoàng Kim
-                                                        (M)</p>
-                                                    <p class="body__item__menu-list__item__info__topping">Không đường, Không đá,
-                                                        thêm trân châu đen</p>
-                                                    <div class="body__item__menu-list__item__info__cost"><span class="money">160000</span> x 4 = <span class="money">540000</span></i>
+                                                    <div class="body__item__menu-list__item__button__count">
+                                                      <input
+                                                        style="width: 50px"
+                                                        type="number"
+                                                        min="1"
+                                                        name="amount"
+                                                        value="<%= item.amount %>"
+                                                      />
                                                     </div>
-                                                </div>
-                                                <div class="body__item__menu-list__item__button">
-                                                    <i class="fa fa-minus" aria-hidden="true"></i>
-                                                    <div class="body__item__menu-list__item__button__count">4</div>
                                                     <i class="fa fa-plus" aria-hidden="true"></i>
+                                                  </div>
                                                 </div>
-                                            </div>
+                                                <% })} %>
                                         </div>
                                     </div>
                                 </div>
@@ -79,22 +84,23 @@
                                     <div class="payment__item__body__item">
                                         <p class="payment__item__body__item__title">Chọn voucher của bạn</p>
                                         <div class="payment__item__body__item__form">
-                                            <form action="">
                                                 <div class="payment__item__body__form__item">
                                                     <span class="payment__item__body__form__item__label">Mã vourcher:</span>
-                                                    <input type="text">
+                                                    <select class="payment__item__body__form__item__select" name="voucher" id="voucher">
+                                                        <option value="">- Không -</option>
+                                                        <% voucher.forEach(item => { %>
+                                                         <option value="<%= item.code %>"><%= item.code %> - <%= item.name %> - <%= item.percent %>%</option>
+                                                        <% }) %>
+                                                    </select>
                                                 </div>
-                                            </form>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-xl-6">
                                     <div class="payment__item__body__item">
                                         <p class="payment__item__body__item__title">Tổng tiền</p>
-                                        <p class="payment__item__body__item__total money">1500000</p>
-                                        <form action="">
+                                        <p class="payment__item__body__item__total money"><%= totalPrice %></p>
                                             <button class="payment__item__body__item__checkout" type="submit">Thanh toán</button>
-                                        </form>
                                     </div>
                                 </div>
                             </div>

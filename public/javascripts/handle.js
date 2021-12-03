@@ -80,9 +80,62 @@ $(document).ready(function () {
 
         const popupParent = $(".container-popup");
         const popupChild = $(".container-popup .popup");
-        console.log(popupChild);
+        const popupTitle = $("#popupOrder .popup__header__right__title");
+        const popupPrice = $("#popupOrder .popup__header__right__price span");
+        const popupPriceDel = $("#popupOrder .popup__header__right__price del");
+        const popupInfo = $("#popupOrder .popup__header__right__info i");
+        const popupSizeM = $("#popupOrder #size-M");
+        const popupSizeL = $("#popupOrder #size-L");
+        const sizeX = $("#popupOrder #sizeX");
+        const popupLoading = $("#popupOrder #loading");
         const val = $(this.children[0]).val();
         const hasClass = $(popupParent[0]).hasClass("container-popup-toggle");
+        const url = new URL(window.location.href);
+
+        $(popupLoading[0]).removeClass("loading-hide");
+
+        $.ajax({
+          type: "get",
+          url: url.origin + url.pathname + "/" + val,
+          dataType: "json",
+          success: function (response) {
+            if (response?.success) {
+              $(popupParent[0]).attr(
+                "action",
+                "/order/" + response?.product._id
+              );
+              $(popupLoading[0]).addClass("loading-hide");
+              $(popupInfo[0]).html(response?.product?.description);
+              let str = "";
+              response?.product?.subProduct.forEach((item) => {
+                str += `<label for="${item._id}">
+                <input
+                  type="radio"
+                  name="size"
+                  id="${item._id}"
+                  value="${item.type}"
+                />
+                <span class="popup__body__item__form-group__item__name">Size ${item.type}</span>
+              </label>`;
+              });
+
+              $(sizeX[0]).html(str);
+              $(popupTitle[0]).html(response?.product?.name);
+              $(popupPrice[0]).html(
+                convertMoney(
+                  Math.floor(
+                    (response?.product?.subProduct[0].price *
+                      (100 - response?.product?.sale)) /
+                      100
+                  )
+                )
+              );
+              $(popupPriceDel[0]).html(
+                convertMoney(response?.product?.subProduct[0].price)
+              );
+            }
+          },
+        });
 
         if (hasClass) {
           $(popupParent[0]).removeClass("container-popup--toggle");
@@ -100,7 +153,7 @@ $(document).ready(function () {
       $(buttonClose[i]).click(function (e) {
         e.preventDefault();
 
-        console.log("ok");
+        $(sizeX[0]).html();
 
         const popupParent = $(".container-popup");
         const popupChild = $(".container-popup .popup");
@@ -193,10 +246,14 @@ $(document).ready(function () {
     const money = $(".money");
 
     for (let i = 0; i < money.length; i++) {
-      money[i].innerHTML = new Intl.NumberFormat("vi-VN", {
-        style: "currency",
-        currency: "VND",
-      }).format(money[i].innerHTML);
+      money[i].innerHTML = convertMoney(money[i].innerHTML);
     }
   });
 });
+
+function convertMoney(money) {
+  return new Intl.NumberFormat("vi-VN", {
+    style: "currency",
+    currency: "VND",
+  }).format(money);
+}
