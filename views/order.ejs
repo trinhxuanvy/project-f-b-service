@@ -112,8 +112,8 @@
                         </p>
                         <p class="body__item__menu-list__item__card__price">
                           <span class="money"
-                            ><%= Math.floor(prod.subProduct[0].price * prod.sale
-                            / 100) %></span
+                            ><%= Math.floor(prod.subProduct[0].price * (100 -
+                            prod.sale) / 100) %></span
                           ><del
                             ><span
                               class="money"
