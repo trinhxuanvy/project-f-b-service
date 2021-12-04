@@ -8,12 +8,12 @@ class ShopController {
 
     Promise.all([
       Product.find({ isDisplay: true, status: true }).skip(0).limit(8),
-      Voucher.find({ remain: { $gte: 1 } }),
+      Voucher.find(),
       Event.find({ endTime: { $gte: new Date() } }),
     ])
       .then(([product, voucher, event]) => {
         //res.send({ product, voucher, event });
-        console.log(product);
+        console.log(voucher);
         res.render("index", { product, voucher, event, namePage });
       })
       .catch((error) => {

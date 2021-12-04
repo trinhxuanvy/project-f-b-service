@@ -86,6 +86,7 @@ $(document).ready(function () {
         const popupInfo = $("#popupOrder .popup__header__right__info i");
         const popupSizeM = $("#popupOrder #size-M");
         const popupSizeL = $("#popupOrder #size-L");
+        const popupImage = $("#popupOrder .popup__header__left img");
         const sizeX = $("#popupOrder #sizeX");
         const popupLoading = $("#popupOrder #loading");
         const val = $(this.children[0]).val();
@@ -133,6 +134,7 @@ $(document).ready(function () {
               $(popupPriceDel[0]).html(
                 convertMoney(response?.product?.subProduct[0].price)
               );
+              $(popupImage[0]).attr("src", response?.product?.picture);
             }
           },
         });
@@ -248,6 +250,13 @@ $(document).ready(function () {
     for (let i = 0; i < money.length; i++) {
       money[i].innerHTML = convertMoney(money[i].innerHTML);
     }
+  });
+
+  // Xử lý hiển thị message box
+  $(function () {
+    $(".close").click(function () {
+      $(this).parent(".alert").fadeOut();
+    });
   });
 });
 

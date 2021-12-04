@@ -34,7 +34,7 @@
           <div class="col-xl-3 col-lg-3 col-md-4 col-6 products__menu-list__item">
             <a href="/order" class="products__menu-list__item__link">
               <div class="products__menu-list__item__link__image">
-                <img src="images/sua-chua-dau-tam-hat-de-.png" alt="">
+                <img src="<%= item.picture %>" alt="">
               </div>
               <div class="products__menu-list__item__link__detail">
                 <p class="products__menu-list__item__link__detail__name"><%= item.name %></p>
@@ -59,50 +59,19 @@
         </div>
       </div>
       <div class="vouchers__menu-list owl-carousel owl-theme">
-        <div class="item vouchers__menu-list__item d-flex align-items-center">
-          <div class="vouchers__menu-list__item__left">
-            <p class="vouchers__menu-list__item__left__title">Freeship</p>
-            <p class="vouchers__menu-list__item__left__info">Áp dụng cho<br>tất cả</p>
+        <% voucher.forEach(item => { %>
+          <div class="item vouchers__menu-list__item d-flex align-items-center">
+            <div class="vouchers__menu-list__item__left">
+              <p class="vouchers__menu-list__item__left__title"><%= item.name %></p>
+              <p class="vouchers__menu-list__item__left__info"></p>
+            </div>
+            <div class="vouchers__menu-list__item__right">
+              <div class="vouchers__menu-list__item__right__price"><%= item.percent %>%</div>
+              <div class="vouchers__menu-list__item__right__timeline"><%= (new Date(item.startTime)).toLocaleDateString("en-US") %> - <%= (new Date(item.endTime)).toLocaleDateString("en-US") %></div>
+              <a href="/add/voucher/<%= item._id %>" class="vouchers__menu-list__item__right__button">Thu thập</a>
+            </div>
           </div>
-          <div class="vouchers__menu-list__item__right">
-            <div class="vouchers__menu-list__item__right__price">10.000đ</div>
-            <div class="vouchers__menu-list__item__right__timeline">8/10/2021 - 20/10/2021</div>
-            <a href="" class="vouchers__menu-list__item__right__button">Thu thập</a>
-          </div>
-        </div>
-        <div class="item vouchers__menu-list__item d-flex align-items-center">
-          <div class="vouchers__menu-list__item__left">
-            <p class="vouchers__menu-list__item__left__title">Freeship</p>
-            <p class="vouchers__menu-list__item__left__info">Áp dụng cho<br>tất cả</p>
-          </div>
-          <div class="vouchers__menu-list__item__right">
-            <div class="vouchers__menu-list__item__right__price">10.000đ</div>
-            <div class="vouchers__menu-list__item__right__timeline">8/10/2021 - 20/10/2021</div>
-            <a href="" class="vouchers__menu-list__item__right__button">Thu thập</a>
-          </div>
-        </div>
-        <div class="item vouchers__menu-list__item d-flex align-items-center">
-          <div class="vouchers__menu-list__item__left">
-            <p class="vouchers__menu-list__item__left__title">Freeship</p>
-            <p class="vouchers__menu-list__item__left__info">Áp dụng cho<br>tất cả</p>
-          </div>
-          <div class="vouchers__menu-list__item__right">
-            <div class="vouchers__menu-list__item__right__price">10.000đ</div>
-            <div class="vouchers__menu-list__item__right__timeline">8/10/2021 - 20/10/2021</div>
-            <a href="" class="vouchers__menu-list__item__right__button">Thu thập</a>
-          </div>
-        </div>
-        <div class="item vouchers__menu-list__item d-flex align-items-center">
-          <div class="vouchers__menu-list__item__left">
-            <p class="vouchers__menu-list__item__left__title">Freeship</p>
-            <p class="vouchers__menu-list__item__left__info">Áp dụng cho<br>tất cả</p>
-          </div>
-          <div class="vouchers__menu-list__item__right">
-            <div class="vouchers__menu-list__item__right__price">10.000đ</div>
-            <div class="vouchers__menu-list__item__right__timeline">8/10/2021 - 20/10/2021</div>
-            <a href="" class="vouchers__menu-list__item__right__button">Thu thập</a>
-          </div>
-        </div>
+        <% }) %>
       </div>
     </div>
   </div>
