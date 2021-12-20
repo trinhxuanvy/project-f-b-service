@@ -6,8 +6,14 @@ const router = express.Router();
 
 router.get(
   "/payment",
-  authController.authentication,
+  authController.checkExpired,
   paymentController.getPayment
+);
+
+router.post(
+  "/payment",
+  authController.checkExpired,
+  paymentController.postPayment
 );
 
 module.exports = router;

@@ -13,25 +13,72 @@
                     <div class="payment__item">
                         <p class="payment__item__header">Thanh toán trực tiếp</p>
                         <div class="payment__item__body">
-                            <div class="row">
+                            <form action="/payment" method="post">
+                                <div class="row">
                                 <div class="col-xl-6">
                                     <div class="payment__item__body__item">
                                         <p class="payment__item__body__item__title">Thông tin người nhận</p>
                                         <div class="payment__item__body__item__form">
-                                            <form action="">
                                                 <div class="payment__item__body__form__item">
                                                     <span class="payment__item__body__form__item__label">Họ và tên:</span>
-                                                    <input type="text">
+                                                    <input type="text" name="name" value="<%= user.name %>">
                                                 </div>
                                                 <div class="payment__item__body__form__item">
                                                     <span class="payment__item__body__form__item__label">Số điện thoại:</span>
-                                                    <input type="text">
+                                                    <input type="text" name="phone" value="<%= user.phone %>">
                                                 </div>
                                                 <div class="payment__item__body__form__item">
-                                                    <span class="payment__item__body__form__item__label">Địa chỉ:</span>
-                                                    <input type="text">
+                                                    <span class="payment__item__body__form__item__label">Tỉnh thành:</span>
+                                                    <select
+                                                        class="payment__item__body__form__item__select"
+                                                        name="province"
+                                                        id="vietNamProvinces"
+                                                      >
+                                                        <option
+                                                          class="primary-option-province"
+                                                          value="<%= user.province %>"
+                                                        >
+                                                          <%= user.province %>
+                                                        </option>
+                                                        <option value="">- Chọn -</option>
+                                                      </select>
                                                 </div>
-                                            </form>
+                                                <div class="payment__item__body__form__item">
+                                                    <span class="payment__item__body__form__item__label">Quận/Huyện:</span>
+                                                    <select
+                                                        class="payment__item__body__form__item__select"
+                                                        name="district"
+                                                        id="vietNamDistrict"
+                                                      >
+                                                        <option
+                                                          class="primary-option-district"
+                                                          value="<%= user.district %>"
+                                                        >
+                                                          <%= user.district %>
+                                                        </option>
+                                                        <option value="">- Chọn -</option>
+                                                      </select>
+                                                </div>
+                                                <div class="payment__item__body__form__item">
+                                                    <span class="payment__item__body__form__item__label">Thị Trấn/Phường/Xã:</span>
+                                                    <select class="payment__item__body__form__item__select" name="ward" id="vietNamCommune">
+                                                        <option class="primary-option-ward" value="<%= user.ward %>">
+                                                          <%= user.ward %>
+                                                        </option>
+                                                        <option value="">- Chọn -</option>
+                                                      </select>
+                                                </div>
+                                                <div class="payment__item__body__form__item">
+                                                    <span class="payment__item__body__form__item__label">Số nhà, Đường, Tổ/Ấp:</span>
+                                                    <input
+                                                    type="text"
+                                                    class="form-control"
+                                                    id="address"
+                                                    name="address"
+                                                    placeholder="Số nhà, tổ, đường, ấp/khu phố"
+                                                    value="<%= user.address %>"
+                                                  />
+                                                </div>
                                         </div>
                                     </div>
                                 </div>
@@ -63,17 +110,16 @@
                                                     </div>
                                                   </div>
                                                   <div class="body__item__menu-list__item__button">
-                                                    <i class="fa fa-minus" aria-hidden="true"></i>
                                                     <div class="body__item__menu-list__item__button__count">
                                                       <input
                                                         style="width: 50px"
                                                         type="number"
                                                         min="1"
-                                                        name="amount"
+                                                        name=""
                                                         value="<%= item.amount %>"
+                                                        disabled
                                                       />
                                                     </div>
-                                                    <i class="fa fa-plus" aria-hidden="true"></i>
                                                   </div>
                                                 </div>
                                                 <% })} %>
@@ -100,10 +146,11 @@
                                     <div class="payment__item__body__item">
                                         <p class="payment__item__body__item__title">Tổng tiền</p>
                                         <p class="payment__item__body__item__total money"><%= totalPrice %></p>
-                                            <button class="payment__item__body__item__checkout" type="submit">Thanh toán</button>
+                                        <button class="payment__item__body__item__checkout" type="submit">Thanh toán</button>
                                     </div>
                                 </div>
-                            </div>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>

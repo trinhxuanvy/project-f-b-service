@@ -22,7 +22,6 @@ const use = {
 
 class OrderController {
   getProductById = (req, res, next) => {
-    console.log(req.params.id);
     Product.findById(req.params.id)
       .then((prod) => {
         res.send({ product: prod, success: true });
@@ -47,11 +46,9 @@ class OrderController {
       name: "Macchiato Cream Cheese",
       amount: 4,
     };
-    console.log(category);
+
     const data = new Category(category);
-    await data.save((err) => {
-      console.log(err, "oke");
-    });
+    await data.save((err) => {});
     const search = req.query.search_name || "";
 
     Category.find({})
@@ -68,13 +65,11 @@ class OrderController {
               name: { $regex: search, $options: "i" },
             }).then((product) => {
               prod[i].push(product);
-              //console.log(prod[0][1], 2);
             });
           } else {
             await Product.find({ category: category[i].name }).then(
               (product) => {
                 prod[i].push(product);
-                //console.log(prod[0][1], 2);
               }
             );
           }
@@ -88,7 +83,7 @@ class OrderController {
 
   getAllProducts = async (req, res, next) => {
     res.cookie("url", req.url);
-    const user = jwt.verify(req.cookies.user, process.env.JWT_KEY);
+    const user = jwt.verify(req.cookies.user, process.env.JWT_KEY) || "";
     const namePage = "Order";
     const sugar = await Product.findOne({ isDisplay: false, type: "sugar" });
     const ice = await Product.findOne({ isDisplay: false, type: "ice" });
@@ -129,7 +124,15 @@ class OrderController {
       }
     }
 
-    res.render("order", { namePage, product, sugar, ice, topping, order });
+    res.render("order", {
+      namePage,
+      product,
+      sugar,
+      ice,
+      topping,
+      order,
+      user,
+    });
   };
 
   postOrder = async (req, res, next) => {
@@ -194,7 +197,11 @@ class OrderController {
   };
 
   deleteAllOrder = async (req, res, next) => {
-    await Order.deleteMany({});
+    const user = jwt.verify(req.cookies.user, process.env.JWT_KEY);
+    const order = await Order.updateMany(
+      { user: user._id, status: "ordering" },
+      { status: "cancel" }
+    );
 
     res.redirect("/order");
   };

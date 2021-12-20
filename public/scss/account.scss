@@ -1,0 +1,49 @@
+// Import SCSS
+@import "./variable/index.scss";
+@import "./mixin/index.scss";
+@import "./function/index.scss";
+
+.header {
+  background-color: $c-mine-shaft;
+}
+
+// Xử lý body
+.body {
+  padding-top: 92px;
+  padding-bottom: 32px;
+
+  .form {
+    color: $c-di-serria;
+    width: 60%;
+    min-width: 400px;
+    margin: 0 auto;
+
+    input,
+    select {
+      color: $c-pesto;
+      border-color: $c-di-serria;
+      font-size: 14px;
+      padding: 12px;
+    }
+
+    &-group {
+      margin-bottom: 16px;
+    }
+
+    .btn-submit {
+      background-color: $c-di-serria !important;
+      color: $c-white !important;
+      border-color: $c-di-serria !important;
+    }
+  }
+
+  .form-2 {
+    width: 30%;
+  }
+
+  .ui-state-active {
+    background-color: $c-di-serria !important;
+    color: $c-white !important;
+    border-color: $c-di-serria !important;
+  }
+}

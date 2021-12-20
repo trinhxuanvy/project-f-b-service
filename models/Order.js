@@ -21,12 +21,11 @@ const Order = new Schema(
       type: String,
       required: false,
       enum: {
-        values: ["ordering", "preparing", "shipping", "done"],
+        values: ["ordering", "preparing", "shipping", "done", "cancel"],
         message: "{VALUE} is not supports.",
       },
     },
     isDisplay: { type: Boolean, required: false },
-    voucher: { type: Array, required: false },
   },
   {
     timestamps: true,

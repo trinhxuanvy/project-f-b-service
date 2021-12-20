@@ -44,8 +44,13 @@
     <div class="header__user">
       <i class="fa fa-user" aria-hidden="true"></i>
       <div class="header__user__drop">
+        <% if (!user) { %>
         <a href="/login" class="header__user__drop__link">Đăng nhập</a>
         <a href="" class="header__user__drop__link">Đăng ký</a>
+        <% } else { %>
+        <a href="/account" class="header__user__drop__link"><%= user.name %></a>
+        <a href="/logout" class="header__user__drop__link">Đăng xuất</a>
+        <% } %>
       </div>
     </div>
   </div>

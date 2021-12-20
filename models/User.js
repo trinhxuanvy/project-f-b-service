@@ -1,15 +1,19 @@
 const mongoose = require("mongoose");
+const bcrypt = require("bcrypt");
 const Schema = mongoose.Schema;
 
 const User = new Schema(
   {
-    name: { type: String, required: true },
-    address: { type: Array, required: true },
-    phone: { type: Array, required: true },
-    identityCard: { type: String, required: true },
+    name: { type: String, required: false },
+    address: { type: String, required: false },
+    ward: { type: String, required: false },
+    district: { type: String, required: false },
+    province: { type: String, required: false },
+    phone: { type: Array, required: false },
+    identityCard: { type: String, required: false },
     role: {
       type: String,
-      required: true,
+      required: false,
       enum: {
         values: ["Employee", "Customer", "Management"],
         message: "{VALUE} is not supports.",
@@ -25,5 +29,9 @@ const User = new Schema(
     collection: "User",
   }
 );
+
+User.methods.validPassword = function (password) {
+  return bcrypt.compareSync(password, this.password);
+};
 
 module.exports = mongoose.model("User", User);

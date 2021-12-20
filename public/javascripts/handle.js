@@ -21,7 +21,7 @@ $(document).ready(function () {
       e.preventDefault();
       const menuList = $(".header__menu-list");
       const hasClass = $(menuList).hasClass("header__menu-list-responsive");
-      console.log(hasClass);
+
       if (hasClass) {
         $(menuList).removeClass("header__menu-list-responsive");
       } else {
@@ -115,6 +115,7 @@ $(document).ready(function () {
                   name="size"
                   id="${item._id}"
                   value="${item.type}"
+                  required
                 />
                 <span class="popup__body__item__form-group__item__name">Size ${item.type}</span>
               </label>`;
@@ -257,6 +258,96 @@ $(document).ready(function () {
     $(".close").click(function () {
       $(this).parent(".alert").fadeOut();
     });
+  });
+
+  // Load thông tin tỉnh thành Việt Nam
+  $(function () {
+    const selectVietNamProvinces = $("#vietNamProvinces");
+    const selectVietNamDistrict = $("#vietNamDistrict");
+    const selectVietNamCommune = $("#vietNamCommune");
+
+    $.ajax({
+      type: "get",
+      url: "https://provinces.open-api.vn/api/?depth=1",
+      dataType: "json",
+      success: function (response) {
+        response.forEach((item) => {
+          $(selectVietNamProvinces[0]).append(
+            `<option value="${item.name}">${item.name}</option>`
+          );
+        });
+      },
+    });
+
+    $(selectVietNamDistrict[0]).focus(function (e) {
+      e.preventDefault();
+      $.ajax({
+        type: "get",
+        url: "https://provinces.open-api.vn/api/?depth=2",
+        dataType: "json",
+        success: function (response) {
+          const dataFilter = response.filter(
+            (data) => data.name == $(selectVietNamProvinces[0]).val()
+          );
+
+          $(selectVietNamDistrict[0]).find(".list-option").remove().end();
+
+          dataFilter[0]?.districts.forEach((item) => {
+            $(selectVietNamDistrict[0]).append(
+              `<option class="list-option" value="${item.name}">${item.name}</option>`
+            );
+          });
+        },
+      });
+    });
+
+    $(selectVietNamCommune[0]).focus(function (e) {
+      e.preventDefault();
+      $.ajax({
+        type: "get",
+        url: "https://provinces.open-api.vn/api/?depth=3",
+        dataType: "json",
+        success: function (response) {
+          let dataFilter = response.filter(
+            (data) => data.name == $(selectVietNamProvinces[0]).val()
+          );
+
+          dataFilter = dataFilter[0]?.districts.filter(
+            (data) => data.name == $(selectVietNamDistrict[0]).val()
+          );
+
+          $(selectVietNamCommune[0]).find(".list-option").remove().end();
+
+          dataFilter[0]?.wards.forEach((item) => {
+            $(selectVietNamCommune[0]).append(
+              `<option class="list-option" value="${item.name}">${item.name}</option>`
+            );
+          });
+        },
+      });
+    });
+
+    $(selectVietNamProvinces[0]).change(function (e) {
+      e.preventDefault();
+      $(selectVietNamCommune[0]).find(".list-option").remove().end();
+      $(selectVietNamCommune[0]).find(".primary-option-ward").remove().end();
+      $(selectVietNamDistrict[0]).find(".list-option").remove().end();
+      $(selectVietNamDistrict[0])
+        .find(".primary-option-district")
+        .remove()
+        .end();
+    });
+
+    $(selectVietNamDistrict[0]).change(function (e) {
+      e.preventDefault();
+      $(selectVietNamCommune[0]).find(".list-option").remove().end();
+      $(selectVietNamCommune[0]).find(".primary-option-ward").remove().end();
+    });
+  });
+
+  // Sử dụng tabs cho trang account
+  $(function () {
+    $("#tabs").tabs();
   });
 });
 

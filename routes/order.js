@@ -4,19 +4,15 @@ const authController = require("../controllers/auth.controller");
 
 const router = express.Router();
 
-router.get(
-  "/:id",
-  authController.authentication,
-  orderController.getProductById
-);
+router.get("/:id", authController.checkExpired, orderController.getProductById);
 
-router.get("/", authController.authentication, orderController.getAllProducts);
+router.get("/", authController.checkExpired, orderController.getAllProducts);
 
-router.post("/:id", authController.authentication, orderController.postOrder);
+router.post("/:id", authController.checkExpired, orderController.postOrder);
 
 router.get(
   "/delete-all/all",
-  authController.authentication,
+  authController.checkExpired,
   orderController.deleteAllOrder
 );
 

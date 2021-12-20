@@ -5,74 +5,158 @@ const User = require("../models/User");
 const Order = require("../models/Order");
 const jwt = require("jsonwebtoken");
 const dotenv = require("dotenv");
+const bcrypt = require("bcrypt");
+const passport = require("passport");
+
+dotenv.config();
 
 class Auth {
   getLogin = async (req, res, next) => {
+    const user = "";
     const namePage = "Đăng nhập - Đăng ký";
-    const message = req.cookies?.message;
-    res.render("login", { namePage, message });
+    const message = req.cookies?.message || "",
+      username = "",
+      password = "";
+    if (message) {
+      res.clearCookie("message");
+    }
+    res.render("login", { message, username, password, namePage, user });
   };
 
   postLogin = async (req, res, next) => {
-    const login = await User.findOne({
-      username: req.body.email,
-    });
-    let message = {};
+    const username = req.body?.username;
+    const password = req.body?.password;
 
-    if (login) {
-      if (login?.password == req.body.password) {
-        const user = {
-          _id: login?._id,
-          username: login?.username,
-          password: login?.password,
+    passport.authenticate("local.user.login", function (err, user, info) {
+      if (info) {
+        res.render("login", {
+          message: info,
+          username,
+          password,
+          namePage: "Đăng nhập - Đăng ký",
+          user: "",
+        });
+      } else {
+        const userToken = {
+          _id: user._id,
+          username: user.username,
+          password: user.password,
+          address: user.address,
+          phone: user.phone,
+          identityCard: user.identityCard,
+          name: user.name,
+          province: user.province,
+          ward: user.ward,
+          district: user.district,
         };
 
-        const token = jwt.sign(user, process.env.JWT_KEY, {
+        const token = jwt.sign(userToken, process.env.JWT_KEY, {
           algorithm: "HS256",
           expiresIn: "1d",
         });
-        res.cookie("message", "");
+
         res.cookie("user", token);
-        next();
-        return;
-      } else {
-        message = { message: "Mật khẩu không đúng", type: "error" };
-      }
-    } else {
-      message = { message: "Tài khoản không tồn tại", type: "error" };
-    }
 
-    res.cookie("message", message);
-    res.redirect("/login");
-  };
-
-  authentication = (req, res, next) => {
-    console.log(req.url);
-    const user = jwt.verify(
-      req.cookies.user,
-      process.env.JWT_KEY,
-      (err, result) => {
-        if (!err) {
-          next();
-          return;
+        if (req.cookies?.oldUrl) {
+          let oldUrl = req.cookies?.oldUrl;
+          res.cookie("oldUrl", oldUrl);
+          res.redirect(oldUrl);
         } else {
-          res.cookie("message", {
-            message: "Vui lòng đăng nhập tài khoản",
-            type: "warning",
-          });
-          res.redirect("/login");
+          res.redirect("/index");
         }
       }
-    );
+    })(req, res, next);
   };
 
   getPageByUrl = async (req, res, next) => {
     const url = req.cookies.url;
-    console.log(url);
     if (!url) {
       res.redirect("/");
     } else {
       res.redirect(url);
+    }
+  };
+
+  getLogout = (req, res, next) => {
+    res.clearCookie("user");
+    res.clearCookie("message");
+    res.redirect("/login");
+  };
+
+  checkExpired = (req, res, next) => {
+    const token = req.cookies?.user || "";
+
+    jwt.verify(token, process.env.JWT_KEY, (err, data) => {
+      if (err) {
+        const message = {
+          message: "Your account has expired",
+          type: "warning",
+        };
+
+        res.cookie("message", message);
+        res.redirect("/login");
+      } else {
+        next();
+      }
+    });
+  };
+
+  getAccount = async (req, res, next) => {
+    const user = jwt.verify(req.cookies.user, process.env.JWT_KEY) || "";
+    res.render("account", { user, namePage: "Thông tin tài khoản" });
+  };
+
+  updateAccount = async (req, res, next) => {
+    const userNew = {
+      name: req.body.name,
+      identityCard: req.body.identityCard,
+      phone: req.body.phone,
+      province: req.body.province,
+      district: req.body.district,
+      ward: req.body.ward,
+      address: req.body.address,
+    };
+
+    const user = jwt.verify(req.cookies.user, process.env.JWT_KEY) || "";
+
+    User.updateOne({ _id: user._id }, userNew);
+
+    const userToken = {
+      _id: user._id,
+      username: user.username,
+      password: user.password,
+      name: req.body.name,
+      identityCard: req.body.identityCard,
+      phone: req.body.phone,
+      province: req.body.province,
+      district: req.body.district,
+      ward: req.body.ward,
+      address: req.body.address,
+    };
+
+    const token = jwt.sign(userToken, process.env.JWT_KEY, {
+      algorithm: "HS256",
+      expiresIn: "1d",
+    });
+
+    res.cookie("user", token);
+
+    res.redirect("/account");
+  };
+
+  changePassword = async (req, res, next) => {
+    if (req.body.newPassword == req.body.confirmNewPassword) {
+      const user = jwt.verify(req.cookies.user, process.env.JWT_KEY) || "";
+      const hashPass = bcrypt.hashSync(req.body.newPassword, 12);
+
+      await User.updateOne({ _id: user._id }, { password: hashPass });
+
+      res.cookie("message", {
+        message: "Cập nhật thành công",
+        type: "success",
+      });
+      res.clearCookie("user");
+      res.redirect("/login");
     }
   };
 }

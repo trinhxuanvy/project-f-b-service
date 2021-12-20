@@ -15,6 +15,8 @@ const Voucher = new Schema(
     remain: { type: Number, required: false },
     startTime: { type: Date, required: false },
     endTime: { type: Date, required: false },
+    status: { type: Boolean, required: false },
+    amount: { type: Number, required: false },
   },
   {
     timestamps: true,

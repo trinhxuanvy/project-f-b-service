@@ -52,7 +52,9 @@
                   <div class="body__item__menu-list__link__count">16</div></a
                 >
                 <% product.forEach(item => { %>
-                <a href="#" class="body__item__menu-list__link"
+                <a
+                  href="#<%= item.categoryId %>"
+                  class="body__item__menu-list__link"
                   ><%= item.categoryName %>
                   <div class="body__item__menu-list__link__count">
                     <%= item.amount %>
@@ -89,7 +91,10 @@
                     body__item__menu-list__item--clear-flex
                   "
                 >
-                  <div class="body__item__menu-list__item__title">
+                  <div
+                    class="body__item__menu-list__item__title"
+                    id="<%= item.categoryId %>"
+                  >
                     <%= item.categoryName %>
                     <i class="fa fa-angle-down" aria-hidden="true"></i>
                   </div>
@@ -277,6 +282,7 @@
                       name="sugar"
                       id="<%= item._id %>"
                       value="<%= item.type %>"
+                      required
                     />
                     <span class="popup__body__item__form-group__item__name"
                       ><%= item.type %></span
@@ -302,6 +308,7 @@
                       name="ice"
                       id="<%= item._id %>"
                       value="<%= item.type %>"
+                      required
                     />
                     <span class="popup__body__item__form-group__item__name"
                       ><%= item.type %></span

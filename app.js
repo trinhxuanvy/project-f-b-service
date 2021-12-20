@@ -1,8 +1,12 @@
+require("./config/passport");
+
 const express = require("express");
 const cookieParser = require("cookie-parser");
 const path = require("path");
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
+const passport = require("passport");
+const session = require("express-session");
 const route = require("./routes");
 
 dotenv.config();
@@ -18,6 +22,16 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(cookieParser());
+app.use(
+  session({
+    resave: true,
+    saveUninitialized: true,
+    secret: "mrtrinh",
+    cookie: { maxAge: 60000 },
+  })
+);
+app.use(passport.initialize());
+app.use(passport.session());
 
 route(app);
 
