@@ -127,7 +127,7 @@ class PaymentController {
     let ship;
     if (req.params.code != 0) {
       ship = Math.floor(
-        ((totalPrice * 5) / 100) * ((100 - voucher.percent) / 100)
+        ((totalPrice * 10) / 100) * ((100 - voucher.percent) / 100)
       );
       totalPrice += ship;
     } else {
