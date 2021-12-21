@@ -35,7 +35,7 @@ $(document).ready(function () {
     $(".vouchers__menu-list").owlCarousel({
       loop: true,
       margin: 32,
-      autoplay: true,
+      autoplay: false,
       responsive: {
         0: {
           items: 2,
