@@ -206,7 +206,7 @@ class Auth {
       return;
     }
     res.cookie("message", { message: "Đăng ký thất bại", type: "error" });
-    res.redirect("/register");
+    res.redirect("/login");
   };
 }
 
