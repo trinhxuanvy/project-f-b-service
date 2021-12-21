@@ -172,7 +172,7 @@ class Auth {
       res.redirect("/login");
     } else {
       res.cookie("message", {
-        message: "Cập nhật thất bại",
+        message: "Mật khẩu không khớp",
         type: "error",
       });
       res.redirect("/account");
@@ -205,7 +205,7 @@ class Auth {
       res.redirect("/login");
       return;
     }
-    res.cookie("message", { message: "Đăng ký thất bại", type: "error" });
+    res.cookie("message", { message: "Mật khẩu không khớp", type: "error" });
     res.redirect("/login");
   };
 }

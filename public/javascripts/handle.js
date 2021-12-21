@@ -395,6 +395,36 @@ $(document).ready(function () {
       });
     });
   });
+
+  // Xử lý validator password
+  // $(function () {
+  //   $(".validatedForm").validate({
+  //     rules: {
+  //       email: {
+  //         required: true,
+  //       },
+  //       password: {
+  //         required: true,
+  //         minlength: 8,
+  //       },
+  //       confirmPassword: {
+  //         equalTo: "#password",
+  //       },
+  //     },
+  //     messages: {
+  //       confirmPassword: {
+  //         equalTo: "Mật khẩu không khớp",
+  //       },
+  //       email: {
+  //         required: "Vui lòng nhập email",
+  //       },
+  //       password: {
+  //         required: "Vui lòng nhập mật khẩu",
+  //         minlength: "Mật khẩu ít nhất 8 kí tự",
+  //       },
+  //     },
+  //   });
+  // });
 });
 
 function convertMoney(money) {
