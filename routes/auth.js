@@ -14,4 +14,6 @@ router.post("/account", authController.updateAccount);
 
 router.post("/account/change-password", authController.changePassword);
 
+router.post("/register", authController.postRegister);
+
 module.exports = router;

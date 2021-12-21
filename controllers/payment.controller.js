@@ -13,19 +13,24 @@ class PaymentController {
   getPayment = async (req, res, next) => {
     res.cookie("url", req.url);
     const namePage = "Thanh toán";
-    const user = jwt.verify(req.cookies.user, process.env.JWT_KEY);
+    const user = jwt.verify(
+      req.cookies.user,
+      process.env.JWT_KEY,
+      (err, data) => {
+        if (!err) {
+          return data;
+        }
+      }
+    );
     const order = await Order.find({ status: "ordering", user: user._id });
     const userInfo = await User.findById({ _id: user._id });
-    const allVoucher = await Voucher.find();
+    const allVoucher = await Voucher.find({ status: true });
     const voucherWallet = userInfo.voucherWallet;
     let voucher = [],
       totalPrice = 0;
 
     for (let i = 0; i < voucherWallet.length; i++) {
-      if (
-        new Date(voucherWallet[i].endTime) > new Date() &&
-        voucherWallet[i].used == false
-      ) {
+      if (new Date(voucherWallet[i].endTime) > new Date()) {
         voucher.push({
           code: voucherWallet[i].code,
           name: voucherWallet[i].name,
@@ -37,14 +42,25 @@ class PaymentController {
     for (let i = 0; i < order.length; i++) {
       totalPrice += order[i].totalPrice;
     }
-    res.render("payment", { namePage, order, voucher, totalPrice, user });
+
+    const ship = Math.floor((totalPrice * 10) / 100);
+    totalPrice += ship;
+    res.render("payment", { namePage, order, voucher, totalPrice, user, ship });
   };
 
   postPayment = async (req, res, next) => {
     let invoice = {},
       totalPrice = 0,
       newInvoice;
-    const user = jwt.verify(req.cookies.user, process.env.JWT_KEY);
+    const user = jwt.verify(
+      req.cookies.user,
+      process.env.JWT_KEY,
+      (err, data) => {
+        if (!err) {
+          return data;
+        }
+      }
+    );
     const order = await Order.find({ status: "ordering", user: user._id });
 
     for (let i = 0; i < order.length; i++) {
@@ -60,7 +76,7 @@ class PaymentController {
         voucher: req.body.voucher,
         paid: false,
         price: order[i].totalPrice,
-        ship: Math.floor((order[i].totalPrice * 5) / 100),
+        ship: Math.floor((order[i].totalPrice * 10) / 100),
       };
       newInvoice = new Invoice(invoice);
       await newInvoice.save();
@@ -84,6 +100,38 @@ class PaymentController {
     }
 
     res.redirect("/payment");
+  };
+
+  changeVoucher = async (req, res, next) => {
+    const user = jwt.verify(
+      req.cookies.user,
+      process.env.JWT_KEY,
+      (err, data) => {
+        if (!err) {
+          return data;
+        }
+      }
+    );
+    const order = await Order.find({ status: "ordering", user: user._id });
+    let totalPrice = 0;
+
+    for (let i = 0; i < order.length; i++) {
+      totalPrice += order[i].totalPrice;
+    }
+
+    const voucher = await Voucher.findOne({ code: req.params.code });
+    let ship;
+    if (req.params.code != 0) {
+      ship = Math.floor(
+        ((totalPrice * 5) / 100) * ((100 - voucher.percent) / 100)
+      );
+      totalPrice += ship;
+    } else {
+      ship = Math.floor((totalPrice * 10) / 100);
+      totalPrice += ship;
+    }
+
+    res.send({ totalPrice: totalPrice, ship: ship });
   };
 }
 

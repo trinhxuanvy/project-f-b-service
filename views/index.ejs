@@ -68,7 +68,11 @@
             <div class="vouchers__menu-list__item__right">
               <div class="vouchers__menu-list__item__right__price"><%= item.percent %>%</div>
               <div class="vouchers__menu-list__item__right__timeline"><%= (new Date(item.startTime)).toLocaleDateString("en-US") %> - <%= (new Date(item.endTime)).toLocaleDateString("en-US") %></div>
-              <a href="/add/voucher/<%= item._id %>" class="vouchers__menu-list__item__right__button">Thu thập</a>
+              <% if (item.amount != 0) { %>
+                <button value="<%= item._id %>" class="vouchers__menu-list__item__right__button"> Thu thập</button>
+              <% } else { %>
+                <button value="<%= item._id %>" class="vouchers__menu-list__item__right__button" style="background-color: gray;" disabled> Thu thập</button>
+              <% } %> 
             </div>
           </div>
         <% }) %>

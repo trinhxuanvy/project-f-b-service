@@ -16,4 +16,10 @@ router.post(
   paymentController.postPayment
 );
 
+router.get(
+  "/get/voucher/:code",
+  authController.checkExpired,
+  paymentController.changeVoucher
+);
+
 module.exports = router;

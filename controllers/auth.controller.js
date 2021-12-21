@@ -102,8 +102,18 @@ class Auth {
   };
 
   getAccount = async (req, res, next) => {
-    const user = jwt.verify(req.cookies.user, process.env.JWT_KEY) || "";
-    res.render("account", { user, namePage: "Thông tin tài khoản" });
+    const user = jwt.verify(
+      req.cookies.user,
+      process.env.JWT_KEY,
+      (err, data) => {
+        if (!err) {
+          return data;
+        }
+      }
+    );
+    const message = req.cookies?.message || "";
+    res.clearCookie("message");
+    res.render("account", { user, namePage: "Thông tin tài khoản", message });
   };
 
   updateAccount = async (req, res, next) => {
@@ -140,7 +150,10 @@ class Auth {
     });
 
     res.cookie("user", token);
-
+    res.cookie("message", {
+      message: "Cập nhật thành công",
+      type: "success",
+    });
     res.redirect("/account");
   };
 
@@ -157,7 +170,31 @@ class Auth {
       });
       res.clearCookie("user");
       res.redirect("/login");
+    } else {
+      res.cookie("message", {
+        message: "Cập nhật thất bại",
+        type: "error",
+      });
+      res.redirect("/account");
     }
+  };
+
+  postRegister = async (req, res, next) => {
+    if (req.body.password == req.body.confirmPassword) {
+      const newUser = {
+        username: req.body.username,
+        password: req.body.password,
+        role: "Customer",
+      };
+      const user = new User(newUser);
+
+      await user.save();
+      res.cookie("message", { message: "Đăng ký thành công", type: "success" });
+      res.redirect("/login");
+      return;
+    }
+
+    res.redirect("/register");
   };
 }
 

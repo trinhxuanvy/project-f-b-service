@@ -30,6 +30,11 @@ const User = new Schema(
   }
 );
 
+User.pre("save", function (next) {
+  this.password = bcrypt.hashSync(this.password, 12);
+  next();
+});
+
 User.methods.validPassword = function (password) {
   return bcrypt.compareSync(password, this.password);
 };

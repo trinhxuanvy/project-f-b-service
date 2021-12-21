@@ -21,11 +21,11 @@
                                         <div class="payment__item__body__item__form">
                                                 <div class="payment__item__body__form__item">
                                                     <span class="payment__item__body__form__item__label">Họ và tên:</span>
-                                                    <input type="text" name="name" value="<%= user.name %>">
+                                                    <input type="text" name="name" value="<%= user.name %>" required>
                                                 </div>
                                                 <div class="payment__item__body__form__item">
                                                     <span class="payment__item__body__form__item__label">Số điện thoại:</span>
-                                                    <input type="text" name="phone" value="<%= user.phone %>">
+                                                    <input type="text" name="phone" value="<%= user.phone %>" required>
                                                 </div>
                                                 <div class="payment__item__body__form__item">
                                                     <span class="payment__item__body__form__item__label">Tỉnh thành:</span>
@@ -33,13 +33,17 @@
                                                         class="payment__item__body__form__item__select"
                                                         name="province"
                                                         id="vietNamProvinces"
+                                                        required
                                                       >
-                                                        <option
+                                                      <% if (user.province) { %>
+                                                       <option
                                                           class="primary-option-province"
                                                           value="<%= user.province %>"
                                                         >
                                                           <%= user.province %>
                                                         </option>
+                                                      <% } %>
+                                                        
                                                         <option value="">- Chọn -</option>
                                                       </select>
                                                 </div>
@@ -49,22 +53,29 @@
                                                         class="payment__item__body__form__item__select"
                                                         name="district"
                                                         id="vietNamDistrict"
+                                                        required
                                                       >
-                                                        <option
+                                                      <% if (user.district) { %>
+                                                       <option
                                                           class="primary-option-district"
                                                           value="<%= user.district %>"
                                                         >
                                                           <%= user.district %>
                                                         </option>
+                                                      <% } %>
+                                                        
                                                         <option value="">- Chọn -</option>
                                                       </select>
                                                 </div>
                                                 <div class="payment__item__body__form__item">
                                                     <span class="payment__item__body__form__item__label">Thị Trấn/Phường/Xã:</span>
-                                                    <select class="payment__item__body__form__item__select" name="ward" id="vietNamCommune">
-                                                        <option class="primary-option-ward" value="<%= user.ward %>">
+                                                    <select class="payment__item__body__form__item__select" name="ward" required id="vietNamCommune">
+                                                      <% if (user.ward) { %>
+                                                       <option class="primary-option-ward" value="<%= user.ward %>">
                                                           <%= user.ward %>
                                                         </option>
+                                                      <% } %>
+                                                        
                                                         <option value="">- Chọn -</option>
                                                       </select>
                                                 </div>
@@ -72,11 +83,12 @@
                                                     <span class="payment__item__body__form__item__label">Số nhà, Đường, Tổ/Ấp:</span>
                                                     <input
                                                     type="text"
-                                                    class="form-control"
+                                                    class=""
                                                     id="address"
                                                     name="address"
                                                     placeholder="Số nhà, tổ, đường, ấp/khu phố"
                                                     value="<%= user.address %>"
+                                                    required
                                                   />
                                                 </div>
                                         </div>
@@ -132,7 +144,7 @@
                                         <div class="payment__item__body__item__form">
                                                 <div class="payment__item__body__form__item">
                                                     <span class="payment__item__body__form__item__label">Mã vourcher:</span>
-                                                    <select class="payment__item__body__form__item__select" name="voucher" id="voucher">
+                                                    <select class="payment__item__body__form__item__select" id="selectVoucher" name="voucher" id="voucher">
                                                         <option value="">- Không -</option>
                                                         <% voucher.forEach(item => { %>
                                                          <option value="<%= item.code %>"><%= item.code %> - <%= item.name %> - <%= item.percent %>%</option>
@@ -145,7 +157,10 @@
                                 <div class="col-xl-6">
                                     <div class="payment__item__body__item">
                                         <p class="payment__item__body__item__title">Tổng tiền</p>
-                                        <p class="payment__item__body__item__total money"><%= totalPrice %></p>
+                                        <div>
+                                          <p style="margin-bottom: 0px !important" class="payment__item__body__item__total money"><%= totalPrice %></p>
+                                          <span style="margin-bottom: 16px; font-size: 14px; color: gray; font-style: italic; display: block; text-align: right;">Đã bao gồm phí ship: <span id="ship" class="money"><%= ship %></span></span>
+                                        </div>
                                         <button class="payment__item__body__item__checkout" type="submit">Thanh toán</button>
                                     </div>
                                 </div>

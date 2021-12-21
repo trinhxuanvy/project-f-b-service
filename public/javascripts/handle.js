@@ -349,6 +349,52 @@ $(document).ready(function () {
   $(function () {
     $("#tabs").tabs();
   });
+
+  // Xử lý thêm voucher ajax
+  $(function () {
+    const btnAdd = $(".vouchers__menu-list__item__right__button");
+
+    for (let i = 0; i < btnAdd.length; i++) {
+      $(btnAdd[i]).click(function (e) {
+        e.preventDefault();
+
+        const url = new URL(window.location.href);
+
+        $.ajax({
+          type: "get",
+          url: url.origin + "/add/voucher/" + $(btnAdd[i]).val(),
+          dataType: "json",
+          success: function (response) {
+            $(btnAdd[i]).html(response.message);
+          },
+        });
+      });
+    }
+  });
+
+  // Xử lý thay đổi voucher
+  $(function () {
+    const selectVoucher = $("#selectVoucher");
+    console.log(selectVoucher);
+    $(selectVoucher[0]).change(function (e) {
+      e.preventDefault();
+
+      const url = new URL(window.location.href);
+      let code = $(selectVoucher[0]).val() || 0;
+      $.ajax({
+        type: "get",
+        url: url.origin + "/get/voucher/" + code,
+        dataType: "json",
+        success: function (response) {
+          console.log(response);
+          const total = $(".payment__item__body__item__total");
+          const ship = $("#ship");
+          $(total[0]).html(convertMoney(response.totalPrice));
+          $(ship[0]).html(convertMoney(response.ship));
+        },
+      });
+    });
+  });
 });
 
 function convertMoney(money) {

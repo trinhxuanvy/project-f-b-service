@@ -83,7 +83,15 @@ class OrderController {
 
   getAllProducts = async (req, res, next) => {
     res.cookie("url", req.url);
-    const user = jwt.verify(req.cookies.user, process.env.JWT_KEY) || "";
+    const user = jwt.verify(
+      req.cookies.user,
+      process.env.JWT_KEY,
+      (err, data) => {
+        if (!err) {
+          return data;
+        }
+      }
+    );
     const namePage = "Order";
     const sugar = await Product.findOne({ isDisplay: false, type: "sugar" });
     const ice = await Product.findOne({ isDisplay: false, type: "ice" });
