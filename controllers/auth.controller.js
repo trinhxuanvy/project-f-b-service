@@ -186,6 +186,18 @@ class Auth {
         password: req.body.password,
         role: "Customer",
       };
+
+      const findUser = await User.findOne({ username: req.body.username });
+
+      if (findUser) {
+        res.cookie("message", {
+          message: "Tài khoản đã tồn tại",
+          type: "warning",
+        });
+        res.redirect("/login");
+        return;
+      }
+
       const user = new User(newUser);
 
       await user.save();
@@ -193,7 +205,7 @@ class Auth {
       res.redirect("/login");
       return;
     }
-
+    res.cookie("message", { message: "Đăng ký thất bại", type: "error" });
     res.redirect("/register");
   };
 }

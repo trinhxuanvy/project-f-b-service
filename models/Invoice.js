@@ -7,7 +7,7 @@ const Tmp = new Schema({
 
 const Invoice = new Schema(
   {
-    order: { type: Schema.Types.ObjectId, ref: "Order", required: false },
+    order: { type: Array, required: false },
     customer: { type: Schema.Types.ObjectId, ref: "User", required: false },
     price: { type: Number, required: false },
     paid: { type: Boolean, required: false }, // Đánh dấu chưa thanh toán

@@ -49,9 +49,7 @@ class PaymentController {
   };
 
   postPayment = async (req, res, next) => {
-    let invoice = {},
-      totalPrice = 0,
-      newInvoice;
+    let totalPrice = 0;
     const user = jwt.verify(
       req.cookies.user,
       process.env.JWT_KEY,
@@ -62,25 +60,31 @@ class PaymentController {
       }
     );
     const order = await Order.find({ status: "ordering", user: user._id });
+    let getOrder = [];
 
     for (let i = 0; i < order.length; i++) {
-      invoice = {
-        name: req.body.name,
-        phone: req.body.phone,
-        province: req.body.province,
-        district: req.body.district,
-        ward: req.body.ward,
-        address: req.body.address,
-        customer: user._id,
-        order: order[i]._id,
-        voucher: req.body.voucher,
-        paid: false,
-        price: order[i].totalPrice,
-        ship: Math.floor((order[i].totalPrice * 10) / 100),
-      };
-      newInvoice = new Invoice(invoice);
-      await newInvoice.save();
+      getOrder.push(order[i]._id);
+      totalPrice += order[i].subTotalPrice;
     }
+
+    const ship = Math.floor((totalPrice * 10) / 100);
+    const invoice = {
+      name: req.body.name,
+      phone: req.body.phone,
+      province: req.body.province,
+      district: req.body.district,
+      ward: req.body.ward,
+      address: req.body.address,
+      customer: user._id,
+      order: getOrder,
+      voucher: req.body.voucher,
+      paid: false,
+      price: totalPrice,
+      ship: ship,
+    };
+    const newInvoice = new Invoice(invoice);
+
+    await newInvoice.save();
 
     await Order.updateMany(
       { status: "ordering", user: user._id },
