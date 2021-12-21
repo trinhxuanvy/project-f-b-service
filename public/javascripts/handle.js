@@ -375,7 +375,7 @@ $(document).ready(function () {
   // Xử lý thay đổi voucher
   $(function () {
     const selectVoucher = $("#selectVoucher");
-    console.log(selectVoucher);
+
     $(selectVoucher[0]).change(function (e) {
       e.preventDefault();
 
