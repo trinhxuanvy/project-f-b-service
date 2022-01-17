@@ -3,7 +3,6 @@ h3 {
   font-family: Quicksand; }
 
 .alert {
-  width: 250px;
   margin: 20px auto;
   padding: 16px;
   position: fixed;
@@ -12,14 +11,10 @@ h3 {
   bottom: 92px;
   right: 16px;
   z-index: 100000;
-  display: none; }
-
-.animation {
-  display: block;
-  animation: showMessagebBox 2.5s ease-in-out forwards; }
+  display: flex;
+  align-items: center; }
 
 .close {
-  position: absolute;
   width: 30px;
   height: 30px;
   opacity: 0.5;
@@ -27,8 +22,7 @@ h3 {
   border-style: solid;
   border-radius: 50%;
   right: 15px;
-  top: 50%;
-  transform: translateY(-50%);
+  margin-left: 8px;
   font-size: 1.6em;
   cursor: pointer;
   display: flex;

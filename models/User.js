@@ -4,13 +4,13 @@ const Schema = mongoose.Schema;
 
 const User = new Schema(
   {
-    name: { type: String, required: false },
-    address: { type: String, required: false },
-    ward: { type: String, required: false },
-    district: { type: String, required: false },
-    province: { type: String, required: false },
-    phone: { type: Array, required: false },
-    identityCard: { type: String, required: false },
+    name: { type: String, required: false, default: "" },
+    address: { type: String, required: false, default: "" },
+    ward: { type: String, required: false, default: "" },
+    district: { type: String, required: false, default: "" },
+    province: { type: String, required: false, de: "" },
+    phone: { type: Array, required: false, default: "" },
+    identityCard: { type: String, required: false, default: "" },
     role: {
       type: String,
       required: false,
@@ -22,6 +22,8 @@ const User = new Schema(
     username: { type: String, required: true },
     password: { type: String, required: true },
     voucherWallet: { type: Array, required: false },
+    token: { type: String, required: false, default: "" },
+    active: { type: Boolean, required: true, default: false }
   },
   {
     timestamps: true,

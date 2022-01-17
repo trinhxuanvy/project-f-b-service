@@ -1,0 +1,44 @@
+<%- include ("partials/head.ejs") %>
+	<link rel="stylesheet" href="stylesheets/login.css">
+    <link rel="stylesheet" href="stylesheets/custom.css">
+    <link rel="stylesheet" href="stylesheets/message.css">
+	</head>
+
+	<body>
+	<%- include ("partials/menu-top.ejs") %>
+
+    <div class="body">
+
+        <div class="register">
+            <div class="login-container">
+                <h2 class="login__title">Đăng ký</h2>
+                <form class="validatedForm" id="formValidate" action="/register" method="post">
+                    <div class="login__item">
+                        <span class="login__item__title">Email</span>
+                        <input type="email" id="username" name="username" class="login__item__input" required>
+                    </div>
+                    <div class="login__item">
+                        <span class="login__item__title">Mật khẩu</span>
+                        <input type="password" id="password" name="password" class="login__item__input" required>
+                    </div>
+                    <div class="login__item form-group">
+                        <span class="login__item__title">Nhập lại mật khẩu</span>
+                        <input type="password" id="confirmPassword" name="confirmPassword" class="login__item__input" required>
+                    </div>
+                    <button class="login__item__button">Đăng ký</button>
+                </form>
+                <span class="login__register">Bạn đã có tài khoản? <a href="/login" class="login__register__item">Đăng nhập ngay</a></span>
+            </div>
+        </div>
+    </div>
+
+    <%- include ("partials/message.ejs") %> 
+
+	<%- include ("partials/footer.ejs") %>
+
+    <script src="service.js"></script>
+
+	<%- include ("partials/script.ejs") %>
+</body>
+
+</html>

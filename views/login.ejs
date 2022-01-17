@@ -11,10 +11,10 @@
         <div class="login">
             <div class="login-container">
                 <h2 class="login__title">Đăng nhập</h2>
-                <form action="/login" method="post">
+                <form action="/login" method="post" id="formValidateLogin">
                     <div class="login__item">
                         <span class="login__item__title">Email</span>
-                        <input type="email" name="username" class="login__item__input" autocomplete="off" required>
+                        <input type="email" name="username" class="login__item__input" required>
                         <span class="message error"></span>
                     </div>
                     <div class="login__item">
@@ -31,29 +31,7 @@
                     </div>
                     <button class="login__item__button">Đăng nhập</button>
                 </form>
-                <span class="login__register">Bạn chưa có tài khoản? <span id="register" class="login__register__item">Đăng ký ngay</span></span>
-            </div>
-        </div>
-
-        <div class="register">
-            <div class="login-container">
-                <h2 class="login__title">Đăng ký</h2>
-                <form class="validatedForm" action="/register" method="post">
-                    <div class="login__item">
-                        <span class="login__item__title">Email</span>
-                        <input type="email" id="username" name="username" class="login__item__input">
-                    </div>
-                    <div class="login__item">
-                        <span class="login__item__title">Mật khẩu</span>
-                        <input type="password" id="password" name="password" class="login__item__input">
-                    </div>
-                    <div class="login__item form-group">
-                        <span class="login__item__title">Nhập lại mật khẩu</span>
-                        <input type="password" id="confirmPassword" name="confirmPassword" class="login__item__input">
-                    </div>
-                    <button class="login__item__button">Đăng ký</button>
-                </form>
-                <span class="login__register">Bạn đã có tài khoản? <span id="login" class="login__register__item">Đăng nhập ngay</span></span>
+                <span class="login__register">Bạn chưa có tài khoản? <a href="/register" class="login__register__item">Đăng ký ngay</a></span>
             </div>
         </div>
     </div>
