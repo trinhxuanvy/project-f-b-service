@@ -396,35 +396,138 @@ $(document).ready(function () {
     });
   });
 
+  // Thêm validate phone
+  jQuery.validator.addMethod("valid_number", function (value) {
+    var regex = /^[0-9]*$/gm;
+    return value.trim().match(regex);
+  });
+
+  // Thêm validate username
+  jQuery.validator.addMethod("valid_username", function (value) {
+    const url = new URL(window.location.href);
+    var data = $.ajax({
+      method: "get",
+      contentType: "application/json",
+      async: false,
+      url: url.origin  + "/user/" + value,
+      dataType: "json",
+      success: function (response) {
+        return response;
+      },
+    });
+
+    return data.responseJSON?.status;
+  });
+
   // Xử lý validator password
-  // $(function () {
-  //   $(".validatedForm").validate({
-  //     rules: {
-  //       email: {
-  //         required: true,
-  //       },
-  //       password: {
-  //         required: true,
-  //         minlength: 8,
-  //       },
-  //       confirmPassword: {
-  //         equalTo: "#password",
-  //       },
-  //     },
-  //     messages: {
-  //       confirmPassword: {
-  //         equalTo: "Mật khẩu không khớp",
-  //       },
-  //       email: {
-  //         required: "Vui lòng nhập email",
-  //       },
-  //       password: {
-  //         required: "Vui lòng nhập mật khẩu",
-  //         minlength: "Mật khẩu ít nhất 8 kí tự",
-  //       },
-  //     },
-  //   });
-  // });
+  $(function () {
+    $("#formValidate").validate({
+      onfocusout: false,
+      rules: {
+        username: {
+          required: true,
+          email: true,
+          valid_username: true
+        },
+        password: {
+          required: true,
+          minlength: 8,
+        },
+        confirmPassword: {
+          equalTo: "#password",
+        },
+      },
+      messages: {
+        confirmPassword: {
+          equalTo: "Mật khẩu không khớp",
+          required: "Vui lòng nhập lại mật khẩu"
+        },
+        username: {
+          required: "Vui lòng nhập email",
+          email: "Vui lòng kiểm tra email",
+          valid_username: "Tài khoản đã tồn tại"
+        },
+        password: {
+          required: "Vui lòng nhập mật khẩu",
+          minlength: "Mật khẩu ít nhất 8 kí tự",
+        },
+      },
+      submitHandler: function(form) {
+        // do other things for a valid form
+        form.submit();
+      }
+    });
+  });
+
+  $(function () {
+    $("#formValidateLogin").validate({
+      onfocusout: false,
+      rules: {
+        username: {
+          required: true,
+          email: true,
+        },
+        password: {
+          required: true,
+          minlength: 8,
+        },
+      },
+      messages: {
+        username: {
+          required: "Vui lòng nhập email",
+          email: "Vui lòng kiểm tra email",
+        },
+        password: {
+          required: "Vui lòng nhập mật khẩu",
+          minlength: "Mật khẩu ít nhất 8 kí tự",
+        },
+      },
+      submitHandler: function(form) {
+        // do other things for a valid form
+        form.submit();
+      }
+    });
+  });
+
+  $(function () {
+    $("#formValidateAccount").validate({
+      onfocusout: false,
+      rules: {
+        phone: {
+          required: true,
+          valid_number: true
+        }
+      },
+      messages: {
+        name: {
+          required: "Vui lòng nhập họ tên",
+        },
+        identityCard: {
+          required: "Vui lòng nhập CMND"
+        },
+        phone: {
+          required: "Vui lòng nhập số điện thoại",
+          valid_number: "Vui lòng kiểm tra lại"
+        },
+        province: {
+          required: "Vui lòng chọn tỉnh thành"
+        },
+        district: {
+          required: "Vui lòng chọn quận huyện"
+        },
+        ward: {
+          required: "Vui lòng chọn xã, thị trấn"
+        },
+        address: {
+          required: "Vui lòng nhập địa chỉ"
+        }
+      },
+      submitHandler: function(form) {
+        // do other things for a valid form
+        form.submit();
+      }
+    });
+  });
 });
 
 function convertMoney(money) {

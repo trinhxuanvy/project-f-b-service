@@ -10,10 +10,16 @@ router.get("/logout", authController.getLogout);
 
 router.get("/account", authController.checkExpired, authController.getAccount);
 
-router.post("/account", authController.updateAccount);
+router.post("/account", authController.checkExpired, authController.updateAccount);
 
-router.post("/account/change-password", authController.changePassword);
+router.post("/account/change-password", authController.checkExpired, authController.changePassword);
 
 router.post("/register", authController.postRegister);
+
+router.get("/register", authController.getRegister);
+
+router.get("/confirm/:token", authController.getConfirm);
+
+router.get("/user/:username", authController.getUserByUsername);
 
 module.exports = router;

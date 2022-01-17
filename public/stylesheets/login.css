@@ -13,10 +13,7 @@
   text-align: center; }
   .body .login {
     width: 100%;
-    backface-visibility: hidden;
-    position: absolute;
-    transition: 0.2s;
-    transform: perspective(600px) rotateY(0deg); }
+    transition: 0.2s; }
     .body .login-container {
       box-shadow: 0px 0px 16px rgba(0, 0, 0, 0.162);
       border-radius: 5px;
@@ -74,12 +71,5 @@
         cursor: pointer; }
   .body .register {
     width: 100%;
-    backface-visibility: hidden;
-    position: absolute;
     transition: 0.2s;
-    background-color: #ffffff;
-    transform: perspective(600px) rotateY(180deg); }
-  .body .login--active {
-    transform: perspective(600px) rotateY(-180deg); }
-  .body .register--active {
-    transform: perspective(600px) rotateY(0deg); }
+    background-color: #ffffff; }

@@ -7,13 +7,15 @@ const jwt = require("jsonwebtoken");
 const dotenv = require("dotenv");
 const bcrypt = require("bcrypt");
 const passport = require("passport");
+const nodemailer = require("nodemailer");
+const crypto = require("crypto");
 
 dotenv.config();
 
 class Auth {
   getLogin = async (req, res, next) => {
     const user = "";
-    const namePage = "Đăng nhập - Đăng ký";
+    const namePage = "Đăng nhập";
     const message = req.cookies?.message || "",
       username = "",
       password = "";
@@ -117,49 +119,78 @@ class Auth {
   };
 
   updateAccount = async (req, res, next) => {
-    const userNew = {
-      name: req.body.name,
-      identityCard: req.body.identityCard,
-      phone: req.body.phone,
-      province: req.body.province,
-      district: req.body.district,
-      ward: req.body.ward,
-      address: req.body.address,
-    };
+    const user = jwt.verify(
+      req.cookies.user,
+      process.env.JWT_KEY,
+      (err, data) => {
+        if (err) {
+          return null;
+        } else {
+          return data;
+        }
+      }
+    );
 
-    const user = jwt.verify(req.cookies.user, process.env.JWT_KEY) || "";
+    if (user != null) {
+      const userNew = {
+        name: req.body.name,
+        identityCard: req.body.identityCard,
+        phone: req.body.phone,
+        province: req.body.province,
+        district: req.body.district,
+        ward: req.body.ward,
+        address: req.body.address,
+      };
+      const update = await User.updateOne({ _id: user._id }, userNew);
 
-    User.updateOne({ _id: user._id }, userNew);
+      const userToken = {
+        _id: user._id,
+        username: user.username,
+        password: user.password,
+        name: req.body.name,
+        identityCard: req.body.identityCard,
+        phone: req.body.phone,
+        province: req.body.province,
+        district: req.body.district,
+        ward: req.body.ward,
+        address: req.body.address,
+      };
 
-    const userToken = {
-      _id: user._id,
-      username: user.username,
-      password: user.password,
-      name: req.body.name,
-      identityCard: req.body.identityCard,
-      phone: req.body.phone,
-      province: req.body.province,
-      district: req.body.district,
-      ward: req.body.ward,
-      address: req.body.address,
-    };
+      const token = jwt.sign(userToken, process.env.JWT_KEY, {
+        algorithm: "HS256",
+        expiresIn: "1d",
+      });
 
-    const token = jwt.sign(userToken, process.env.JWT_KEY, {
-      algorithm: "HS256",
-      expiresIn: "1d",
-    });
+      res.cookie("user", token);
 
-    res.cookie("user", token);
-    res.cookie("message", {
-      message: "Cập nhật thành công",
-      type: "success",
-    });
-    res.redirect("/account");
+      if (update.modifiedCount > 0) {
+        res.cookie("message", {
+          message: "Cập nhật thành công",
+          type: "success",
+        });
+      } else {
+        res.cookie("message", {
+          message: "Cập nhật thất bại",
+          type: "error",
+        });
+      }
+      res.redirect("/account");
+    }
   };
 
   changePassword = async (req, res, next) => {
-    if (req.body.newPassword == req.body.confirmNewPassword) {
-      const user = jwt.verify(req.cookies.user, process.env.JWT_KEY) || "";
+    const user = jwt.verify(
+      req.cookies.user,
+      process.env.JWT_KEY,
+      (err, data) => {
+        if (err) {
+          return null;
+        } else {
+          return data;
+        }
+      }
+    );
+    if (data != null) {
       const hashPass = bcrypt.hashSync(req.body.newPassword, 12);
 
       await User.updateOne({ _id: user._id }, { password: hashPass });
@@ -170,43 +201,118 @@ class Auth {
       });
       res.clearCookie("user");
       res.redirect("/login");
-    } else {
-      res.cookie("message", {
-        message: "Mật khẩu không khớp",
-        type: "error",
-      });
-      res.redirect("/account");
     }
   };
 
-  postRegister = async (req, res, next) => {
-    if (req.body.password == req.body.confirmPassword) {
-      const newUser = {
-        username: req.body.username,
-        password: req.body.password,
-        role: "Customer",
-      };
-
-      const findUser = await User.findOne({ username: req.body.username });
-
-      if (findUser) {
-        res.cookie("message", {
-          message: "Tài khoản đã tồn tại",
-          type: "warning",
-        });
-        res.redirect("/login");
-        return;
-      }
-
-      const user = new User(newUser);
-
-      await user.save();
-      res.cookie("message", { message: "Đăng ký thành công", type: "success" });
-      res.redirect("/login");
-      return;
+  getRegister = async (req, res, next) => {
+    const user = "";
+    const namePage = "Đăng ký";
+    const message = req.cookies?.message || "",
+      username = "",
+      password = "";
+    if (message) {
+      res.clearCookie("message");
     }
-    res.cookie("message", { message: "Mật khẩu không khớp", type: "error" });
-    res.redirect("/login");
+    res.render("register", { message, username, password, namePage, user });
+  };
+
+  postRegister = async (req, res, next) => {
+    const token = crypto.randomBytes(16).toString("hex");
+
+    const newUser = {
+      username: req.body.username,
+      password: req.body.password,
+      role: "Customer",
+      token: token,
+    };
+
+    const user = new User(newUser);
+
+    user.save((err) => {
+      if (!err) {
+        var fullUrl = req.protocol + "://" + req.get("host");
+        // Send email (use credintials of SendGrid)
+        var transporter = nodemailer.createTransport({
+          service: "Gmail",
+          auth: {
+            user: "trinhxuanvy1@gmail.com",
+            pass: "0769699470",
+          },
+        });
+        var mailOptions = {
+          from: "TocoToco Fake",
+          to: newUser.username,
+          subject: "Xác nhận tài khoản",
+          html: `<h1>Xác nhận tài khoản</h1>
+        <h2>Chào mừng ${newUser.username} đến với TocoToco Fake</h2>
+        <p>Cảm ơn bạn đã đăng ký. Vui lòng nhấn link bên dưới để xác nhận</p>
+        <div>
+        <a
+          style="display: inline-block;
+          width: 150px;
+          color: #fff !important;
+          margin: 0 auto;
+          padding: 8px 0;
+          background-color: #d46318;
+          text-decoration: none;
+          text-align: center;"
+          href="${fullUrl}/confirm/${token}"
+          > Click here</a>
+        </div>`,
+        };
+        transporter.sendMail(mailOptions, function (err) {
+          if (err) {
+            res.cookie("message", {
+              message: "Lỗi rồi. Vui lòng gửi lại yêu cầu",
+              type: "error",
+            });
+            res.redirect("/login");
+          }
+          res.cookie("message", {
+            message: "Xác nhận được gửi đến mail " + user.username,
+            type: "warning",
+          });
+          res.redirect("/login");
+        });
+      } else {
+        req.cookie("message", {
+          message: "Đã xảy ra lỗi vui lòng quay lại sau",
+          type: "error",
+        });
+        res.redirect("/register");
+      }
+    });
+  };
+
+  getConfirm = async (req, res, next) => {
+    User.findOneAndUpdate(
+      { token: req.params?.token },
+      { active: true },
+      (err, data) => {
+        if (!err && data) {
+          res.cookie("message", {
+            message: "Xác nhận thành công",
+            type: "success",
+          });
+        } else {
+          res.cookie("message", {
+            message: "Xác nhận thất bại",
+            type: "error",
+          });
+        }
+        res.redirect("/login");
+      }
+    );
+  };
+
+  getUserByUsername = async (req, res, next) => {
+    const user = await User.find({ username: req.params?.username });
+
+    if (user.length) {
+      res.send({ status: false });
+    } else {
+      res.send({ status: true });
+    }
   };
 }
 
