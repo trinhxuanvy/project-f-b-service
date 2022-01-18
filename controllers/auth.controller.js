@@ -241,11 +241,11 @@ class Auth {
           },
         });
         var mailOptions = {
-          from: "TocoToco Fake",
+          from: "TocoToco",
           to: newUser.username,
           subject: "Xác nhận tài khoản",
           html: `<h1>Xác nhận tài khoản</h1>
-        <h2>Chào mừng ${newUser.username} đến với TocoToco Fake</h2>
+        <h2>Chào mừng ${newUser.username} đến với TocoToco</h2>
         <p>Cảm ơn bạn đã đăng ký. Vui lòng nhấn link bên dưới để xác nhận</p>
         <div>
         <a
@@ -321,8 +321,8 @@ class Auth {
     var transporter = nodemailer.createTransport({
       service: "Gmail",
       auth: {
-        user: "trinhxuanvy1@gmail.com",
-        pass: "0769699470",
+        user: process.env.AUTH_EMAIL,
+        pass: process.env.AUTH_PASS,
       },
     });
     var newPassword = customService.randomStr(8);
@@ -333,7 +333,7 @@ class Auth {
       (err, user) => {
         if (!err) {
           var mailOptions = {
-            from: "TocoToco Fake",
+            from: "TocoToco",
             to: user.username,
             subject: "TocoToco - Reset mật khẩu",
             html: `<p>Mật khẩu mới của bạn: </p><p style="font-weigth: bolder;">${newPassword}</p>`,
