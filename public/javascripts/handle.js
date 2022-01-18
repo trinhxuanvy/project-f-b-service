@@ -422,6 +422,12 @@ $(document).ready(function () {
     return data.responseJSON?.status;
   });
 
+  // Thêm validate password
+  jQuery.validator.addMethod("valid_password", function (value) {
+    var regex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/;
+    return value.trim().match(regex);
+  });
+
   // Xử lý validator password
   $(function () {
     $("#formValidate").validate({
@@ -435,6 +441,7 @@ $(document).ready(function () {
         password: {
           required: true,
           minlength: 8,
+          valid_password: true
         },
         confirmPassword: {
           equalTo: "#password",
@@ -453,6 +460,7 @@ $(document).ready(function () {
         password: {
           required: "Vui lòng nhập mật khẩu",
           minlength: "Mật khẩu ít nhất 8 kí tự",
+          valid_password: "Mật khẩu ít nhất một chữ in hoa, thường, chữ số"
         },
       },
       submitHandler: function(form) {
@@ -473,6 +481,7 @@ $(document).ready(function () {
         password: {
           required: true,
           minlength: 8,
+          valid_password: true
         },
       },
       messages: {
@@ -483,6 +492,7 @@ $(document).ready(function () {
         password: {
           required: "Vui lòng nhập mật khẩu",
           minlength: "Mật khẩu ít nhất 8 kí tự",
+          valid_password: "Mật khấu ít nhất một chữ in hoa, thường, chữ số"
         },
       },
       submitHandler: function(form) {
