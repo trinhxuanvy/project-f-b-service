@@ -235,8 +235,8 @@ class Auth {
         var transporter = nodemailer.createTransport({
           service: "Gmail",
           auth: {
-            user: "trinhxuanvy1@gmail.com",
-            pass: "0769699470",
+            user: process.env.AUTH_EMAIL,
+            pass: process.env.AUTH_PASS,
           },
         });
         var mailOptions = {
