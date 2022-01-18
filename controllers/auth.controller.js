@@ -190,8 +190,8 @@ class Auth {
         }
       }
     );
-    if (data != null) {
-      const hashPass = bcrypt.hashSync(req.body.newPassword, 12);
+    if (user != null) {
+      const hashPass = bcrypt.hashSync(req.body?.password, 12);
 
       await User.updateOne({ _id: user._id }, { password: hashPass });
 
