@@ -136,6 +136,7 @@ $(document).ready(function () {
                 convertMoney(response?.product?.subProduct[0].price)
               );
               $(popupImage[0]).attr("src", response?.product?.picture);
+              $("#inputAmount").val(1);
             }
           },
         });
@@ -428,6 +429,12 @@ $(document).ready(function () {
     return value.trim().match(regex);
   });
 
+  // Thêm validate tên
+  jQuery.validator.addMethod("valid_name", function (value) {
+    var regex = /[ `!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/;
+    return !regex.test(value);
+  });
+
   // Xử lý validator password
   $(function () {
     $("#formValidate").validate({
@@ -441,6 +448,7 @@ $(document).ready(function () {
         password: {
           required: true,
           minlength: 8,
+          maxlength: 20,
           valid_password: true
         },
         confirmPassword: {
@@ -460,6 +468,7 @@ $(document).ready(function () {
         password: {
           required: "Vui lòng nhập mật khẩu",
           minlength: "Mật khẩu ít nhất 8 kí tự",
+          maxlength: "Mật khẩu tối đa 20 ký tự",
           valid_password: "Mật khẩu ít nhất một chữ in hoa, thường, chữ số"
         },
       },
@@ -481,6 +490,7 @@ $(document).ready(function () {
         password: {
           required: true,
           minlength: 8,
+          maxlength: 20,
           valid_password: true
         },
       },
@@ -492,6 +502,7 @@ $(document).ready(function () {
         password: {
           required: "Vui lòng nhập mật khẩu",
           minlength: "Mật khẩu ít nhất 8 kí tự",
+          maxlength: "Mật khẩu tối đa 20 ký tự",
           valid_password: "Mật khấu ít nhất một chữ in hoa, thường, chữ số"
         },
       },
@@ -509,18 +520,32 @@ $(document).ready(function () {
         phone: {
           required: true,
           valid_number: true
+        },
+        identityCard: {
+          required: true,
+          valid_number: true
+        },
+        name: {
+          required: true,
+          valid_name: true
+        },
+        address: {
+          required: true,
+          maxlength: 50
         }
       },
       messages: {
         name: {
           required: "Vui lòng nhập họ tên",
+          valid_name: "Tên không chứa ký tự đặt biệt"
         },
         identityCard: {
-          required: "Vui lòng nhập CMND"
+          required: "Vui lòng nhập CMND",
+          valid_number: "CMND chỉ chứa chữ số 0-9"
         },
         phone: {
           required: "Vui lòng nhập số điện thoại",
-          valid_number: "Vui lòng kiểm tra lại"
+          valid_number: "Số điện thoại chỉ chứa chữ số 0-9"
         },
         province: {
           required: "Vui lòng chọn tỉnh thành"
@@ -532,13 +557,29 @@ $(document).ready(function () {
           required: "Vui lòng chọn xã, thị trấn"
         },
         address: {
-          required: "Vui lòng nhập địa chỉ"
+          required: "Vui lòng nhập địa chỉ",
+          maxlength: "Địa chỉ tối đa 50 ký tự"
         }
       },
       submitHandler: function(form) {
         // do other things for a valid form
         form.submit();
       }
+    });
+  });
+
+  $(function () {
+    const inputAmount = $("#inputAmount");
+    $("#plus-amount").click(function (e) { 
+      e.preventDefault();
+      $(inputAmount[0]).val(parseInt($(inputAmount[0]).val()) + 1);
+    });
+
+    $("#minus-amount").click(function (e) { 
+      e.preventDefault();
+      let val = parseInt($(inputAmount[0]).val()) - 1;
+      let finalVal = val > 0 ? val : 1;
+      $(inputAmount[0]).val(finalVal);
     });
   });
 });

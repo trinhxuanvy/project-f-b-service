@@ -64,6 +64,10 @@ class OrderController {
         }
       }
     );
+    const message = req.cookies?.message || "";
+    if (message) {
+      res.clearCookie("message");
+    }
     const namePage = "Order";
     const sugar = await Product.findOne({ isDisplay: false, type: "sugar" });
     const ice = await Product.findOne({ isDisplay: false, type: "ice" });
@@ -112,6 +116,7 @@ class OrderController {
       topping,
       order,
       user,
+      message
     });
   };
 

@@ -23,29 +23,45 @@ class PaymentController {
       }
     );
     const order = await Order.find({ status: "ordering", user: user._id });
-    const userInfo = await User.findById({ _id: user._id });
-    const allVoucher = await Voucher.find({ status: true });
-    const voucherWallet = userInfo.voucherWallet;
-    let voucher = [],
-      totalPrice = 0;
 
-    for (let i = 0; i < voucherWallet.length; i++) {
-      if (new Date(voucherWallet[i].endTime) > new Date()) {
-        voucher.push({
-          code: voucherWallet[i].code,
-          name: voucherWallet[i].name,
-          percent: voucherWallet[i].percent,
-        });
+    if (order.length) {
+      const userInfo = await User.findById({ _id: user._id });
+      const allVoucher = await Voucher.find({ status: true });
+      const voucherWallet = userInfo.voucherWallet;
+      let voucher = [],
+        totalPrice = 0;
+
+      for (let i = 0; i < voucherWallet.length; i++) {
+        if (new Date(voucherWallet[i].endTime) > new Date()) {
+          voucher.push({
+            code: voucherWallet[i].code,
+            name: voucherWallet[i].name,
+            percent: voucherWallet[i].percent,
+          });
+        }
       }
-    }
 
-    for (let i = 0; i < order.length; i++) {
-      totalPrice += order[i].totalPrice;
-    }
+      for (let i = 0; i < order.length; i++) {
+        totalPrice += order[i].totalPrice;
+      }
 
-    const ship = Math.floor((totalPrice * 10) / 100);
-    totalPrice += ship;
-    res.render("payment", { namePage, order, voucher, totalPrice, user, ship });
+      const ship = Math.floor((totalPrice * 10) / 100);
+      totalPrice += ship;
+      res.render("payment", {
+        namePage,
+        order,
+        voucher,
+        totalPrice,
+        user,
+        ship,
+      });
+    } else {
+      res.cookie("message", {
+        message: "Hãy chọn 1 sản phẩm",
+        type: "warning",
+      });
+      res.redirect("/order");
+    }
   };
 
   postPayment = async (req, res, next) => {

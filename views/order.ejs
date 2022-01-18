@@ -33,7 +33,7 @@
     />
     <link rel="stylesheet" href="/stylesheets/default.css" />
     <link rel="stylesheet" href="/stylesheets/index.css" />
-
+    <link rel="stylesheet" href="stylesheets/message.css">
     <link rel="stylesheet" href="/stylesheets/products.css" />
   </head>
 
@@ -177,7 +177,6 @@
                     </div>
                   </div>
                   <div class="body__item__menu-list__item__button">
-                    <i class="fa fa-minus" aria-hidden="true"></i>
                     <div class="body__item__menu-list__item__button__count">
                       <input
                         style="width: 50px"
@@ -185,9 +184,9 @@
                         min="1"
                         name="amount"
                         value="<%= item.amount %>"
+                        disabled
                       />
                     </div>
-                    <i class="fa fa-plus" aria-hidden="true"></i>
                   </div>
                 </div>
                 <% })} else { %>
@@ -243,6 +242,7 @@
                       min="1"
                       name="amount"
                       value="1"
+                      id="inputAmount"
                     />
                   </div>
                   <i class="fa fa-plus" id="plus-amount" aria-hidden="true"></i>
@@ -358,6 +358,7 @@
         </div>
       </form>
     </div>
+    <%- include ("partials/message.ejs") %> 
     <%- include ("partials/footer.ejs") %> <%- include ("partials/script.ejs")
     %>
   </body>
