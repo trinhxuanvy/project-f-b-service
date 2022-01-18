@@ -47,6 +47,13 @@ passport.use(
           });
         }
 
+        if (user.active == false) {
+          return done(null, false, {
+            message: "Tài khoản chưa xác nhận mail",
+            type: "error"
+          });
+        }
+
         return done(null, user);
       });
     }
