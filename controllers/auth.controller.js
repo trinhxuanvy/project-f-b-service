@@ -326,43 +326,53 @@ class Auth {
       },
     });
     var newPassword = customService.randomStr(8);
-    var hassPassword = bcrypt.hashSync(newPassword, 12);
-    User.findOneAndUpdate(
-      { username: req.body?.username },
-      { password: hassPassword },
-      (err, user) => {
-        if (!err) {
-          var mailOptions = {
-            from: "TocoToco",
-            to: user.username,
-            subject: "TocoToco - Reset mật khẩu",
-            html: `<p>Mật khẩu mới của bạn: </p><p style="font-weigth: bolder;">${newPassword}</p>`,
-          };
-          transporter.sendMail(mailOptions, function (err) {
-            if (err) {
-              res.cookie("message", { message: "Lỗi rồi", type: "error" });
-              res.redirect("/reset");
-            }
-            res.cookie("message", {
-              message: "Mật khẩu mới được gửi tới mail " + user.username,
-              type: "warning",
-            });
-            res.redirect("/login");
+    var hashPassword = bcrypt.hashSync(newPassword, 12);
+    var user = await User.find({ username: req.body?.username });
+    if (user.length) {
+      var update = await User.updateOne(
+        { username: req.body?.username },
+        { password: hashPassword }
+      );
+      if (update.modifiedCount > 0) {
+        var mailOptions = {
+          from: "TocoToco",
+          to: user[0].username,
+          subject: "TocoToco - Reset mật khẩu",
+          html: `<p>Mật khẩu mới của bạn: </p><p style="font-weigth: bolder;">${newPassword}</p>`,
+        };
+        transporter.sendMail(mailOptions, function (err) {
+          if (err) {
+            res.cookie("message", { message: "Lỗi rồi", type: "error" });
+            res.redirect("/reset");
+          }
+          res.cookie("message", {
+            message: "Mật khẩu mới được gửi tới mail " + user[0].username,
+            type: "warning",
           });
-        } else {
-          res.cookie("message", { message: "Lỗi rồi", type: "error" });
-          res.redirect("/reset");
-        }
+          res.redirect("/login");
+        });
+      } else {
+        res.cookie("message", { message: "Đã gặp sự cố", type: "error" });
+        res.redirect("/reset");
       }
-    );
+    } else {
+      res.cookie("message", {
+        message: "Tài khoản không tồn tại",
+        type: "error",
+      });
+      res.redirect("/reset");
+    }
   };
-  
+
   getResetPassword = async (req, res, next) => {
     const namePage = "Reset mật khẩu";
     const user = "";
-    res.render("reset-password", { namePage, user })
-  }
+    const message = req.cookies?.message || "";
+    if (message) {
+      res.clearCookie("message");
+    }
+    res.render("reset-password", { namePage, user, message });
+  };
 }
-
 
 module.exports = new Auth();
