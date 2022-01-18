@@ -9,6 +9,7 @@ const bcrypt = require("bcrypt");
 const passport = require("passport");
 const nodemailer = require("nodemailer");
 const crypto = require("crypto");
+const customService = require("../services/service");
 
 dotenv.config();
 
@@ -314,6 +315,54 @@ class Auth {
       res.send({ status: true });
     }
   };
+
+  resetPassword = async (req, res, next) => {
+    // Send email (use credintials of SendGrid)
+    var transporter = nodemailer.createTransport({
+      service: "Gmail",
+      auth: {
+        user: "trinhxuanvy1@gmail.com",
+        pass: "0769699470",
+      },
+    });
+    var newPassword = customService.randomStr(8);
+    var hassPassword = bcrypt.hashSync(newPassword, 12);
+    User.findOneAndUpdate(
+      { username: req.body?.username },
+      { password: hassPassword },
+      (err, user) => {
+        if (!err) {
+          var mailOptions = {
+            from: "TocoToco Fake",
+            to: user.username,
+            subject: "TocoToco - Reset mật khẩu",
+            html: `<p>Mật khẩu mới của bạn: </p><p style="font-weigth: bolder;">${newPassword}</p>`,
+          };
+          transporter.sendMail(mailOptions, function (err) {
+            if (err) {
+              res.cookie("message", { message: "Lỗi rồi", type: "error" });
+              res.redirect("/reset");
+            }
+            res.cookie("message", {
+              message: "Mật khẩu mới được gửi tới mail " + user.username,
+              type: "warning",
+            });
+            res.redirect("/login");
+          });
+        } else {
+          res.cookie("message", { message: "Lỗi rồi", type: "error" });
+          res.redirect("/reset");
+        }
+      }
+    );
+  };
+  
+  getResetPassword = async (req, res, next) => {
+    const namePage = "Reset mật khẩu";
+    const user = "";
+    res.render("reset-password", { namePage, user })
+  }
 }
+
 
 module.exports = new Auth();

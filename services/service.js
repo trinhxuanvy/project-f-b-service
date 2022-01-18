@@ -1,40 +1,34 @@
-// class Service {
-//     validator ({ email, password, confirmPassword }) {
-//         var err = new Array();
-//         var decode = "";
+exports.randomStr = (length) => {
+  var result = "";
+  var upper = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+  var lower = "abcdefghijklmnopqrstuvwxyz";
+  var number = "0123456789";
+  var upperLength = upper.length;
+  var lowerLength = lower.length;
+  var numberLength = number.length;
 
-//         if (email) {
-//             decode = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i.test(email);
+  for (var i = 0; i < 2; i++) {
+    result += upper.charAt(Math.floor(Math.random() * upperLength));
+  }
+  for (var i = 0; i < 3; i++) {
+    result += lower.charAt(Math.floor(Math.random() * lowerLength));
+  }
+  for (var i = 0; i < 3; i++) {
+    result += number.charAt(Math.floor(Math.random() * numberLength));
+  }
 
-//             if (!decode) {
-//                 err.push({ name: "email", message: "Vui lòng nhập lại email" });
-//             } else {
-//                 err.push({ name: "email", message: "" });
-//             }
-//         }
+  return result.shuffle();
+};
 
-//         if (password) {
-//             decode = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/.test(password);
+String.prototype.shuffle = function () {
+  var a = this.split(""),
+    n = a.length;
 
-//             if (!decode) {
-//                 err.push({ name: "password", message: "Vui lòng nhập lại mật khẩu" });
-//             } else {
-//                 err.push({ name: "password", message: "" });
-//             }
-//         }
-
-//         if (confirmPassword) {
-//             decode = password !== confirmPassword;
-
-//             if (decode) {
-//                 err.push({ name: "confirmPassword", message: "Mật khẩu không khớp" });
-//             } else {
-//                 err.push({ name: "confirmPassword", message: "" });
-//             }
-//         }
-
-//         return err;
-//     }
-// }
-
-// // module.exports = new Service;
+  for (var i = n - 1; i > 0; i--) {
+    var j = Math.floor(Math.random() * (i + 1));
+    var tmp = a[i];
+    a[i] = a[j];
+    a[j] = tmp;
+  }
+  return a.join("");
+};
