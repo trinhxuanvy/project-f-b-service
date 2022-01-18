@@ -26,8 +26,11 @@
     border-radius: 5px;
     padding: 8px;
     display: block;
-    width: 150px;
-    margin-left: auto; }
+    width: 180px;
+    margin-left: auto;
+    text-align: center; }
+  .payment__item__body__item .link-item {
+    color: #ffffff; }
   .payment__item__body__form {
     padding: 0 16px; }
     .payment__item__body__form__item {

@@ -8,18 +8,6 @@ const dotenv = require("dotenv");
 
 dotenv.config();
 
-const use = {
-  name: "Trình Xuân Vỹ",
-  address: "TPHCM",
-  phone: "0706434429",
-  identityCard: "025963068",
-  role: "Customer",
-  username: "trinhxuanvy1@gmail.com",
-  password: "abcd1234",
-  cart: [],
-  voucherWallet: [],
-};
-
 class OrderController {
   getProductById = (req, res, next) => {
     Product.findById(req.params.id)
@@ -33,22 +21,6 @@ class OrderController {
 
   getProducts = async (req, res, next) => {
     const namePage = "Sản phẩm";
-
-    const prod = {
-      name: "Sữa chua dâu tằm hoàng kim",
-      isDisplay: true,
-      sale: 10,
-      categoryId: "",
-      categoryName: "",
-    };
-
-    const category = {
-      name: "Macchiato Cream Cheese",
-      amount: 4,
-    };
-
-    const data = new Category(category);
-    await data.save((err) => {});
     const search = req.query.search_name || "";
 
     Category.find({})
@@ -78,7 +50,7 @@ class OrderController {
         res.render("products", { prod, namePage }); //[category, [product]]
         //res.send(prod);
       })
-      .catch((error) => res.send("123")); // ERROR page
+      .catch((error) => res.send({ status: false })); // ERROR page
   };
 
   getAllProducts = async (req, res, next) => {

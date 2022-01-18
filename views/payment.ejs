@@ -1,6 +1,7 @@
 <%- include ("partials/head.ejs") %>
     <link rel="stylesheet" href="stylesheets/products.css">
     <link rel="stylesheet" href="stylesheets/payment.css">
+    <link rel="stylesheet" href="stylesheets/custom.css">
 	</head>
 
 	<body>
@@ -13,21 +14,21 @@
                     <div class="payment__item">
                         <p class="payment__item__header">Thanh toán trực tiếp</p>
                         <div class="payment__item__body">
-                            <form action="/payment" method="post">
+                            <form action="/payment" id="formValidateAccount" method="post">
                                 <div class="row">
                                 <div class="col-xl-6">
                                     <div class="payment__item__body__item">
                                         <p class="payment__item__body__item__title">Thông tin người nhận</p>
                                         <div class="payment__item__body__item__form">
-                                                <div class="payment__item__body__form__item">
+                                                <div class="payment__item__body__form__item position-relative">
                                                     <span class="payment__item__body__form__item__label">Họ và tên:</span>
                                                     <input type="text" name="name" value="<%= user.name %>" required>
                                                 </div>
-                                                <div class="payment__item__body__form__item">
+                                                <div class="payment__item__body__form__item position-relative mt-4">
                                                     <span class="payment__item__body__form__item__label">Số điện thoại:</span>
                                                     <input type="text" name="phone" value="<%= user.phone %>" required>
                                                 </div>
-                                                <div class="payment__item__body__form__item">
+                                                <div class="payment__item__body__form__item position-relative mt-4">
                                                     <span class="payment__item__body__form__item__label">Tỉnh thành:</span>
                                                     <select
                                                         class="payment__item__body__form__item__select"
@@ -47,7 +48,7 @@
                                                         <option value="">- Chọn -</option>
                                                       </select>
                                                 </div>
-                                                <div class="payment__item__body__form__item">
+                                                <div class="payment__item__body__form__item position-relative mt-4">
                                                     <span class="payment__item__body__form__item__label">Quận/Huyện:</span>
                                                     <select
                                                         class="payment__item__body__form__item__select"
@@ -67,7 +68,7 @@
                                                         <option value="">- Chọn -</option>
                                                       </select>
                                                 </div>
-                                                <div class="payment__item__body__form__item">
+                                                <div class="payment__item__body__form__item position-relative mt-4">
                                                     <span class="payment__item__body__form__item__label">Thị Trấn/Phường/Xã:</span>
                                                     <select class="payment__item__body__form__item__select" name="ward" required id="vietNamCommune">
                                                       <% if (user.ward) { %>
@@ -79,7 +80,7 @@
                                                         <option value="">- Chọn -</option>
                                                       </select>
                                                 </div>
-                                                <div class="payment__item__body__form__item">
+                                                <div class="payment__item__body__form__item position-relative mt-4">
                                                     <span class="payment__item__body__form__item__label">Số nhà, Đường, Tổ/Ấp:</span>
                                                     <input
                                                     type="text"
@@ -98,7 +99,6 @@
                                     <div class="payment__item__body__item">
                                         <div class="body__item__title d-flex align-items-center justify-content-between">GIỎ HÀNG
                                             CỦA TÔI
-                                            <a href="" class="body__item__title__link">Xóa tất cả</a>
                                         </div>
                                         <div class="body__item__menu-list">
                                             <% if (order.length) { order.forEach(item => { %>
@@ -161,7 +161,11 @@
                                           <p style="margin-bottom: 0px !important" class="payment__item__body__item__total money"><%= totalPrice %></p>
                                           <span style="margin-bottom: 16px; font-size: 14px; color: gray; font-style: italic; display: block; text-align: right;">Đã bao gồm phí ship: <span id="ship" class="money"><%= ship %></span></span>
                                         </div>
-                                        <button class="payment__item__body__item__checkout" type="submit">Thanh toán</button>
+                                        <% if (order.length) { %>
+                                          <button class="payment__item__body__item__checkout" type="submit">Thanh toán</button>
+                                        <% } else { %>
+                                          <a href="/order" class="payment__item__body__item__checkout link-item" type="submit">Tiếp tục mua hàng</a>
+                                        <% } %> 
                                     </div>
                                 </div>
                                 </div>

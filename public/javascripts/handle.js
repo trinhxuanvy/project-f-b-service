@@ -225,6 +225,9 @@ $(document).ready(function () {
       autoplay: false,
       dots: false,
       mouseWheel: false,
+      touchDrag: false,
+      mouseDrag: false,
+      singleItem: true,
       nav: true,
       navText: [
         "<span style='display: block; padding: 8px 16px; background-color: #D2A451; color: #ffffff;'>Thanh toán trực tiếp</span>",
