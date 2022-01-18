@@ -22,4 +22,8 @@ router.get("/confirm/:token", authController.getConfirm);
 
 router.get("/user/:username", authController.getUserByUsername);
 
+router.get("/reset", authController.getResetPassword);
+
+router.post("/reset", authController.resetPassword);
+
 module.exports = router;
